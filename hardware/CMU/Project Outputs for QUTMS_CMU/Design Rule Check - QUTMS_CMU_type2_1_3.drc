@@ -1,0 +1,361 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\Julius\Google Drive\QUTMS_BMS\CMU\QUTMS_CMU\QUTMS_CMU_type2_1_3.PcbDoc
+Date     : 4/08/2016
+Time     : 11:13:27 PM
+
+Processing Rule : Net Antennae (Tolerance=100mm) (All)
+   Violation between Net Antennae: Via (183.945mm,14.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.67mm,13.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.045mm,14.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (179.395mm,52mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (179.67mm,50.85mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.82mm,50.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (179.67mm,53.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (180.345mm,54.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (181.37mm,54.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.67mm,53.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.989mm,51.978mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (182.72mm,55.275mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.045mm,54.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (183.945mm,54.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (134.02mm,49.15mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (135.425mm,48.745mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (132.395mm,50.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (132.97mm,49.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (132.12mm,52.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (132.395mm,53.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (133.07mm,54.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (134.095mm,55mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (138.395mm,53.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (138.714mm,52.028mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (135.445mm,55.325mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (137.77mm,54.35mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (136.67mm,55mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (158.52mm,49.025mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (159.925mm,48.62mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (156.895mm,50.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (157.47mm,49.75mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (161.345mm,48.975mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (162.395mm,49.7mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (163.045mm,50.7mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (163.214mm,51.903mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (156.62mm,51.925mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (156.895mm,53.175mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (157.57mm,54.175mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (162.27mm,54.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (162.895mm,53.125mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (158.595mm,54.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (161.17mm,54.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (159.945mm,55.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (86.72mm,49.025mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (88.125mm,48.62mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (85.095mm,50.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (85.67mm,49.75mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (84.82mm,51.925mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (85.095mm,53.175mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (85.77mm,54.175mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (86.795mm,54.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (91.095mm,53.125mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (88.145mm,55.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (90.47mm,54.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (89.37mm,54.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (111.245mm,49.025mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (112.65mm,48.62mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (109.62mm,50.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (110.195mm,49.75mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (114.07mm,48.975mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (115.12mm,49.7mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (115.77mm,50.7mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (115.939mm,51.903mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (109.345mm,51.925mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (109.62mm,53.175mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (110.295mm,54.175mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (114.995mm,54.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (115.62mm,53.125mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (111.32mm,54.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (113.895mm,54.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (112.67mm,55.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (39.37mm,49.15mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (40.775mm,48.745mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (37.745mm,50.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (38.32mm,49.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (37.47mm,52.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (37.745mm,53.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (38.42mm,54.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (39.445mm,55mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (43.745mm,53.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (44.064mm,52.028mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (40.795mm,55.325mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (43.12mm,54.35mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (42.02mm,55mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (63.945mm,49.15mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (65.35mm,48.745mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.32mm,50.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.895mm,49.875mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (66.77mm,49.1mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (67.82mm,49.825mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (68.47mm,50.825mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (68.639mm,52.028mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.045mm,52.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.32mm,53.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.995mm,54.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (67.695mm,54.35mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (68.32mm,53.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (64.02mm,55mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (66.595mm,55mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (65.37mm,55.325mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (14.97mm,50.85mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (15.545mm,49.825mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (14.695mm,52mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (14.97mm,53.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (16.595mm,49.1mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (18mm,48.695mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (15.645mm,54.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (16.67mm,54.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (19.42mm,49.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (18.02mm,55.275mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (19.245mm,54.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (20.47mm,49.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (21.12mm,50.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (20.345mm,54.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (21.289mm,51.978mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (20.97mm,53.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (63.945mm,9.175mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (65.35mm,8.77mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.32mm,10.925mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.895mm,9.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (66.77mm,9.125mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (67.82mm,9.85mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (68.47mm,10.85mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (68.639mm,12.053mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.045mm,12.075mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.32mm,13.325mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (62.995mm,14.325mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (67.695mm,14.375mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (68.32mm,13.275mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (64.02mm,15.025mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (66.595mm,15.025mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (65.37mm,15.35mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (111.22mm,9.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (112.625mm,8.645mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (109.595mm,10.8mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (110.17mm,9.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (114.045mm,9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (115.095mm,9.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (115.745mm,10.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (115.914mm,11.928mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (109.32mm,11.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (109.595mm,13.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (110.27mm,14.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (114.97mm,14.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (115.595mm,13.15mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (111.295mm,14.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (113.87mm,14.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (112.645mm,15.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (158.495mm,9.1mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (159.9mm,8.695mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (156.87mm,10.85mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (157.445mm,9.825mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (161.32mm,9.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (162.37mm,9.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (163.02mm,10.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (163.189mm,11.978mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (156.595mm,12mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (156.87mm,13.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (157.545mm,14.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (162.245mm,14.3mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (162.87mm,13.2mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (158.57mm,14.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (161.145mm,14.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (159.92mm,15.275mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.25mm,49.825mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (135.445mm,15.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (136.67mm,14.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (138.395mm,13.15mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (137.77mm,14.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (132.12mm,11.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (138.714mm,11.928mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (138.545mm,10.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (137.895mm,9.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (136.845mm,9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (132.97mm,9.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (132.395mm,10.8mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (135.425mm,8.645mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (134.02mm,9.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (182.745mm,15.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (179.42mm,11.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (186.014mm,11.928mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.845mm,10.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (185.195mm,9.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (184.145mm,9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (180.27mm,9.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (179.695mm,10.8mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (182.725mm,8.645mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (181.32mm,9.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (40.845mm,15.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (42.07mm,14.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (43.795mm,13.15mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (43.17mm,14.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (37.52mm,11.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (44.114mm,11.928mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (43.945mm,10.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (43.295mm,9.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (42.245mm,9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (38.37mm,9.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (37.795mm,10.8mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (40.825mm,8.645mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (39.42mm,9.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (18.045mm,15.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (19.27mm,14.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (20.995mm,13.15mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (20.37mm,14.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (21.314mm,11.928mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (21.145mm,10.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (20.495mm,9.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (19.445mm,9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (15.57mm,9.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (14.995mm,10.8mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (18.025mm,8.645mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (16.62mm,9.05mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (88.145mm,15.225mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (89.37mm,14.9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (91.095mm,13.15mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (90.47mm,14.25mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (84.82mm,11.95mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (91.414mm,11.928mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (91.245mm,10.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (90.595mm,9.725mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (89.545mm,9mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (85.67mm,9.775mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (85.095mm,10.8mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (88.125mm,8.645mm) Top Layer to Bottom Layer
+   Violation between Net Antennae: Via (86.72mm,9.05mm) Top Layer to Bottom Layer
+Rule Violations :226
+
+Processing Rule : Silk to Silk (Clearance=0mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=0mm) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)
+   Violation between Pad VR1-2(157.8mm,36.64mm)  Top Layer and 
+                     Pad VR1-1(157.8mm,37.78mm)  Top Layer
+   Violation between Pad VR1-4(157.8mm,34.36mm)  Top Layer and 
+                     Pad VR1-5(157.8mm,33.22mm)  Top Layer
+   Violation between Pad R43-1(134.6mm,26.125mm)  Top Layer and 
+                     Pad F7-1(134.8mm,24.3mm)  Top Layer
+   Violation between Pad R43-2(136.4mm,26.125mm)  Top Layer and 
+                     Pad F7-1(134.8mm,24.3mm)  Top Layer
+   Violation between Pad U1-2(111.5mm,36.4mm)  Top Layer and 
+                     Pad U1-1(112.3mm,36.4mm)  Top Layer
+   Violation between Pad U1-3(110.7mm,36.4mm)  Top Layer and 
+                     Pad U1-2(111.5mm,36.4mm)  Top Layer
+   Violation between Pad U1-4(109.9mm,36.4mm)  Top Layer and 
+                     Pad U1-3(110.7mm,36.4mm)  Top Layer
+   Violation between Pad U1-5(109.1mm,36.4mm)  Top Layer and 
+                     Pad U1-4(109.9mm,36.4mm)  Top Layer
+   Violation between Pad U1-6(108.3mm,36.4mm)  Top Layer and 
+                     Pad U1-5(109.1mm,36.4mm)  Top Layer
+   Violation between Pad U1-7(107.5mm,36.4mm)  Top Layer and 
+                     Pad U1-6(108.3mm,36.4mm)  Top Layer
+   Violation between Pad U1-8(106.7mm,36.4mm)  Top Layer and 
+                     Pad U1-7(107.5mm,36.4mm)  Top Layer
+   Violation between Pad U1-10(105.3mm,34.2mm)  Top Layer and 
+                     Pad U1-9(105.3mm,35mm)  Top Layer
+   Violation between Pad U1-11(105.3mm,33.4mm)  Top Layer and 
+                     Pad U1-10(105.3mm,34.2mm)  Top Layer
+   Violation between Pad U1-12(105.3mm,32.6mm)  Top Layer and 
+                     Pad U1-11(105.3mm,33.4mm)  Top Layer
+   Violation between Pad U1-13(105.3mm,31.8mm)  Top Layer and 
+                     Pad U1-12(105.3mm,32.6mm)  Top Layer
+   Violation between Pad U1-14(105.3mm,31mm)  Top Layer and 
+                     Pad U1-13(105.3mm,31.8mm)  Top Layer
+   Violation between Pad U1-15(105.3mm,30.2mm)  Top Layer and 
+                     Pad U1-14(105.3mm,31mm)  Top Layer
+   Violation between Pad U1-16(105.3mm,29.4mm)  Top Layer and 
+                     Pad U1-15(105.3mm,30.2mm)  Top Layer
+   Violation between Pad U1-18(107.5mm,28mm)  Top Layer and 
+                     Pad U1-17(106.7mm,28mm)  Top Layer
+   Violation between Pad U1-19(108.3mm,28mm)  Top Layer and 
+                     Pad U1-18(107.5mm,28mm)  Top Layer
+   Violation between Pad U1-20(109.1mm,28mm)  Top Layer and 
+                     Pad U1-19(108.3mm,28mm)  Top Layer
+   Violation between Pad U1-21(109.9mm,28mm)  Top Layer and 
+                     Pad U1-20(109.1mm,28mm)  Top Layer
+   Violation between Pad U1-22(110.7mm,28mm)  Top Layer and 
+                     Pad U1-21(109.9mm,28mm)  Top Layer
+   Violation between Pad U1-23(111.5mm,28mm)  Top Layer and 
+                     Pad U1-22(110.7mm,28mm)  Top Layer
+   Violation between Pad U1-24(112.3mm,28mm)  Top Layer and 
+                     Pad U1-23(111.5mm,28mm)  Top Layer
+   Violation between Pad U1-26(113.7mm,30.2mm)  Top Layer and 
+                     Pad U1-25(113.7mm,29.4mm)  Top Layer
+   Violation between Pad U1-27(113.7mm,31mm)  Top Layer and 
+                     Pad U1-26(113.7mm,30.2mm)  Top Layer
+   Violation between Pad U1-28(113.7mm,31.8mm)  Top Layer and 
+                     Pad U1-27(113.7mm,31mm)  Top Layer
+   Violation between Pad U1-29(113.7mm,32.6mm)  Top Layer and 
+                     Pad U1-28(113.7mm,31.8mm)  Top Layer
+   Violation between Pad U1-30(113.7mm,33.4mm)  Top Layer and 
+                     Pad U1-29(113.7mm,32.6mm)  Top Layer
+   Violation between Pad U1-31(113.7mm,34.2mm)  Top Layer and 
+                     Pad U1-30(113.7mm,33.4mm)  Top Layer
+   Violation between Pad U1-32(113.7mm,35mm)  Top Layer and 
+                     Pad U1-31(113.7mm,34.2mm)  Top Layer
+   Violation between Pad L1-1(105.65mm,25.85mm)  Top Layer and 
+                     Pad C40-2(106.3mm,24.3mm)  Top Layer
+   Violation between Pad L1-2(107.566mm,25.852mm)  Top Layer and 
+                     Pad C40-2(106.3mm,24.3mm)  Top Layer
+   Violation between Pad L1-2(107.566mm,25.852mm)  Top Layer and 
+                     Pad C40-1(107.7mm,24.3mm)  Top Layer
+   Violation between Pad R70-2(145.8mm,25.2mm)  Top Layer and 
+                     Pad R16-1(144.1mm,24.3mm)  Top Layer
+   Violation between Pad Free-(182.735mm,12mm)  Multi-Layer and 
+                     Pad F16-2(179.1mm,17.275mm)  Top Layer
+   Violation between Pad Free-(88.135mm,12mm)  Multi-Layer and 
+                     Pad F14-2(83.3mm,16.475mm)  Top Layer
+Rule Violations :38
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.025mm) (Max=5mm) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.16mm) (Max=10mm) (Preferred=0.254mm) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.2mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+   Violation between Un-Routed Net Constraint: Net SEG_1 Between Via (138.714,52.028mm) And Via (156.62,51.925mm)
+   Violation between Un-Routed Net Constraint: Net SEG_2 Between Via (91.414,51.903mm) And Via (109.345,51.925mm)
+   Violation between Un-Routed Net Constraint: Net SEG_3 Between Via (44.064,52.028mm) And Via (62.045,52.05mm)
+   Violation between Un-Routed Net Constraint: Net SEG_4 Between Via (18,48.695mm) And Via (18.045,15.225mm)
+   Violation between Un-Routed Net Constraint: Net SEG_5 Between Via (44.114,11.928mm) And Via (62.045,12.075mm)
+   Violation between Un-Routed Net Constraint: Net SEG_6 Between Via (91.414,11.928mm) And Via (109.32,11.95mm)
+   Violation between Un-Routed Net Constraint: Net SEG_7 Between Via (138.714,11.928mm) And Via (156.595,12mm)
+Rule Violations :7
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+   Violation between Area Fill (184.7mm,18.1mm) (188.9mm,24.8mm)  Top Layer and 
+                     Pad J2-0(186.425mm,18.95mm)  Top Layer
+   Violation between Area Fill (184.7mm,18.1mm) (198.2mm,21.7mm)  Top Layer and 
+                     Pad J2-0(186.425mm,18.95mm)  Top Layer
+   Violation between Area Fill (184.6mm,39.3mm) (188.8mm,46mm)  Top Layer and 
+                     Pad J3-0(186.4mm,45.15mm)  Top Layer
+   Violation between Area Fill (184.6mm,42.4mm) (198.1mm,46mm)  Top Layer and 
+                     Pad J3-0(186.4mm,45.15mm)  Top Layer
+Rule Violations :4
+
+
+Violations Detected : 275
+Time Elapsed        : 00:00:02

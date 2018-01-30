@@ -1,0 +1,2 @@
+R90 needs to be 1k instead of 270R.
+Need a 10uF capacitor on the output of the reg. maybe 2 10uF and a 100nF, or a 10uF, 4.7 uF, 100nF.
