@@ -12,13 +12,10 @@ How dose it work, interact with other systems, whats its responding too, whats i
 Where dose it sit in the grand scheme of things, whats its heirachy, where is it physicaly in the car
 ### Who
 Who are the people that have worked on it over time
-* Anthony
-* Julius
-* Jonn
 
 ## Specific README's
 These will cover any specific features, outlines or documentation that a programmer/designer should know about. Any specifics, or this outside the overview/outline please update an entry in the wiki
 
-[Hardware](hardware/README.md "Hardware")
+[Hardware](https://github.com/Technosasquach/QUTMS_BMS/tree/master/hardware "Hardware")
 
-[Software](software/README.md "Software")
+[Software](https://github.com/Technosasquach/QUTMS_BMS/tree/master/software "Software")
