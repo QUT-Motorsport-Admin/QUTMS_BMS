@@ -1,0 +1,2125 @@
+   1               		.file	"MCP2515.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.Ltext0:
+   9               		.cfi_sections	.debug_frame
+  10               		.section	.text.MCP2515_reg_write,"ax",@progbits
+  11               	.global	MCP2515_reg_write
+  13               	MCP2515_reg_write:
+  14               	.LVL0:
+  15               	.LFB7:
+  16               		.file 1 "MCP2515.c"
+   1:MCP2515.c     **** 
+   2:MCP2515.c     **** #include "SPI.h"
+   3:MCP2515.c     **** #include "MCP2515.h"
+   4:MCP2515.c     **** 
+   5:MCP2515.c     **** void MCP2515_init()
+   6:MCP2515.c     **** {
+   7:MCP2515.c     **** 	//DDRC |= (1<<MCP2515_PIN_RESET);		//set the reset pin to output
+   8:MCP2515.c     **** 	MCP2515_PORT_RESET &= ~(1<<MCP2515_PIN_RESET);
+   9:MCP2515.c     **** 	_delay_us(50);
+  10:MCP2515.c     **** 	MCP2515_PORT_RESET |= (1<<MCP2515_PIN_RESET);
+  11:MCP2515.c     **** 
+  12:MCP2515.c     **** 	//SPI_send_byte(MCP2515_RESET); //instead of hard reset, perform software rest.
+  13:MCP2515.c     **** 	MCP2515_bit_modify(MCP2515_CANCTRL,128,0xE0);		//put the device into configuration mode.
+  14:MCP2515.c     **** 
+  15:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_CNF1, 0x04);	//SJW = 0(1),BRP = 4(5)--> number in brackets is actual val
+  16:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_CNF2, 0xCA);	//BTL = 1, SAM = 1, PHSEG1 = 001(2), PRSEG = 010 (3)
+  17:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_CNF3, 0x01);	//SOF = 0, WAKFIL = 0, PHSEG2 = 001(2).
+  18:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_CANINTE, 0b00000011);	//enable interrupt in rx0, rx1, tx0, tx1, tx2.
+  19:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_RTSCTRL, 0x01); //probably want to move this to a tx init function. even
+  20:MCP2515.c     **** 	//MCP2515_init_Rx();
+  21:MCP2515.c     **** 	MCP2515_bit_modify(MCP2515_CANCTRL, 0x00, 0xE0);		//put the device into it's functional mode curre
+  22:MCP2515.c     **** 	
+  23:MCP2515.c     **** }
+  24:MCP2515.c     **** 
+  25:MCP2515.c     **** void MCP2515_reg_write(uint8_t reg_address, uint8_t reg_value)
+  26:MCP2515.c     **** {
+  17               		.loc 1 26 1 view -0
+  18               		.cfi_startproc
+  19               		.loc 1 26 1 is_stmt 0 view .LVU1
+  20 0000 CF93      		push r28
+  21               	.LCFI0:
+  22               		.cfi_def_cfa_offset 3
+  23               		.cfi_offset 28, -2
+  24 0002 DF93      		push r29
+  25               	.LCFI1:
+  26               		.cfi_def_cfa_offset 4
+  27               		.cfi_offset 29, -3
+  28               	/* prologue: function */
+  29               	/* frame size = 0 */
+  30               	/* stack size = 2 */
+  31               	.L__stack_usage = 2
+  32 0004 D82F      		mov r29,r24
+  33 0006 C62F      		mov r28,r22
+  27:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+  34               		.loc 1 27 2 is_stmt 1 view .LVU2
+  35               		.loc 1 27 18 is_stmt 0 view .LVU3
+  36 0008 2E98      		cbi 0x5,6
+  28:MCP2515.c     **** 	SPI_send_byte(MCP2515_WRITE);
+  37               		.loc 1 28 2 is_stmt 1 view .LVU4
+  38 000a 82E0      		ldi r24,lo8(2)
+  39               	.LVL1:
+  40               		.loc 1 28 2 is_stmt 0 view .LVU5
+  41 000c 0E94 0000 		call SPI_send_byte
+  42               	.LVL2:
+  29:MCP2515.c     **** 	SPI_send_byte(reg_address);
+  43               		.loc 1 29 2 is_stmt 1 view .LVU6
+  44 0010 8D2F      		mov r24,r29
+  45 0012 0E94 0000 		call SPI_send_byte
+  46               	.LVL3:
+  30:MCP2515.c     **** 	SPI_send_byte(reg_value);
+  47               		.loc 1 30 2 view .LVU7
+  48 0016 8C2F      		mov r24,r28
+  49 0018 0E94 0000 		call SPI_send_byte
+  50               	.LVL4:
+  31:MCP2515.c     **** 	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+  51               		.loc 1 31 2 view .LVU8
+  52               		.loc 1 31 18 is_stmt 0 view .LVU9
+  53 001c 2E9A      		sbi 0x5,6
+  54               	/* epilogue start */
+  32:MCP2515.c     **** 	//if(MCP2515_reg_read(reg_address) == reg_value)flash_LED(1,RED_LED);
+  33:MCP2515.c     **** }
+  55               		.loc 1 33 1 view .LVU10
+  56 001e DF91      		pop r29
+  57               	.LVL5:
+  58               		.loc 1 33 1 view .LVU11
+  59 0020 CF91      		pop r28
+  60               	.LVL6:
+  61               		.loc 1 33 1 view .LVU12
+  62 0022 0895      		ret
+  63               		.cfi_endproc
+  64               	.LFE7:
+  66               		.section	.text.MCP2515_instruction,"ax",@progbits
+  67               	.global	MCP2515_instruction
+  69               	MCP2515_instruction:
+  70               	.LVL7:
+  71               	.LFB8:
+  34:MCP2515.c     **** 
+  35:MCP2515.c     **** void MCP2515_instruction(uint8_t instruction)
+  36:MCP2515.c     **** {
+  72               		.loc 1 36 1 is_stmt 1 view -0
+  73               		.cfi_startproc
+  74               	/* prologue: function */
+  75               	/* frame size = 0 */
+  76               	/* stack size = 0 */
+  77               	.L__stack_usage = 0
+  37:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+  78               		.loc 1 37 2 view .LVU14
+  79               		.loc 1 37 18 is_stmt 0 view .LVU15
+  80 0000 2E98      		cbi 0x5,6
+  38:MCP2515.c     **** 	SPI_send_byte(instruction);
+  81               		.loc 1 38 2 is_stmt 1 view .LVU16
+  82 0002 0E94 0000 		call SPI_send_byte
+  83               	.LVL8:
+  39:MCP2515.c     **** 	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+  84               		.loc 1 39 2 view .LVU17
+  85               		.loc 1 39 18 is_stmt 0 view .LVU18
+  86 0006 2E9A      		sbi 0x5,6
+  87               	/* epilogue start */
+  40:MCP2515.c     **** }
+  88               		.loc 1 40 1 view .LVU19
+  89 0008 0895      		ret
+  90               		.cfi_endproc
+  91               	.LFE8:
+  93               		.section	.text.MCP2515_bit_modify,"ax",@progbits
+  94               	.global	MCP2515_bit_modify
+  96               	MCP2515_bit_modify:
+  97               	.LVL9:
+  98               	.LFB9:
+  41:MCP2515.c     **** 
+  42:MCP2515.c     **** 
+  43:MCP2515.c     **** void MCP2515_bit_modify(uint8_t reg_address, uint8_t reg_value, uint8_t reg_mask)
+  44:MCP2515.c     **** {
+  99               		.loc 1 44 1 is_stmt 1 view -0
+ 100               		.cfi_startproc
+ 101               		.loc 1 44 1 is_stmt 0 view .LVU21
+ 102 0000 1F93      		push r17
+ 103               	.LCFI2:
+ 104               		.cfi_def_cfa_offset 3
+ 105               		.cfi_offset 17, -2
+ 106 0002 CF93      		push r28
+ 107               	.LCFI3:
+ 108               		.cfi_def_cfa_offset 4
+ 109               		.cfi_offset 28, -3
+ 110 0004 DF93      		push r29
+ 111               	.LCFI4:
+ 112               		.cfi_def_cfa_offset 5
+ 113               		.cfi_offset 29, -4
+ 114               	/* prologue: function */
+ 115               	/* frame size = 0 */
+ 116               	/* stack size = 3 */
+ 117               	.L__stack_usage = 3
+ 118 0006 182F      		mov r17,r24
+ 119 0008 C62F      		mov r28,r22
+ 120 000a D42F      		mov r29,r20
+  45:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+ 121               		.loc 1 45 2 is_stmt 1 view .LVU22
+ 122               		.loc 1 45 18 is_stmt 0 view .LVU23
+ 123 000c 2E98      		cbi 0x5,6
+  46:MCP2515.c     **** 	SPI_send_byte(MCP2515_BITMODIFY);		//send instruction of bitmodify
+ 124               		.loc 1 46 2 is_stmt 1 view .LVU24
+ 125 000e 85E0      		ldi r24,lo8(5)
+ 126               	.LVL10:
+ 127               		.loc 1 46 2 is_stmt 0 view .LVU25
+ 128 0010 0E94 0000 		call SPI_send_byte
+ 129               	.LVL11:
+  47:MCP2515.c     **** 	SPI_send_byte(reg_address);				//send address
+ 130               		.loc 1 47 2 is_stmt 1 view .LVU26
+ 131 0014 812F      		mov r24,r17
+ 132 0016 0E94 0000 		call SPI_send_byte
+ 133               	.LVL12:
+  48:MCP2515.c     **** 	SPI_send_byte(reg_mask);				//send the mask
+ 134               		.loc 1 48 2 view .LVU27
+ 135 001a 8D2F      		mov r24,r29
+ 136 001c 0E94 0000 		call SPI_send_byte
+ 137               	.LVL13:
+  49:MCP2515.c     **** 	SPI_send_byte(reg_value);				//send the data
+ 138               		.loc 1 49 2 view .LVU28
+ 139 0020 8C2F      		mov r24,r28
+ 140 0022 0E94 0000 		call SPI_send_byte
+ 141               	.LVL14:
+  50:MCP2515.c     **** 	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+ 142               		.loc 1 50 2 view .LVU29
+ 143               		.loc 1 50 18 is_stmt 0 view .LVU30
+ 144 0026 2E9A      		sbi 0x5,6
+ 145               	/* epilogue start */
+  51:MCP2515.c     **** }
+ 146               		.loc 1 51 1 view .LVU31
+ 147 0028 DF91      		pop r29
+ 148               	.LVL15:
+ 149               		.loc 1 51 1 view .LVU32
+ 150 002a CF91      		pop r28
+ 151               	.LVL16:
+ 152               		.loc 1 51 1 view .LVU33
+ 153 002c 1F91      		pop r17
+ 154               	.LVL17:
+ 155               		.loc 1 51 1 view .LVU34
+ 156 002e 0895      		ret
+ 157               		.cfi_endproc
+ 158               	.LFE9:
+ 160               		.section	.text.MCP2515_init,"ax",@progbits
+ 161               	.global	MCP2515_init
+ 163               	MCP2515_init:
+ 164               	.LFB6:
+   6:MCP2515.c     **** 	//DDRC |= (1<<MCP2515_PIN_RESET);		//set the reset pin to output
+ 165               		.loc 1 6 1 is_stmt 1 view -0
+ 166               		.cfi_startproc
+ 167               	/* prologue: function */
+ 168               	/* frame size = 0 */
+ 169               	/* stack size = 0 */
+ 170               	.L__stack_usage = 0
+   8:MCP2515.c     **** 	_delay_us(50);
+ 171               		.loc 1 8 2 view .LVU36
+   8:MCP2515.c     **** 	_delay_us(50);
+ 172               		.loc 1 8 21 is_stmt 0 view .LVU37
+ 173 0000 4598      		cbi 0x8,5
+   9:MCP2515.c     **** 	MCP2515_PORT_RESET |= (1<<MCP2515_PIN_RESET);
+ 174               		.loc 1 9 2 is_stmt 1 view .LVU38
+ 175               	.LVL18:
+ 176               	.LBB4:
+ 177               	.LBI4:
+ 178               		.file 2 "/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h"
+   1:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
+   3:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
+   4:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    All rights reserved.
+   5:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+   6:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Redistribution and use in source and binary forms, with or without
+   7:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    modification, are permitted provided that the following conditions are met:
+   8:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+   9:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    * Redistributions of source code must retain the above copyright
+  10:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer.
+  11:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  12:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    * Redistributions in binary form must reproduce the above copyright
+  13:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer in
+  14:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****      the documentation and/or other materials provided with the
+  15:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****      distribution.
+  16:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  17:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    * Neither the name of the copyright holders nor the names of
+  18:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****      contributors may be used to endorse or promote products derived
+  19:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****      from this software without specific prior written permission.
+  20:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  21:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  25:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  32:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  33:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** /* $Id: delay.h.in 2506 2016-02-08 10:05:45Z joerg_wunsch $ */
+  34:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  35:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
+  36:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
+  37:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  38:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #ifndef __DOXYGEN__
+  39:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #  ifndef __HAS_DELAY_CYCLES
+  40:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #    define __HAS_DELAY_CYCLES 1
+  41:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #  endif
+  42:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #endif  /* __DOXYGEN__ */
+  43:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  44:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #include <inttypes.h>
+  45:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #include <util/delay_basic.h>
+  46:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #include <math.h>
+  47:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  48:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** /** \file */
+  49:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** /** \defgroup util_delay <util/delay.h>: Convenience functions for busy-wait delay loops
+  50:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     \code
+  51:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     #define F_CPU 1000000UL  // 1 MHz
+  52:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     //#define F_CPU 14.7456E6
+  53:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     #include <util/delay.h>
+  54:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     \endcode
+  55:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  56:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     \note As an alternative method, it is possible to pass the
+  57:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     F_CPU macro down to the compiler from the Makefile.
+  58:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     Obviously, in that case, no \c \#define statement should be
+  59:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     used.
+  60:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  61:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     The functions in this header file are wrappers around the basic
+  62:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     busy-wait functions from <util/delay_basic.h>.  They are meant as
+  63:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     convenience functions where actual time values can be specified
+  64:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     rather than a number of cycles to wait for.  The idea behind is
+  65:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     that compile-time constant expressions will be eliminated by
+  66:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     compiler optimization so floating-point expressions can be used
+  67:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     to calculate the number of delay cycles needed based on the CPU
+  68:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     frequency passed by the macro F_CPU.
+  69:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  70:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     \note In order for these functions to work as intended, compiler
+  71:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     optimizations <em>must</em> be enabled, and the delay time
+  72:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     <em>must</em> be an expression that is a known constant at
+  73:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     compile-time.  If these requirements are not met, the resulting
+  74:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     delay will be much longer (and basically unpredictable), and
+  75:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     applications that otherwise do not use floating-point calculations
+  76:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     will experience severe code bloat by the floating-point library
+  77:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     routines linked into the application.
+  78:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  79:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     The functions available allow the specification of microsecond, and
+  80:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     millisecond delays directly, using the application-supplied macro
+  81:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     F_CPU as the CPU clock frequency (in Hertz).
+  82:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  83:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** */
+  84:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  85:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
+  86:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** static __inline__ void _delay_us(double __us) __attribute__((__always_inline__));
+  87:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** static __inline__ void _delay_ms(double __ms) __attribute__((__always_inline__));
+  88:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #endif
+  89:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  90:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #ifndef F_CPU
+  91:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** /* prevent compiler error by supplying a default */
+  92:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** # warning "F_CPU not defined for <util/delay.h>"
+  93:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** /** \ingroup util_delay
+  94:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     \def F_CPU
+  95:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     \brief CPU frequency in Hz
+  96:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+  97:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     The macro F_CPU specifies the CPU frequency to be considered by
+  98:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     the delay macros.  This macro is normally supplied by the
+  99:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     environment (e.g. from within a project header, or the project's
+ 100:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     Makefile).  The value 1 MHz here is only provided as a "vanilla"
+ 101:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     fallback if no such user-provided definition could be found.
+ 102:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 103:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     In terms of the delay functions, the CPU frequency can be given as
+ 104:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     a floating-point constant (e.g. 3.6864E6 for 3.6864 MHz).
+ 105:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     However, the macros in <util/setbaud.h> require it to be an
+ 106:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****     integer value.
+ 107:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****  */
+ 108:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** # define F_CPU 1000000UL
+ 109:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #endif
+ 110:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 111:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #ifndef __OPTIMIZE__
+ 112:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** # warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+ 113:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #endif
+ 114:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 115:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 116:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 117:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 118:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #  include <math.h>
+ 119:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #endif
+ 120:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 121:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** /**
+ 122:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    \ingroup util_delay
+ 123:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 124:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Perform a delay of \c __ms milliseconds, using _delay_loop_2().
+ 125:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 126:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 127:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 128:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 129:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    The maximal possible delay is 262.14 ms / F_CPU in MHz.
+ 130:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 131:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    When the user request delay which exceed the maximum possible one,
+ 132:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    _delay_ms() provides a decreased resolution functionality. In this
+ 133:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    mode _delay_ms() will work with a resolution of 1/10 ms, providing
+ 134:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    delays up to 6.5535 seconds (independent from CPU frequency).  The
+ 135:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    user will not be informed about decreased resolution.
+ 136:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 137:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles()
+ 138:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 ms/ F_CPU in MHz. For
+ 139:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflows results in
+ 140:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    no delay i.e., 0ms.
+ 141:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 142:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Conversion of \c __ms into clock cycles may not always result in
+ 143:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    integer.  By default, the clock cycles rounded up to next
+ 144:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    integer. This ensures that the user gets at least \c __ms
+ 145:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    microseconds of delay.
+ 146:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 147:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Alternatively, by defining the macro \c __DELAY_ROUND_DOWN__, or
+ 148:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    \c __DELAY_ROUND_CLOSEST__, before including this header file, the
+ 149:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    algorithm can be made to round down, or round to closest integer,
+ 150:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    respectively.
+ 151:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 152:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    \note
+ 153:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 154:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    The implementation of _delay_ms() based on
+ 155:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    __builtin_avr_delay_cycles() is not backward compatible with older
+ 156:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    implementations.  In order to get functionality backward compatible
+ 157:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    with previous versions, the macro \c "__DELAY_BACKWARD_COMPATIBLE__"
+ 158:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    must be defined before including this header file. Also, the
+ 159:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    backward compatible algorithm will be chosen if the code is
+ 160:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    compiled in a <em>freestanding environment</em> (GCC option
+ 161:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    \c -ffreestanding), as the math functions required for rounding are
+ 162:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    not available to the compiler then.
+ 163:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 164:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****  */
+ 165:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** void
+ 166:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** _delay_ms(double __ms)
+ 167:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** {
+ 168:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	double __tmp ;
+ 169:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 170:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 171:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 172:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 173:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 174:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e3) * __ms;
+ 175:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 176:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 177:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 178:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 179:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 180:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 181:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 182:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	#else
+ 183:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		//round up by default
+ 184:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 185:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	#endif
+ 186:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 187:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 188:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 189:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #else
+ 190:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	uint16_t __ticks;
+ 191:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 4e3) * __ms;
+ 192:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	if (__tmp < 1.0)
+ 193:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks = 1;
+ 194:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	else if (__tmp > 65535)
+ 195:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	{
+ 196:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		//	__ticks = requested delay in 1/10 ms
+ 197:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks = (uint16_t) (__ms * 10.0);
+ 198:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		while(__ticks)
+ 199:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		{
+ 200:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 			// wait 1/10 ms
+ 201:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 			_delay_loop_2(((F_CPU) / 4e3) / 10);
+ 202:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 			__ticks --;
+ 203:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		}
+ 204:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		return;
+ 205:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	}
+ 206:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	else
+ 207:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks = (uint16_t)__tmp;
+ 208:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	_delay_loop_2(__ticks);
+ 209:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #endif
+ 210:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** }
+ 211:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 212:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** /**
+ 213:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    \ingroup util_delay
+ 214:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 215:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Perform a delay of \c __us microseconds, using _delay_loop_1().
+ 216:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 217:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 218:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 219:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 220:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    The maximal possible delay is 768 us / F_CPU in MHz.
+ 221:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 222:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    If the user requests a delay greater than the maximal possible one,
+ 223:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    _delay_us() will automatically call _delay_ms() instead.  The user
+ 224:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    will not be informed about this case.
+ 225:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 226:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles()
+ 227:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 us/ F_CPU in MHz. For
+ 228:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflow results in
+ 229:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    no delay i.e., 0us.
+ 230:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 231:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Conversion of \c __us into clock cycles may not always result in
+ 232:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    integer.  By default, the clock cycles rounded up to next
+ 233:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    integer. This ensures that the user gets at least \c __us
+ 234:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    microseconds of delay.
+ 235:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 236:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    Alternatively, by defining the macro \c __DELAY_ROUND_DOWN__, or
+ 237:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    \c __DELAY_ROUND_CLOSEST__, before including this header file, the
+ 238:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    algorithm can be made to round down, or round to closest integer,
+ 239:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    respectively.
+ 240:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 241:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    \note
+ 242:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 243:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    The implementation of _delay_ms() based on
+ 244:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    __builtin_avr_delay_cycles() is not backward compatible with older
+ 245:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    implementations.  In order to get functionality backward compatible
+ 246:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    with previous versions, the macro \c __DELAY_BACKWARD_COMPATIBLE__
+ 247:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    must be defined before including this header file. Also, the
+ 248:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    backward compatible algorithm will be chosen if the code is
+ 249:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    compiled in a <em>freestanding environment</em> (GCC option
+ 250:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    \c -ffreestanding), as the math functions required for rounding are
+ 251:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****    not available to the compiler then.
+ 252:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 253:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****  */
+ 254:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** void
+ 255:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** _delay_us(double __us)
+ 179               		.loc 2 255 1 view .LVU39
+ 180               	.LBB5:
+ 256:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** {
+ 257:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	double __tmp ;
+ 181               		.loc 2 257 2 view .LVU40
+ 258:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 259:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 260:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 261:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 182               		.loc 2 261 2 view .LVU41
+ 262:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 183               		.loc 2 262 2 view .LVU42
+ 263:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e6) * __us;
+ 184               		.loc 2 263 2 view .LVU43
+ 264:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 265:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 266:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 267:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 268:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 269:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 270:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 271:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	#else
+ 272:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		//round up by default
+ 273:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 185               		.loc 2 273 3 view .LVU44
+ 274:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	#endif
+ 275:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 
+ 276:/usr/local/Cellar/avr-gcc/8.1.0/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 186               		.loc 2 276 2 view .LVU45
+ 187 0002 87EC      		ldi r24,lo8(199)
+ 188 0004 90E0      		ldi r25,hi8(199)
+ 189 0006 0197      	1:	sbiw r24,1
+ 190 0008 01F4      		brne 1b
+ 191 000a 00C0      		rjmp .
+ 192 000c 0000      		nop
+ 193               	.LVL19:
+ 194               		.loc 2 276 2 is_stmt 0 view .LVU46
+ 195               	.LBE5:
+ 196               	.LBE4:
+  10:MCP2515.c     **** 
+ 197               		.loc 1 10 2 is_stmt 1 view .LVU47
+  10:MCP2515.c     **** 
+ 198               		.loc 1 10 21 is_stmt 0 view .LVU48
+ 199 000e 459A      		sbi 0x8,5
+  13:MCP2515.c     **** 
+ 200               		.loc 1 13 2 is_stmt 1 view .LVU49
+ 201 0010 40EE      		ldi r20,lo8(-32)
+ 202 0012 60E8      		ldi r22,lo8(-128)
+ 203 0014 8FE0      		ldi r24,lo8(15)
+ 204 0016 0E94 0000 		call MCP2515_bit_modify
+ 205               	.LVL20:
+  15:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_CNF2, 0xCA);	//BTL = 1, SAM = 1, PHSEG1 = 001(2), PRSEG = 010 (3)
+ 206               		.loc 1 15 2 view .LVU50
+ 207 001a 64E0      		ldi r22,lo8(4)
+ 208 001c 8AE2      		ldi r24,lo8(42)
+ 209 001e 0E94 0000 		call MCP2515_reg_write
+ 210               	.LVL21:
+  16:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_CNF3, 0x01);	//SOF = 0, WAKFIL = 0, PHSEG2 = 001(2).
+ 211               		.loc 1 16 2 view .LVU51
+ 212 0022 6AEC      		ldi r22,lo8(-54)
+ 213 0024 89E2      		ldi r24,lo8(41)
+ 214 0026 0E94 0000 		call MCP2515_reg_write
+ 215               	.LVL22:
+  17:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_CANINTE, 0b00000011);	//enable interrupt in rx0, rx1, tx0, tx1, tx2.
+ 216               		.loc 1 17 2 view .LVU52
+ 217 002a 61E0      		ldi r22,lo8(1)
+ 218 002c 88E2      		ldi r24,lo8(40)
+ 219 002e 0E94 0000 		call MCP2515_reg_write
+ 220               	.LVL23:
+  18:MCP2515.c     **** 	MCP2515_reg_write(MCP2515_RTSCTRL, 0x01); //probably want to move this to a tx init function. even
+ 221               		.loc 1 18 2 view .LVU53
+ 222 0032 63E0      		ldi r22,lo8(3)
+ 223 0034 8BE2      		ldi r24,lo8(43)
+ 224 0036 0E94 0000 		call MCP2515_reg_write
+ 225               	.LVL24:
+  19:MCP2515.c     **** 	//MCP2515_init_Rx();
+ 226               		.loc 1 19 2 view .LVU54
+ 227 003a 61E0      		ldi r22,lo8(1)
+ 228 003c 8DE0      		ldi r24,lo8(13)
+ 229 003e 0E94 0000 		call MCP2515_reg_write
+ 230               	.LVL25:
+  21:MCP2515.c     **** 	
+ 231               		.loc 1 21 2 view .LVU55
+ 232 0042 40EE      		ldi r20,lo8(-32)
+ 233 0044 60E0      		ldi r22,0
+ 234 0046 8FE0      		ldi r24,lo8(15)
+ 235 0048 0C94 0000 		jmp MCP2515_bit_modify
+ 236               	.LVL26:
+ 237               		.cfi_endproc
+ 238               	.LFE6:
+ 240               		.section	.text.MCP2515_receive_status,"ax",@progbits
+ 241               	.global	MCP2515_receive_status
+ 243               	MCP2515_receive_status:
+ 244               	.LFB10:
+  52:MCP2515.c     **** 
+  53:MCP2515.c     **** uint8_t MCP2515_receive_status()
+  54:MCP2515.c     **** {
+ 245               		.loc 1 54 1 view -0
+ 246               		.cfi_startproc
+ 247 0000 CF93      		push r28
+ 248               	.LCFI5:
+ 249               		.cfi_def_cfa_offset 3
+ 250               		.cfi_offset 28, -2
+ 251               	/* prologue: function */
+ 252               	/* frame size = 0 */
+ 253               	/* stack size = 1 */
+ 254               	.L__stack_usage = 1
+  55:MCP2515.c     **** 	uint8_t mcp2515_status[2];
+ 255               		.loc 1 55 2 view .LVU57
+  56:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+ 256               		.loc 1 56 2 view .LVU58
+ 257               		.loc 1 56 18 is_stmt 0 view .LVU59
+ 258 0002 2E98      		cbi 0x5,6
+  57:MCP2515.c     **** 	SPI_send_byte(0xA0);					//send retrieve status instruction
+ 259               		.loc 1 57 2 is_stmt 1 view .LVU60
+ 260 0004 80EA      		ldi r24,lo8(-96)
+ 261 0006 0E94 0000 		call SPI_send_byte
+ 262               	.LVL27:
+  58:MCP2515.c     **** 	mcp2515_status[0] = SPI_send_byte(0x00);//send don't care bits while mcp2515 is retrieving data.
+ 263               		.loc 1 58 2 view .LVU61
+ 264               		.loc 1 58 22 is_stmt 0 view .LVU62
+ 265 000a 80E0      		ldi r24,0
+ 266 000c 0E94 0000 		call SPI_send_byte
+ 267               	.LVL28:
+ 268 0010 C82F      		mov r28,r24
+ 269               	.LVL29:
+  59:MCP2515.c     **** 	mcp2515_status[1] = SPI_send_byte(0x00);//duplicate data is retrieved again. nothing to do with th
+ 270               		.loc 1 59 2 is_stmt 1 view .LVU63
+ 271               		.loc 1 59 22 is_stmt 0 view .LVU64
+ 272 0012 80E0      		ldi r24,0
+ 273               	.LVL30:
+ 274               		.loc 1 59 22 view .LVU65
+ 275 0014 0E94 0000 		call SPI_send_byte
+ 276               	.LVL31:
+  60:MCP2515.c     **** 	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+ 277               		.loc 1 60 2 is_stmt 1 view .LVU66
+ 278               		.loc 1 60 18 is_stmt 0 view .LVU67
+ 279 0018 2E9A      		sbi 0x5,6
+  61:MCP2515.c     **** 	return mcp2515_status[0];					//send it back for analysis.
+ 280               		.loc 1 61 2 is_stmt 1 view .LVU68
+  62:MCP2515.c     **** }
+ 281               		.loc 1 62 1 is_stmt 0 view .LVU69
+ 282 001a 8C2F      		mov r24,r28
+ 283               	/* epilogue start */
+ 284 001c CF91      		pop r28
+ 285               	.LVL32:
+ 286               		.loc 1 62 1 view .LVU70
+ 287 001e 0895      		ret
+ 288               		.cfi_endproc
+ 289               	.LFE10:
+ 291               		.section	.text.MCP2515_RxBufferRead,"ax",@progbits
+ 292               	.global	MCP2515_RxBufferRead
+ 294               	MCP2515_RxBufferRead:
+ 295               	.LVL33:
+ 296               	.LFB11:
+  63:MCP2515.c     **** 
+  64:MCP2515.c     **** /* README before using this!!!!!!!!
+  65:MCP2515.c     ****  * this function takes a pointer to an array of data to write to, it must be either 8 or 13 element
+  66:MCP2515.c     ****  * 13 elements in size for an address of RXBnSIDH
+  67:MCP2515.c     ****  * 8  elements in size for an address of RXBnD0
+  68:MCP2515.c     ****  * e.g-------------------------
+  69:MCP2515.c     ****  *
+  70:MCP2515.c     ****  * uint8_t data[13];
+  71:MCP2515.c     ****  * MCP2515_RxBufferRead(data, RXB0SIDH);
+  72:MCP2515.c     ****  *
+  73:MCP2515.c     ****  * ---------------------------> this example will fill the data[13] array with elements from RXB0SI
+  74:MCP2515.c     ****  *
+  75:MCP2515.c     ****  * uint8_t data[8];
+  76:MCP2515.c     ****  * MCP2515_RxBufferRead(data, RXB0D0);
+  77:MCP2515.c     ****  * ---------------------------> this example will fill the data[8] array with bytes from RXB0D0-->R
+  78:MCP2515.c     ****  *
+  79:MCP2515.c     ****  * This function also automatically clears the interrupt flag CANINTF.RX0IF(in this case)
+  80:MCP2515.c     ****  */
+  81:MCP2515.c     **** void MCP2515_RxBufferRead(uint8_t * data, uint8_t startingAddress)
+  82:MCP2515.c     **** {
+ 297               		.loc 1 82 1 is_stmt 1 view -0
+ 298               		.cfi_startproc
+ 299               		.loc 1 82 1 is_stmt 0 view .LVU72
+ 300 0000 EF92      		push r14
+ 301               	.LCFI6:
+ 302               		.cfi_def_cfa_offset 3
+ 303               		.cfi_offset 14, -2
+ 304 0002 FF92      		push r15
+ 305               	.LCFI7:
+ 306               		.cfi_def_cfa_offset 4
+ 307               		.cfi_offset 15, -3
+ 308 0004 0F93      		push r16
+ 309               	.LCFI8:
+ 310               		.cfi_def_cfa_offset 5
+ 311               		.cfi_offset 16, -4
+ 312 0006 1F93      		push r17
+ 313               	.LCFI9:
+ 314               		.cfi_def_cfa_offset 6
+ 315               		.cfi_offset 17, -5
+ 316 0008 CF93      		push r28
+ 317               	.LCFI10:
+ 318               		.cfi_def_cfa_offset 7
+ 319               		.cfi_offset 28, -6
+ 320 000a DF93      		push r29
+ 321               	.LCFI11:
+ 322               		.cfi_def_cfa_offset 8
+ 323               		.cfi_offset 29, -7
+ 324               	/* prologue: function */
+ 325               	/* frame size = 0 */
+ 326               	/* stack size = 6 */
+ 327               	.L__stack_usage = 6
+ 328 000c F82E      		mov r15,r24
+ 329 000e E92E      		mov r14,r25
+  83:MCP2515.c     **** 
+  84:MCP2515.c     **** 	//the following line combines the instruction(0b10010000), with: 0b100 for rxb0 or 0b000 for rxb1,
+  85:MCP2515.c     **** 	uint8_t instruction = 0b10010000|((startingAddress > 0x70)<<2)|((startingAddress == MCP2515_RXB0D0
+ 330               		.loc 1 85 2 is_stmt 1 view .LVU73
+ 331               		.loc 1 85 64 is_stmt 0 view .LVU74
+ 332 0010 6137      		cpi r22,lo8(113)
+ 333 0012 00F4      		brsh .L14
+ 334               		.loc 1 85 64 discriminator 4 view .LVU75
+ 335 0014 80E9      		ldi r24,lo8(-112)
+ 336               	.LVL34:
+ 337               		.loc 1 85 101 discriminator 4 view .LVU76
+ 338 0016 C1E0      		ldi r28,lo8(1)
+ 339 0018 D0E0      		ldi r29,0
+ 340 001a 6636      		cpi r22,lo8(102)
+ 341 001c 01F0      		breq .L8
+ 342               	.L7:
+ 343               		.loc 1 85 101 discriminator 6 view .LVU77
+ 344 001e 21E0      		ldi r18,lo8(1)
+ 345 0020 90E0      		ldi r25,0
+ 346 0022 6637      		cpi r22,lo8(118)
+ 347 0024 01F0      		breq .L9
+ 348 0026 20E0      		ldi r18,0
+ 349               	.L9:
+ 350 0028 C22F      		mov r28,r18
+ 351 002a D92F      		mov r29,r25
+ 352               	.L8:
+ 353               		.loc 1 85 138 discriminator 10 view .LVU78
+ 354 002c CC0F      		lsl r28
+ 355 002e DD1F      		rol r29
+ 356               		.loc 1 85 64 discriminator 10 view .LVU79
+ 357 0030 C82B      		or r28,r24
+ 358               	.LVL35:
+  86:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//lower CS.
+ 359               		.loc 1 86 2 is_stmt 1 discriminator 10 view .LVU80
+ 360               		.loc 1 86 18 is_stmt 0 discriminator 10 view .LVU81
+ 361 0032 2E98      		cbi 0x5,6
+  87:MCP2515.c     **** 	SPI_send_byte(instruction);							//send instruction for stream of data
+ 362               		.loc 1 87 2 is_stmt 1 discriminator 10 view .LVU82
+ 363 0034 8C2F      		mov r24,r28
+ 364 0036 0E94 0000 		call SPI_send_byte
+ 365               	.LVL36:
+  88:MCP2515.c     **** 	//loop counts to 8 or 12 depending on whether bit 1 of instruction is set.
+  89:MCP2515.c     **** 	for(uint8_t counter = 0; counter < (8 + 4*((instruction & 2)==0)); counter++)
+ 366               		.loc 1 89 2 discriminator 10 view .LVU83
+ 367               	.LBB6:
+ 368               		.loc 1 89 6 discriminator 10 view .LVU84
+ 369               		.loc 1 89 6 is_stmt 0 discriminator 10 view .LVU85
+ 370 003a 0CE0      		ldi r16,lo8(12)
+ 371 003c 10E0      		ldi r17,0
+ 372 003e C1FF      		sbrs r28,1
+ 373 0040 00C0      		rjmp .L11
+ 374 0042 08E0      		ldi r16,lo8(8)
+ 375 0044 10E0      		ldi r17,0
+ 376               	.L11:
+ 377               		.loc 1 89 2 discriminator 10 view .LVU86
+ 378 0046 CF2D      		mov r28,r15
+ 379               	.LVL37:
+ 380               		.loc 1 89 2 discriminator 10 view .LVU87
+ 381 0048 DE2D      		mov r29,r14
+ 382               	.LVL38:
+ 383               	.L12:
+ 384               		.loc 1 89 35 discriminator 1 view .LVU88
+ 385 004a 8C2F      		mov r24,r28
+ 386 004c 8F19      		sub r24,r15
+ 387               		.loc 1 89 2 discriminator 1 view .LVU89
+ 388 004e 8017      		cp r24,r16
+ 389 0050 1106      		cpc __zero_reg__,r17
+ 390 0052 04F0      		brlt .L13
+ 391               	.LBE6:
+  90:MCP2515.c     **** 	{
+  91:MCP2515.c     **** 		*data = SPI_send_byte(0x00);
+  92:MCP2515.c     **** 		data++;
+  93:MCP2515.c     **** 	}
+  94:MCP2515.c     **** 	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);				//raise CS.
+ 392               		.loc 1 94 2 is_stmt 1 view .LVU90
+ 393               		.loc 1 94 18 is_stmt 0 view .LVU91
+ 394 0054 2E9A      		sbi 0x5,6
+ 395               	/* epilogue start */
+  95:MCP2515.c     **** }
+ 396               		.loc 1 95 1 view .LVU92
+ 397 0056 DF91      		pop r29
+ 398 0058 CF91      		pop r28
+ 399               	.LVL39:
+ 400               		.loc 1 95 1 view .LVU93
+ 401 005a 1F91      		pop r17
+ 402 005c 0F91      		pop r16
+ 403 005e FF90      		pop r15
+ 404 0060 EF90      		pop r14
+ 405 0062 0895      		ret
+ 406               	.LVL40:
+ 407               	.L14:
+  85:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//lower CS.
+ 408               		.loc 1 85 64 view .LVU94
+ 409 0064 84E9      		ldi r24,lo8(-108)
+ 410               	.LVL41:
+  85:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//lower CS.
+ 411               		.loc 1 85 64 view .LVU95
+ 412 0066 00C0      		rjmp .L7
+ 413               	.LVL42:
+ 414               	.L13:
+ 415               	.LBB7:
+  91:MCP2515.c     **** 		data++;
+ 416               		.loc 1 91 3 is_stmt 1 discriminator 7 view .LVU96
+  91:MCP2515.c     **** 		data++;
+ 417               		.loc 1 91 11 is_stmt 0 discriminator 7 view .LVU97
+ 418 0068 80E0      		ldi r24,0
+ 419 006a 0E94 0000 		call SPI_send_byte
+ 420               	.LVL43:
+  91:MCP2515.c     **** 		data++;
+ 421               		.loc 1 91 9 discriminator 7 view .LVU98
+ 422 006e 8993      		st Y+,r24
+ 423               	.LVL44:
+  92:MCP2515.c     **** 	}
+ 424               		.loc 1 92 3 is_stmt 1 discriminator 7 view .LVU99
+  92:MCP2515.c     **** 	}
+ 425               		.loc 1 92 3 is_stmt 0 discriminator 7 view .LVU100
+ 426 0070 00C0      		rjmp .L12
+ 427               	.LBE7:
+ 428               		.cfi_endproc
+ 429               	.LFE11:
+ 431               		.section	.text.MCP2515_reg_read,"ax",@progbits
+ 432               	.global	MCP2515_reg_read
+ 434               	MCP2515_reg_read:
+ 435               	.LVL45:
+ 436               	.LFB12:
+  96:MCP2515.c     **** 
+  97:MCP2515.c     **** uint8_t MCP2515_reg_read(uint8_t reg_address)
+  98:MCP2515.c     **** {
+ 437               		.loc 1 98 1 is_stmt 1 view -0
+ 438               		.cfi_startproc
+ 439               		.loc 1 98 1 is_stmt 0 view .LVU102
+ 440 0000 CF93      		push r28
+ 441               	.LCFI12:
+ 442               		.cfi_def_cfa_offset 3
+ 443               		.cfi_offset 28, -2
+ 444               	/* prologue: function */
+ 445               	/* frame size = 0 */
+ 446               	/* stack size = 1 */
+ 447               	.L__stack_usage = 1
+ 448 0002 C82F      		mov r28,r24
+  99:MCP2515.c     **** 	uint8_t read_result;
+ 449               		.loc 1 99 2 is_stmt 1 view .LVU103
+ 100:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+ 450               		.loc 1 100 2 view .LVU104
+ 451               		.loc 1 100 18 is_stmt 0 view .LVU105
+ 452 0004 2E98      		cbi 0x5,6
+ 101:MCP2515.c     **** 	SPI_send_byte(0x03);
+ 453               		.loc 1 101 2 is_stmt 1 view .LVU106
+ 454 0006 83E0      		ldi r24,lo8(3)
+ 455               	.LVL46:
+ 456               		.loc 1 101 2 is_stmt 0 view .LVU107
+ 457 0008 0E94 0000 		call SPI_send_byte
+ 458               	.LVL47:
+ 102:MCP2515.c     **** 	SPI_send_byte(reg_address);
+ 459               		.loc 1 102 2 is_stmt 1 view .LVU108
+ 460 000c 8C2F      		mov r24,r28
+ 461 000e 0E94 0000 		call SPI_send_byte
+ 462               	.LVL48:
+ 103:MCP2515.c     **** 	read_result = SPI_send_byte(0x00);
+ 463               		.loc 1 103 2 view .LVU109
+ 464               		.loc 1 103 16 is_stmt 0 view .LVU110
+ 465 0012 80E0      		ldi r24,0
+ 466 0014 0E94 0000 		call SPI_send_byte
+ 467               	.LVL49:
+ 104:MCP2515.c     **** 	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+ 468               		.loc 1 104 2 is_stmt 1 view .LVU111
+ 469               		.loc 1 104 18 is_stmt 0 view .LVU112
+ 470 0018 2E9A      		sbi 0x5,6
+ 105:MCP2515.c     **** 	return read_result;
+ 471               		.loc 1 105 2 is_stmt 1 view .LVU113
+ 472               	/* epilogue start */
+ 106:MCP2515.c     **** }
+ 473               		.loc 1 106 1 is_stmt 0 view .LVU114
+ 474 001a CF91      		pop r28
+ 475               	.LVL50:
+ 476               		.loc 1 106 1 view .LVU115
+ 477 001c 0895      		ret
+ 478               		.cfi_endproc
+ 479               	.LFE12:
+ 481               		.section	.text.MCP2515_findFreeTxBuffer,"ax",@progbits
+ 482               	.global	MCP2515_findFreeTxBuffer
+ 484               	MCP2515_findFreeTxBuffer:
+ 485               	.LFB13:
+ 107:MCP2515.c     **** 
+ 108:MCP2515.c     **** uint8_t MCP2515_findFreeTxBuffer()
+ 109:MCP2515.c     **** {
+ 486               		.loc 1 109 1 is_stmt 1 view -0
+ 487               		.cfi_startproc
+ 488               	/* prologue: function */
+ 489               	/* frame size = 0 */
+ 490               	/* stack size = 0 */
+ 491               	.L__stack_usage = 0
+ 110:MCP2515.c     **** 	//uint8_t MCP2515_TxBuffer = 0;
+ 111:MCP2515.c     **** 	//flash_LED(1,RED_LED);
+ 112:MCP2515.c     **** 	//MCP2515_TxBuffer = (MCP2515_reg_read(MCP2515_CANINTF)& 0b00011100);			//get interrupt status, on
+ 113:MCP2515.c     **** 	if		((MCP2515_reg_read(MCP2515_TX0) & 0b00001000)== 0)						//if tx0 is free,
+ 492               		.loc 1 113 2 view .LVU117
+ 493               		.loc 1 113 8 is_stmt 0 view .LVU118
+ 494 0000 80E3      		ldi r24,lo8(48)
+ 495 0002 0E94 0000 		call MCP2515_reg_read
+ 496               	.LVL51:
+ 497               		.loc 1 113 6 view .LVU119
+ 498 0006 83FF      		sbrs r24,3
+ 499 0008 00C0      		rjmp .L22
+ 114:MCP2515.c     **** 	{
+ 115:MCP2515.c     **** 		return MCP2515_TX0;
+ 116:MCP2515.c     **** 	}
+ 117:MCP2515.c     **** 	else if	((MCP2515_reg_read(MCP2515_TX1) & 0b00001000)== 0)						//if tx1 is free,
+ 500               		.loc 1 117 7 is_stmt 1 view .LVU120
+ 501               		.loc 1 117 12 is_stmt 0 view .LVU121
+ 502 000a 80E4      		ldi r24,lo8(64)
+ 503 000c 0E94 0000 		call MCP2515_reg_read
+ 504               	.LVL52:
+ 505               		.loc 1 117 10 view .LVU122
+ 506 0010 83FF      		sbrs r24,3
+ 507 0012 00C0      		rjmp .L23
+ 508               	.LBB10:
+ 509               	.LBB11:
+ 118:MCP2515.c     **** 	{
+ 119:MCP2515.c     **** 		return MCP2515_TX1;
+ 120:MCP2515.c     **** 	}
+ 121:MCP2515.c     **** 	else if	((MCP2515_reg_read(MCP2515_TX2) & 0b00001000)== 0)						//if tx2 is free,
+ 510               		.loc 1 121 7 is_stmt 1 view .LVU123
+ 511               		.loc 1 121 12 is_stmt 0 view .LVU124
+ 512 0014 80E5      		ldi r24,lo8(80)
+ 513 0016 0E94 0000 		call MCP2515_reg_read
+ 514               	.LVL53:
+ 515               		.loc 1 121 10 view .LVU125
+ 516 001a 83FF      		sbrs r24,3
+ 517 001c 00C0      		rjmp .L24
+ 122:MCP2515.c     **** 	{
+ 123:MCP2515.c     **** 		return MCP2515_TX2;
+ 124:MCP2515.c     **** 	}
+ 125:MCP2515.c     **** 	else {return 0x00;	}														//otherwise none are free.
+ 518               		.loc 1 125 15 view .LVU126
+ 519 001e 80E0      		ldi r24,0
+ 520 0020 0895      		ret
+ 521               	.L22:
+ 522               	.LBE11:
+ 523               	.LBE10:
+ 115:MCP2515.c     **** 	}
+ 524               		.loc 1 115 10 view .LVU127
+ 525 0022 80E3      		ldi r24,lo8(48)
+ 526 0024 0895      		ret
+ 527               	.L23:
+ 119:MCP2515.c     **** 	}
+ 528               		.loc 1 119 10 view .LVU128
+ 529 0026 80E4      		ldi r24,lo8(64)
+ 530 0028 0895      		ret
+ 531               	.L24:
+ 532               	.LBB13:
+ 533               	.LBB12:
+ 123:MCP2515.c     **** 	}
+ 534               		.loc 1 123 10 view .LVU129
+ 535 002a 80E5      		ldi r24,lo8(80)
+ 536               	/* epilogue start */
+ 537               	.LBE12:
+ 538               	.LBE13:
+ 126:MCP2515.c     **** }
+ 539               		.loc 1 126 1 view .LVU130
+ 540 002c 0895      		ret
+ 541               		.cfi_endproc
+ 542               	.LFE13:
+ 544               		.section	.text.MCP2515_FilterInit,"ax",@progbits
+ 545               	.global	MCP2515_FilterInit
+ 547               	MCP2515_FilterInit:
+ 548               	.LVL54:
+ 549               	.LFB14:
+ 127:MCP2515.c     **** 
+ 128:MCP2515.c     **** void MCP2515_FilterInit(uint8_t filterNum, uint32_t filterID)
+ 129:MCP2515.c     **** {
+ 550               		.loc 1 129 1 is_stmt 1 view -0
+ 551               		.cfi_startproc
+ 552               		.loc 1 129 1 is_stmt 0 view .LVU132
+ 553 0000 CF92      		push r12
+ 554               	.LCFI13:
+ 555               		.cfi_def_cfa_offset 3
+ 556               		.cfi_offset 12, -2
+ 557 0002 DF92      		push r13
+ 558               	.LCFI14:
+ 559               		.cfi_def_cfa_offset 4
+ 560               		.cfi_offset 13, -3
+ 561 0004 EF92      		push r14
+ 562               	.LCFI15:
+ 563               		.cfi_def_cfa_offset 5
+ 564               		.cfi_offset 14, -4
+ 565 0006 FF92      		push r15
+ 566               	.LCFI16:
+ 567               		.cfi_def_cfa_offset 6
+ 568               		.cfi_offset 15, -5
+ 569               	/* prologue: function */
+ 570               	/* frame size = 0 */
+ 571               	/* stack size = 4 */
+ 572               	.L__stack_usage = 4
+ 573 0008 6A01      		movw r12,r20
+ 574 000a 7B01      		movw r14,r22
+ 130:MCP2515.c     **** 	switch(filterNum)
+ 575               		.loc 1 130 2 is_stmt 1 view .LVU133
+ 576 000c 8230      		cpi r24,lo8(2)
+ 577 000e 01F4      		brne .+2
+ 578 0010 00C0      		rjmp .L26
+ 579 0012 00F4      		brsh .L27
+ 580 0014 8823      		tst r24
+ 581 0016 01F0      		breq .L28
+ 582 0018 8130      		cpi r24,lo8(1)
+ 583 001a 01F4      		brne .+2
+ 584 001c 00C0      		rjmp .L29
+ 585               	.L25:
+ 586               	/* epilogue start */
+ 131:MCP2515.c     **** 	{
+ 132:MCP2515.c     **** 		case 0:
+ 133:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0SIDH, (filterID>>21) & 0xFF);
+ 134:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 135:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID8, (filterID>>8) & 0xFF );
+ 136:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID0, filterID & 0xFF );
+ 137:MCP2515.c     **** 		case 1:
+ 138:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1SIDH, (filterID>>21) & 0xFF);
+ 139:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 140:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID8, (filterID>>8) & 0xFF );
+ 141:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID0, filterID & 0xFF );
+ 142:MCP2515.c     **** 		case 2:
+ 143:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2SIDH, (filterID>>21) & 0xFF);
+ 144:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 145:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID8, (filterID>>8) & 0xFF );
+ 146:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID0, filterID & 0xFF );
+ 147:MCP2515.c     **** 		case 3:
+ 148:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3SIDH, (filterID>>21) & 0xFF);
+ 149:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 150:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID8, (filterID>>8) & 0xFF );
+ 151:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID0, filterID & 0xFF );
+ 152:MCP2515.c     **** 		case 4:
+ 153:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4SIDH, (filterID>>21) & 0xFF);
+ 154:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 155:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID8, (filterID>>8) & 0xFF );
+ 156:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID0, filterID & 0xFF );
+ 157:MCP2515.c     **** 		case 5:
+ 158:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5SIDH, (filterID>>21) & 0xFF);
+ 159:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 160:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+ 161:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID0, filterID & 0xFF );
+ 162:MCP2515.c     **** 			
+ 163:MCP2515.c     **** 	}
+ 164:MCP2515.c     **** 		
+ 165:MCP2515.c     **** }
+ 587               		.loc 1 165 1 is_stmt 0 view .LVU134
+ 588 001e FF90      		pop r15
+ 589 0020 EF90      		pop r14
+ 590 0022 DF90      		pop r13
+ 591 0024 CF90      		pop r12
+ 592 0026 0895      		ret
+ 593               	.L27:
+ 594 0028 8430      		cpi r24,lo8(4)
+ 595 002a 01F4      		brne .+2
+ 596 002c 00C0      		rjmp .L31
+ 597 002e 00F4      		brsh .+2
+ 598 0030 00C0      		rjmp .L32
+ 599 0032 8530      		cpi r24,lo8(5)
+ 600 0034 01F4      		brne .L25
+ 601               	.LVL55:
+ 602               	.L33:
+ 158:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 603               		.loc 1 158 4 is_stmt 1 view .LVU135
+ 158:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 604               		.loc 1 158 49 is_stmt 0 view .LVU136
+ 605 0036 C701      		movw r24,r14
+ 606 0038 B601      		movw r22,r12
+ 607 003a 25E1      		ldi r18,21
+ 608               		1:
+ 609 003c 9695      		lsr r25
+ 610 003e 8795      		ror r24
+ 611 0040 7795      		ror r23
+ 612 0042 6795      		ror r22
+ 613 0044 2A95      		dec r18
+ 614 0046 01F4      		brne 1b
+ 158:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 615               		.loc 1 158 4 view .LVU137
+ 616 0048 88E1      		ldi r24,lo8(24)
+ 617 004a 0E94 0000 		call MCP2515_reg_write
+ 618               	.LVL56:
+ 159:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+ 619               		.loc 1 159 4 is_stmt 1 view .LVU138
+ 159:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+ 620               		.loc 1 159 51 is_stmt 0 view .LVU139
+ 621 004e D701      		movw r26,r14
+ 622 0050 C601      		movw r24,r12
+ 623 0052 3DE0      		ldi r19,13
+ 624               		1:
+ 625 0054 B695      		lsr r27
+ 626 0056 A795      		ror r26
+ 627 0058 9795      		ror r25
+ 628 005a 8795      		ror r24
+ 629 005c 3A95      		dec r19
+ 630 005e 01F4      		brne 1b
+ 159:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+ 631               		.loc 1 159 57 view .LVU140
+ 632 0060 807E      		andi r24,lo8(-32)
+ 159:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+ 633               		.loc 1 159 81 view .LVU141
+ 634 0062 6E2D      		mov r22,r14
+ 635 0064 6370      		andi r22,lo8(3)
+ 159:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+ 636               		.loc 1 159 63 view .LVU142
+ 637 0066 682B      		or r22,r24
+ 159:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+ 638               		.loc 1 159 4 view .LVU143
+ 639 0068 6860      		ori r22,lo8(8)
+ 640 006a 89E1      		ldi r24,lo8(25)
+ 641 006c 0E94 0000 		call MCP2515_reg_write
+ 642               	.LVL57:
+ 160:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID0, filterID & 0xFF );
+ 643               		.loc 1 160 4 is_stmt 1 view .LVU144
+ 160:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID0, filterID & 0xFF );
+ 644               		.loc 1 160 49 is_stmt 0 view .LVU145
+ 645 0070 9927      		clr r25
+ 646 0072 8F2D      		mov r24,r15
+ 647 0074 7E2D      		mov r23,r14
+ 648 0076 6D2D      		mov r22,r13
+ 160:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF5EID0, filterID & 0xFF );
+ 649               		.loc 1 160 4 view .LVU146
+ 650 0078 8AE1      		ldi r24,lo8(26)
+ 651 007a 0E94 0000 		call MCP2515_reg_write
+ 652               	.LVL58:
+ 161:MCP2515.c     **** 			
+ 653               		.loc 1 161 4 is_stmt 1 view .LVU147
+ 654 007e 6C2D      		mov r22,r12
+ 655 0080 8BE1      		ldi r24,lo8(27)
+ 656               	/* epilogue start */
+ 657               		.loc 1 165 1 is_stmt 0 view .LVU148
+ 658 0082 FF90      		pop r15
+ 659 0084 EF90      		pop r14
+ 660 0086 DF90      		pop r13
+ 661 0088 CF90      		pop r12
+ 161:MCP2515.c     **** 			
+ 662               		.loc 1 161 4 view .LVU149
+ 663 008a 0C94 0000 		jmp MCP2515_reg_write
+ 664               	.LVL59:
+ 665               	.L28:
+ 133:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 666               		.loc 1 133 4 is_stmt 1 view .LVU150
+ 133:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 667               		.loc 1 133 49 is_stmt 0 view .LVU151
+ 668 008e CB01      		movw r24,r22
+ 669               	.LVL60:
+ 133:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 670               		.loc 1 133 49 view .LVU152
+ 671 0090 BA01      		movw r22,r20
+ 672 0092 E5E1      		ldi r30,21
+ 673               		1:
+ 674 0094 9695      		lsr r25
+ 675 0096 8795      		ror r24
+ 676 0098 7795      		ror r23
+ 677 009a 6795      		ror r22
+ 678 009c EA95      		dec r30
+ 679 009e 01F4      		brne 1b
+ 133:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 680               		.loc 1 133 4 view .LVU153
+ 681 00a0 80E0      		ldi r24,0
+ 682 00a2 0E94 0000 		call MCP2515_reg_write
+ 683               	.LVL61:
+ 134:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID8, (filterID>>8) & 0xFF );
+ 684               		.loc 1 134 4 is_stmt 1 view .LVU154
+ 134:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID8, (filterID>>8) & 0xFF );
+ 685               		.loc 1 134 51 is_stmt 0 view .LVU155
+ 686 00a6 D701      		movw r26,r14
+ 687 00a8 C601      		movw r24,r12
+ 688 00aa FDE0      		ldi r31,13
+ 689               		1:
+ 690 00ac B695      		lsr r27
+ 691 00ae A795      		ror r26
+ 692 00b0 9795      		ror r25
+ 693 00b2 8795      		ror r24
+ 694 00b4 FA95      		dec r31
+ 695 00b6 01F4      		brne 1b
+ 134:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID8, (filterID>>8) & 0xFF );
+ 696               		.loc 1 134 57 view .LVU156
+ 697 00b8 807E      		andi r24,lo8(-32)
+ 134:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID8, (filterID>>8) & 0xFF );
+ 698               		.loc 1 134 81 view .LVU157
+ 699 00ba 6E2D      		mov r22,r14
+ 700 00bc 6370      		andi r22,lo8(3)
+ 134:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID8, (filterID>>8) & 0xFF );
+ 701               		.loc 1 134 63 view .LVU158
+ 702 00be 682B      		or r22,r24
+ 134:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID8, (filterID>>8) & 0xFF );
+ 703               		.loc 1 134 4 view .LVU159
+ 704 00c0 6860      		ori r22,lo8(8)
+ 705 00c2 81E0      		ldi r24,lo8(1)
+ 706 00c4 0E94 0000 		call MCP2515_reg_write
+ 707               	.LVL62:
+ 135:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID0, filterID & 0xFF );
+ 708               		.loc 1 135 4 is_stmt 1 view .LVU160
+ 135:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID0, filterID & 0xFF );
+ 709               		.loc 1 135 49 is_stmt 0 view .LVU161
+ 710 00c8 9927      		clr r25
+ 711 00ca 8F2D      		mov r24,r15
+ 712 00cc 7E2D      		mov r23,r14
+ 713 00ce 6D2D      		mov r22,r13
+ 135:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF0EID0, filterID & 0xFF );
+ 714               		.loc 1 135 4 view .LVU162
+ 715 00d0 82E0      		ldi r24,lo8(2)
+ 716 00d2 0E94 0000 		call MCP2515_reg_write
+ 717               	.LVL63:
+ 136:MCP2515.c     **** 		case 1:
+ 718               		.loc 1 136 4 is_stmt 1 view .LVU163
+ 719 00d6 6C2D      		mov r22,r12
+ 720 00d8 83E0      		ldi r24,lo8(3)
+ 721 00da 0E94 0000 		call MCP2515_reg_write
+ 722               	.LVL64:
+ 723               	.L29:
+ 138:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 724               		.loc 1 138 4 view .LVU164
+ 138:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 725               		.loc 1 138 49 is_stmt 0 view .LVU165
+ 726 00de C701      		movw r24,r14
+ 727 00e0 B601      		movw r22,r12
+ 728 00e2 45E1      		ldi r20,21
+ 729               		1:
+ 730 00e4 9695      		lsr r25
+ 731 00e6 8795      		ror r24
+ 732 00e8 7795      		ror r23
+ 733 00ea 6795      		ror r22
+ 734 00ec 4A95      		dec r20
+ 735 00ee 01F4      		brne 1b
+ 138:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 736               		.loc 1 138 4 view .LVU166
+ 737 00f0 84E0      		ldi r24,lo8(4)
+ 738 00f2 0E94 0000 		call MCP2515_reg_write
+ 739               	.LVL65:
+ 139:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID8, (filterID>>8) & 0xFF );
+ 740               		.loc 1 139 4 is_stmt 1 view .LVU167
+ 139:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID8, (filterID>>8) & 0xFF );
+ 741               		.loc 1 139 51 is_stmt 0 view .LVU168
+ 742 00f6 D701      		movw r26,r14
+ 743 00f8 C601      		movw r24,r12
+ 744 00fa 5DE0      		ldi r21,13
+ 745               		1:
+ 746 00fc B695      		lsr r27
+ 747 00fe A795      		ror r26
+ 748 0100 9795      		ror r25
+ 749 0102 8795      		ror r24
+ 750 0104 5A95      		dec r21
+ 751 0106 01F4      		brne 1b
+ 139:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID8, (filterID>>8) & 0xFF );
+ 752               		.loc 1 139 57 view .LVU169
+ 753 0108 807E      		andi r24,lo8(-32)
+ 139:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID8, (filterID>>8) & 0xFF );
+ 754               		.loc 1 139 81 view .LVU170
+ 755 010a 6E2D      		mov r22,r14
+ 756 010c 6370      		andi r22,lo8(3)
+ 139:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID8, (filterID>>8) & 0xFF );
+ 757               		.loc 1 139 63 view .LVU171
+ 758 010e 682B      		or r22,r24
+ 139:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID8, (filterID>>8) & 0xFF );
+ 759               		.loc 1 139 4 view .LVU172
+ 760 0110 6860      		ori r22,lo8(8)
+ 761 0112 85E0      		ldi r24,lo8(5)
+ 762 0114 0E94 0000 		call MCP2515_reg_write
+ 763               	.LVL66:
+ 140:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID0, filterID & 0xFF );
+ 764               		.loc 1 140 4 is_stmt 1 view .LVU173
+ 140:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID0, filterID & 0xFF );
+ 765               		.loc 1 140 49 is_stmt 0 view .LVU174
+ 766 0118 9927      		clr r25
+ 767 011a 8F2D      		mov r24,r15
+ 768 011c 7E2D      		mov r23,r14
+ 769 011e 6D2D      		mov r22,r13
+ 140:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF1EID0, filterID & 0xFF );
+ 770               		.loc 1 140 4 view .LVU175
+ 771 0120 86E0      		ldi r24,lo8(6)
+ 772 0122 0E94 0000 		call MCP2515_reg_write
+ 773               	.LVL67:
+ 141:MCP2515.c     **** 		case 2:
+ 774               		.loc 1 141 4 is_stmt 1 view .LVU176
+ 775 0126 6C2D      		mov r22,r12
+ 776 0128 87E0      		ldi r24,lo8(7)
+ 777 012a 0E94 0000 		call MCP2515_reg_write
+ 778               	.LVL68:
+ 779               	.L26:
+ 143:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 780               		.loc 1 143 4 view .LVU177
+ 143:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 781               		.loc 1 143 49 is_stmt 0 view .LVU178
+ 782 012e C701      		movw r24,r14
+ 783 0130 B601      		movw r22,r12
+ 784 0132 B5E1      		ldi r27,21
+ 785               		1:
+ 786 0134 9695      		lsr r25
+ 787 0136 8795      		ror r24
+ 788 0138 7795      		ror r23
+ 789 013a 6795      		ror r22
+ 790 013c BA95      		dec r27
+ 791 013e 01F4      		brne 1b
+ 143:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 792               		.loc 1 143 4 view .LVU179
+ 793 0140 88E0      		ldi r24,lo8(8)
+ 794 0142 0E94 0000 		call MCP2515_reg_write
+ 795               	.LVL69:
+ 144:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID8, (filterID>>8) & 0xFF );
+ 796               		.loc 1 144 4 is_stmt 1 view .LVU180
+ 144:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID8, (filterID>>8) & 0xFF );
+ 797               		.loc 1 144 51 is_stmt 0 view .LVU181
+ 798 0146 D701      		movw r26,r14
+ 799 0148 C601      		movw r24,r12
+ 800 014a 2DE0      		ldi r18,13
+ 801               		1:
+ 802 014c B695      		lsr r27
+ 803 014e A795      		ror r26
+ 804 0150 9795      		ror r25
+ 805 0152 8795      		ror r24
+ 806 0154 2A95      		dec r18
+ 807 0156 01F4      		brne 1b
+ 144:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID8, (filterID>>8) & 0xFF );
+ 808               		.loc 1 144 57 view .LVU182
+ 809 0158 807E      		andi r24,lo8(-32)
+ 144:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID8, (filterID>>8) & 0xFF );
+ 810               		.loc 1 144 81 view .LVU183
+ 811 015a 6E2D      		mov r22,r14
+ 812 015c 6370      		andi r22,lo8(3)
+ 144:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID8, (filterID>>8) & 0xFF );
+ 813               		.loc 1 144 63 view .LVU184
+ 814 015e 682B      		or r22,r24
+ 144:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID8, (filterID>>8) & 0xFF );
+ 815               		.loc 1 144 4 view .LVU185
+ 816 0160 6860      		ori r22,lo8(8)
+ 817 0162 89E0      		ldi r24,lo8(9)
+ 818 0164 0E94 0000 		call MCP2515_reg_write
+ 819               	.LVL70:
+ 145:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID0, filterID & 0xFF );
+ 820               		.loc 1 145 4 is_stmt 1 view .LVU186
+ 145:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID0, filterID & 0xFF );
+ 821               		.loc 1 145 49 is_stmt 0 view .LVU187
+ 822 0168 9927      		clr r25
+ 823 016a 8F2D      		mov r24,r15
+ 824 016c 7E2D      		mov r23,r14
+ 825 016e 6D2D      		mov r22,r13
+ 145:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF2EID0, filterID & 0xFF );
+ 826               		.loc 1 145 4 view .LVU188
+ 827 0170 8AE0      		ldi r24,lo8(10)
+ 828 0172 0E94 0000 		call MCP2515_reg_write
+ 829               	.LVL71:
+ 146:MCP2515.c     **** 		case 3:
+ 830               		.loc 1 146 4 is_stmt 1 view .LVU189
+ 831 0176 6C2D      		mov r22,r12
+ 832 0178 8BE0      		ldi r24,lo8(11)
+ 833 017a 0E94 0000 		call MCP2515_reg_write
+ 834               	.LVL72:
+ 835               	.L32:
+ 148:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 836               		.loc 1 148 4 view .LVU190
+ 148:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 837               		.loc 1 148 49 is_stmt 0 view .LVU191
+ 838 017e C701      		movw r24,r14
+ 839 0180 B601      		movw r22,r12
+ 840 0182 E5E1      		ldi r30,21
+ 841               		1:
+ 842 0184 9695      		lsr r25
+ 843 0186 8795      		ror r24
+ 844 0188 7795      		ror r23
+ 845 018a 6795      		ror r22
+ 846 018c EA95      		dec r30
+ 847 018e 01F4      		brne 1b
+ 148:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 848               		.loc 1 148 4 view .LVU192
+ 849 0190 80E1      		ldi r24,lo8(16)
+ 850 0192 0E94 0000 		call MCP2515_reg_write
+ 851               	.LVL73:
+ 149:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID8, (filterID>>8) & 0xFF );
+ 852               		.loc 1 149 4 is_stmt 1 view .LVU193
+ 149:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID8, (filterID>>8) & 0xFF );
+ 853               		.loc 1 149 51 is_stmt 0 view .LVU194
+ 854 0196 D701      		movw r26,r14
+ 855 0198 C601      		movw r24,r12
+ 856 019a FDE0      		ldi r31,13
+ 857               		1:
+ 858 019c B695      		lsr r27
+ 859 019e A795      		ror r26
+ 860 01a0 9795      		ror r25
+ 861 01a2 8795      		ror r24
+ 862 01a4 FA95      		dec r31
+ 863 01a6 01F4      		brne 1b
+ 149:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID8, (filterID>>8) & 0xFF );
+ 864               		.loc 1 149 57 view .LVU195
+ 865 01a8 807E      		andi r24,lo8(-32)
+ 149:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID8, (filterID>>8) & 0xFF );
+ 866               		.loc 1 149 81 view .LVU196
+ 867 01aa 6E2D      		mov r22,r14
+ 868 01ac 6370      		andi r22,lo8(3)
+ 149:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID8, (filterID>>8) & 0xFF );
+ 869               		.loc 1 149 63 view .LVU197
+ 870 01ae 682B      		or r22,r24
+ 149:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID8, (filterID>>8) & 0xFF );
+ 871               		.loc 1 149 4 view .LVU198
+ 872 01b0 6860      		ori r22,lo8(8)
+ 873 01b2 81E1      		ldi r24,lo8(17)
+ 874 01b4 0E94 0000 		call MCP2515_reg_write
+ 875               	.LVL74:
+ 150:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID0, filterID & 0xFF );
+ 876               		.loc 1 150 4 is_stmt 1 view .LVU199
+ 150:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID0, filterID & 0xFF );
+ 877               		.loc 1 150 49 is_stmt 0 view .LVU200
+ 878 01b8 9927      		clr r25
+ 879 01ba 8F2D      		mov r24,r15
+ 880 01bc 7E2D      		mov r23,r14
+ 881 01be 6D2D      		mov r22,r13
+ 150:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF3EID0, filterID & 0xFF );
+ 882               		.loc 1 150 4 view .LVU201
+ 883 01c0 82E1      		ldi r24,lo8(18)
+ 884 01c2 0E94 0000 		call MCP2515_reg_write
+ 885               	.LVL75:
+ 151:MCP2515.c     **** 		case 4:
+ 886               		.loc 1 151 4 is_stmt 1 view .LVU202
+ 887 01c6 6C2D      		mov r22,r12
+ 888 01c8 83E1      		ldi r24,lo8(19)
+ 889 01ca 0E94 0000 		call MCP2515_reg_write
+ 890               	.LVL76:
+ 891               	.L31:
+ 153:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 892               		.loc 1 153 4 view .LVU203
+ 153:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 893               		.loc 1 153 49 is_stmt 0 view .LVU204
+ 894 01ce C701      		movw r24,r14
+ 895 01d0 B601      		movw r22,r12
+ 896 01d2 55E1      		ldi r21,21
+ 897               		1:
+ 898 01d4 9695      		lsr r25
+ 899 01d6 8795      		ror r24
+ 900 01d8 7795      		ror r23
+ 901 01da 6795      		ror r22
+ 902 01dc 5A95      		dec r21
+ 903 01de 01F4      		brne 1b
+ 153:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0x
+ 904               		.loc 1 153 4 view .LVU205
+ 905 01e0 84E1      		ldi r24,lo8(20)
+ 906 01e2 0E94 0000 		call MCP2515_reg_write
+ 907               	.LVL77:
+ 154:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID8, (filterID>>8) & 0xFF );
+ 908               		.loc 1 154 4 is_stmt 1 view .LVU206
+ 154:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID8, (filterID>>8) & 0xFF );
+ 909               		.loc 1 154 51 is_stmt 0 view .LVU207
+ 910 01e6 D701      		movw r26,r14
+ 911 01e8 C601      		movw r24,r12
+ 912 01ea 6DE0      		ldi r22,13
+ 913               		1:
+ 914 01ec B695      		lsr r27
+ 915 01ee A795      		ror r26
+ 916 01f0 9795      		ror r25
+ 917 01f2 8795      		ror r24
+ 918 01f4 6A95      		dec r22
+ 919 01f6 01F4      		brne 1b
+ 154:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID8, (filterID>>8) & 0xFF );
+ 920               		.loc 1 154 57 view .LVU208
+ 921 01f8 807E      		andi r24,lo8(-32)
+ 154:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID8, (filterID>>8) & 0xFF );
+ 922               		.loc 1 154 81 view .LVU209
+ 923 01fa 6E2D      		mov r22,r14
+ 924 01fc 6370      		andi r22,lo8(3)
+ 154:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID8, (filterID>>8) & 0xFF );
+ 925               		.loc 1 154 63 view .LVU210
+ 926 01fe 682B      		or r22,r24
+ 154:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID8, (filterID>>8) & 0xFF );
+ 927               		.loc 1 154 4 view .LVU211
+ 928 0200 6860      		ori r22,lo8(8)
+ 929 0202 85E1      		ldi r24,lo8(21)
+ 930 0204 0E94 0000 		call MCP2515_reg_write
+ 931               	.LVL78:
+ 155:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID0, filterID & 0xFF );
+ 932               		.loc 1 155 4 is_stmt 1 view .LVU212
+ 155:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID0, filterID & 0xFF );
+ 933               		.loc 1 155 49 is_stmt 0 view .LVU213
+ 934 0208 9927      		clr r25
+ 935 020a 8F2D      		mov r24,r15
+ 936 020c 7E2D      		mov r23,r14
+ 937 020e 6D2D      		mov r22,r13
+ 155:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXF4EID0, filterID & 0xFF );
+ 938               		.loc 1 155 4 view .LVU214
+ 939 0210 86E1      		ldi r24,lo8(22)
+ 940 0212 0E94 0000 		call MCP2515_reg_write
+ 941               	.LVL79:
+ 156:MCP2515.c     **** 		case 5:
+ 942               		.loc 1 156 4 is_stmt 1 view .LVU215
+ 943 0216 6C2D      		mov r22,r12
+ 944 0218 87E1      		ldi r24,lo8(23)
+ 945 021a 0E94 0000 		call MCP2515_reg_write
+ 946               	.LVL80:
+ 947 021e 00C0      		rjmp .L33
+ 948               		.cfi_endproc
+ 949               	.LFE14:
+ 951               		.section	.text.MCP2515_RXInit,"ax",@progbits
+ 952               	.global	MCP2515_RXInit
+ 954               	MCP2515_RXInit:
+ 955               	.LVL81:
+ 956               	.LFB15:
+ 166:MCP2515.c     **** 
+ 167:MCP2515.c     **** uint8_t MCP2515_RXInit(int8_t mob, uint32_t IDmsk)	//write IDmsk 0 if you do not wish to use a mask
+ 168:MCP2515.c     **** {
+ 957               		.loc 1 168 1 view -0
+ 958               		.cfi_startproc
+ 959               		.loc 1 168 1 is_stmt 0 view .LVU217
+ 960 0000 CF92      		push r12
+ 961               	.LCFI17:
+ 962               		.cfi_def_cfa_offset 3
+ 963               		.cfi_offset 12, -2
+ 964 0002 DF92      		push r13
+ 965               	.LCFI18:
+ 966               		.cfi_def_cfa_offset 4
+ 967               		.cfi_offset 13, -3
+ 968 0004 EF92      		push r14
+ 969               	.LCFI19:
+ 970               		.cfi_def_cfa_offset 5
+ 971               		.cfi_offset 14, -4
+ 972 0006 FF92      		push r15
+ 973               	.LCFI20:
+ 974               		.cfi_def_cfa_offset 6
+ 975               		.cfi_offset 15, -5
+ 976               	/* prologue: function */
+ 977               	/* frame size = 0 */
+ 978               	/* stack size = 4 */
+ 979               	.L__stack_usage = 4
+ 980 0008 6A01      		movw r12,r20
+ 981 000a 7B01      		movw r14,r22
+ 169:MCP2515.c     **** 	if (mob > 1)return 0;
+ 982               		.loc 1 169 2 is_stmt 1 view .LVU218
+ 983               		.loc 1 169 5 is_stmt 0 view .LVU219
+ 984 000c 8230      		cpi r24,lo8(2)
+ 985 000e 04F0      		brlt .+2
+ 986 0010 00C0      		rjmp .L52
+ 170:MCP2515.c     **** 	switch(mob)
+ 987               		.loc 1 170 2 is_stmt 1 view .LVU220
+ 988 0012 8823      		tst r24
+ 989 0014 01F0      		breq .L48
+ 990 0016 8130      		cpi r24,lo8(1)
+ 991 0018 01F0      		breq .L49
+ 992               	.LVL82:
+ 993               	.L58:
+ 171:MCP2515.c     **** 	{
+ 172:MCP2515.c     **** 		case 0:
+ 173:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0SIDH, (IDmsk>>21) & 0xFF);	//shift the 32 bit mask into the respec
+ 174:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 175:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID8, (IDmsk>>8) & 0xFF );
+ 176:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID0, IDmsk & 0xFF );
+ 177:MCP2515.c     **** 			if(IDmsk) MCP2515_reg_write(MCP2515_RXB0CTRL, 0b00000100);	//Enable reception using masks and fi
+ 178:MCP2515.c     **** 			else MCP2515_reg_write(MCP2515_RXB0CTRL, 0b01100100);		//Enable reception without masks and filt
+ 179:MCP2515.c     **** 		case 1:
+ 180:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1SIDH, (IDmsk>>21) & 0xFF);	//shift the 32 bit mask into the respec
+ 181:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 182:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID8, (IDmsk>>8) & 0xFF );
+ 183:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID0, IDmsk & 0xFF );
+ 184:MCP2515.c     **** 			if(IDmsk) MCP2515_reg_write(MCP2515_RXB1CTRL, 0b00000000);	//Enable reception using masks and fi
+ 185:MCP2515.c     **** 			else MCP2515_reg_write(MCP2515_RXB1CTRL, 0b01100000);		//Enable reception without masks and filt
+ 186:MCP2515.c     **** 	}	
+ 187:MCP2515.c     **** 	return 1;
+ 994               		.loc 1 187 9 is_stmt 0 view .LVU221
+ 995 001a 81E0      		ldi r24,lo8(1)
+ 996               	.L46:
+ 997               	/* epilogue start */
+ 188:MCP2515.c     **** }
+ 998               		.loc 1 188 1 view .LVU222
+ 999 001c FF90      		pop r15
+ 1000 001e EF90      		pop r14
+ 1001 0020 DF90      		pop r13
+ 1002 0022 CF90      		pop r12
+ 1003 0024 0895      		ret
+ 1004               	.LVL83:
+ 1005               	.L48:
+ 173:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 1006               		.loc 1 173 4 is_stmt 1 view .LVU223
+ 173:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 1007               		.loc 1 173 46 is_stmt 0 view .LVU224
+ 1008 0026 CB01      		movw r24,r22
+ 1009               	.LVL84:
+ 173:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 1010               		.loc 1 173 46 view .LVU225
+ 1011 0028 BA01      		movw r22,r20
+ 1012 002a 55E1      		ldi r21,21
+ 1013               		1:
+ 1014 002c 9695      		lsr r25
+ 1015 002e 8795      		ror r24
+ 1016 0030 7795      		ror r23
+ 1017 0032 6795      		ror r22
+ 1018 0034 5A95      		dec r21
+ 1019 0036 01F4      		brne 1b
+ 173:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 1020               		.loc 1 173 4 view .LVU226
+ 1021 0038 80E2      		ldi r24,lo8(32)
+ 1022 003a 0E94 0000 		call MCP2515_reg_write
+ 1023               	.LVL85:
+ 174:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID8, (IDmsk>>8) & 0xFF );
+ 1024               		.loc 1 174 4 is_stmt 1 view .LVU227
+ 174:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID8, (IDmsk>>8) & 0xFF );
+ 1025               		.loc 1 174 48 is_stmt 0 view .LVU228
+ 1026 003e D701      		movw r26,r14
+ 1027 0040 C601      		movw r24,r12
+ 1028 0042 6DE0      		ldi r22,13
+ 1029               		1:
+ 1030 0044 B695      		lsr r27
+ 1031 0046 A795      		ror r26
+ 1032 0048 9795      		ror r25
+ 1033 004a 8795      		ror r24
+ 1034 004c 6A95      		dec r22
+ 1035 004e 01F4      		brne 1b
+ 174:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID8, (IDmsk>>8) & 0xFF );
+ 1036               		.loc 1 174 54 view .LVU229
+ 1037 0050 807E      		andi r24,lo8(-32)
+ 174:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID8, (IDmsk>>8) & 0xFF );
+ 1038               		.loc 1 174 75 view .LVU230
+ 1039 0052 6E2D      		mov r22,r14
+ 1040 0054 6370      		andi r22,lo8(3)
+ 174:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID8, (IDmsk>>8) & 0xFF );
+ 1041               		.loc 1 174 4 view .LVU231
+ 1042 0056 682B      		or r22,r24
+ 1043 0058 81E2      		ldi r24,lo8(33)
+ 1044 005a 0E94 0000 		call MCP2515_reg_write
+ 1045               	.LVL86:
+ 175:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID0, IDmsk & 0xFF );
+ 1046               		.loc 1 175 4 is_stmt 1 view .LVU232
+ 175:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID0, IDmsk & 0xFF );
+ 1047               		.loc 1 175 46 is_stmt 0 view .LVU233
+ 1048 005e 9927      		clr r25
+ 1049 0060 8F2D      		mov r24,r15
+ 1050 0062 7E2D      		mov r23,r14
+ 1051 0064 6D2D      		mov r22,r13
+ 175:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM0EID0, IDmsk & 0xFF );
+ 1052               		.loc 1 175 4 view .LVU234
+ 1053 0066 82E2      		ldi r24,lo8(34)
+ 1054 0068 0E94 0000 		call MCP2515_reg_write
+ 1055               	.LVL87:
+ 176:MCP2515.c     **** 			if(IDmsk) MCP2515_reg_write(MCP2515_RXB0CTRL, 0b00000100);	//Enable reception using masks and fi
+ 1056               		.loc 1 176 4 is_stmt 1 view .LVU235
+ 1057 006c 6C2D      		mov r22,r12
+ 1058 006e 83E2      		ldi r24,lo8(35)
+ 1059 0070 0E94 0000 		call MCP2515_reg_write
+ 1060               	.LVL88:
+ 177:MCP2515.c     **** 			else MCP2515_reg_write(MCP2515_RXB0CTRL, 0b01100100);		//Enable reception without masks and filt
+ 1061               		.loc 1 177 4 view .LVU236
+ 177:MCP2515.c     **** 			else MCP2515_reg_write(MCP2515_RXB0CTRL, 0b01100100);		//Enable reception without masks and filt
+ 1062               		.loc 1 177 14 is_stmt 0 view .LVU237
+ 1063 0074 64E0      		ldi r22,lo8(4)
+ 177:MCP2515.c     **** 			else MCP2515_reg_write(MCP2515_RXB0CTRL, 0b01100100);		//Enable reception without masks and filt
+ 1064               		.loc 1 177 6 view .LVU238
+ 1065 0076 C114      		cp r12,__zero_reg__
+ 1066 0078 D104      		cpc r13,__zero_reg__
+ 1067 007a E104      		cpc r14,__zero_reg__
+ 1068 007c F104      		cpc r15,__zero_reg__
+ 1069 007e 01F4      		brne .L56
+ 178:MCP2515.c     **** 		case 1:
+ 1070               		.loc 1 178 9 is_stmt 1 view .LVU239
+ 1071 0080 64E6      		ldi r22,lo8(100)
+ 1072               	.L56:
+ 1073 0082 80E6      		ldi r24,lo8(96)
+ 1074 0084 0E94 0000 		call MCP2515_reg_write
+ 1075               	.LVL89:
+ 1076               	.L49:
+ 180:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 1077               		.loc 1 180 4 view .LVU240
+ 180:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 1078               		.loc 1 180 46 is_stmt 0 view .LVU241
+ 1079 0088 C701      		movw r24,r14
+ 1080 008a B601      		movw r22,r12
+ 1081 008c 25E1      		ldi r18,21
+ 1082               		1:
+ 1083 008e 9695      		lsr r25
+ 1084 0090 8795      		ror r24
+ 1085 0092 7795      		ror r23
+ 1086 0094 6795      		ror r22
+ 1087 0096 2A95      		dec r18
+ 1088 0098 01F4      		brne 1b
+ 180:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+ 1089               		.loc 1 180 4 view .LVU242
+ 1090 009a 84E2      		ldi r24,lo8(36)
+ 1091 009c 0E94 0000 		call MCP2515_reg_write
+ 1092               	.LVL90:
+ 181:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID8, (IDmsk>>8) & 0xFF );
+ 1093               		.loc 1 181 4 is_stmt 1 view .LVU243
+ 181:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID8, (IDmsk>>8) & 0xFF );
+ 1094               		.loc 1 181 48 is_stmt 0 view .LVU244
+ 1095 00a0 D701      		movw r26,r14
+ 1096 00a2 C601      		movw r24,r12
+ 1097 00a4 3DE0      		ldi r19,13
+ 1098               		1:
+ 1099 00a6 B695      		lsr r27
+ 1100 00a8 A795      		ror r26
+ 1101 00aa 9795      		ror r25
+ 1102 00ac 8795      		ror r24
+ 1103 00ae 3A95      		dec r19
+ 1104 00b0 01F4      		brne 1b
+ 181:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID8, (IDmsk>>8) & 0xFF );
+ 1105               		.loc 1 181 54 view .LVU245
+ 1106 00b2 807E      		andi r24,lo8(-32)
+ 181:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID8, (IDmsk>>8) & 0xFF );
+ 1107               		.loc 1 181 75 view .LVU246
+ 1108 00b4 6E2D      		mov r22,r14
+ 1109 00b6 6370      		andi r22,lo8(3)
+ 181:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID8, (IDmsk>>8) & 0xFF );
+ 1110               		.loc 1 181 4 view .LVU247
+ 1111 00b8 682B      		or r22,r24
+ 1112 00ba 85E2      		ldi r24,lo8(37)
+ 1113 00bc 0E94 0000 		call MCP2515_reg_write
+ 1114               	.LVL91:
+ 182:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID0, IDmsk & 0xFF );
+ 1115               		.loc 1 182 4 is_stmt 1 view .LVU248
+ 182:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID0, IDmsk & 0xFF );
+ 1116               		.loc 1 182 46 is_stmt 0 view .LVU249
+ 1117 00c0 9927      		clr r25
+ 1118 00c2 8F2D      		mov r24,r15
+ 1119 00c4 7E2D      		mov r23,r14
+ 1120 00c6 6D2D      		mov r22,r13
+ 182:MCP2515.c     **** 			MCP2515_reg_write(MCP2515_RXM1EID0, IDmsk & 0xFF );
+ 1121               		.loc 1 182 4 view .LVU250
+ 1122 00c8 86E2      		ldi r24,lo8(38)
+ 1123 00ca 0E94 0000 		call MCP2515_reg_write
+ 1124               	.LVL92:
+ 183:MCP2515.c     **** 			if(IDmsk) MCP2515_reg_write(MCP2515_RXB1CTRL, 0b00000000);	//Enable reception using masks and fi
+ 1125               		.loc 1 183 4 is_stmt 1 view .LVU251
+ 1126 00ce 6C2D      		mov r22,r12
+ 1127 00d0 87E2      		ldi r24,lo8(39)
+ 1128 00d2 0E94 0000 		call MCP2515_reg_write
+ 1129               	.LVL93:
+ 184:MCP2515.c     **** 			else MCP2515_reg_write(MCP2515_RXB1CTRL, 0b01100000);		//Enable reception without masks and filt
+ 1130               		.loc 1 184 4 view .LVU252
+ 184:MCP2515.c     **** 			else MCP2515_reg_write(MCP2515_RXB1CTRL, 0b01100000);		//Enable reception without masks and filt
+ 1131               		.loc 1 184 14 is_stmt 0 view .LVU253
+ 1132 00d6 60E0      		ldi r22,0
+ 184:MCP2515.c     **** 			else MCP2515_reg_write(MCP2515_RXB1CTRL, 0b01100000);		//Enable reception without masks and filt
+ 1133               		.loc 1 184 6 view .LVU254
+ 1134 00d8 CD28      		or r12,r13
+ 1135 00da CE28      		or r12,r14
+ 1136 00dc CF28      		or r12,r15
+ 1137 00de 01F4      		brne .L57
+ 185:MCP2515.c     **** 	}	
+ 1138               		.loc 1 185 9 is_stmt 1 view .LVU255
+ 1139 00e0 60E6      		ldi r22,lo8(96)
+ 1140               	.L57:
+ 1141 00e2 80E7      		ldi r24,lo8(112)
+ 1142 00e4 0E94 0000 		call MCP2515_reg_write
+ 1143               	.LVL94:
+ 1144 00e8 00C0      		rjmp .L58
+ 1145               	.LVL95:
+ 1146               	.L52:
+ 169:MCP2515.c     **** 	switch(mob)
+ 1147               		.loc 1 169 21 is_stmt 0 view .LVU256
+ 1148 00ea 80E0      		ldi r24,0
+ 1149               	.LVL96:
+ 169:MCP2515.c     **** 	switch(mob)
+ 1150               		.loc 1 169 21 view .LVU257
+ 1151 00ec 00C0      		rjmp .L46
+ 1152               		.cfi_endproc
+ 1153               	.LFE15:
+ 1155               		.section	.text.MCP2515_TX,"ax",@progbits
+ 1156               	.global	MCP2515_TX
+ 1158               	MCP2515_TX:
+ 1159               	.LVL97:
+ 1160               	.LFB16:
+ 189:MCP2515.c     **** 
+ 190:MCP2515.c     **** void MCP2515_TX(int8_t mob, uint8_t numBytes, uint8_t * data, uint32_t ID)
+ 191:MCP2515.c     **** {
+ 1161               		.loc 1 191 1 is_stmt 1 view -0
+ 1162               		.cfi_startproc
+ 1163               		.loc 1 191 1 is_stmt 0 view .LVU259
+ 1164 0000 AF92      		push r10
+ 1165               	.LCFI21:
+ 1166               		.cfi_def_cfa_offset 3
+ 1167               		.cfi_offset 10, -2
+ 1168 0002 BF92      		push r11
+ 1169               	.LCFI22:
+ 1170               		.cfi_def_cfa_offset 4
+ 1171               		.cfi_offset 11, -3
+ 1172 0004 CF92      		push r12
+ 1173               	.LCFI23:
+ 1174               		.cfi_def_cfa_offset 5
+ 1175               		.cfi_offset 12, -4
+ 1176 0006 DF92      		push r13
+ 1177               	.LCFI24:
+ 1178               		.cfi_def_cfa_offset 6
+ 1179               		.cfi_offset 13, -5
+ 1180 0008 EF92      		push r14
+ 1181               	.LCFI25:
+ 1182               		.cfi_def_cfa_offset 7
+ 1183               		.cfi_offset 14, -6
+ 1184 000a FF92      		push r15
+ 1185               	.LCFI26:
+ 1186               		.cfi_def_cfa_offset 8
+ 1187               		.cfi_offset 15, -7
+ 1188 000c 0F93      		push r16
+ 1189               	.LCFI27:
+ 1190               		.cfi_def_cfa_offset 9
+ 1191               		.cfi_offset 16, -8
+ 1192 000e 1F93      		push r17
+ 1193               	.LCFI28:
+ 1194               		.cfi_def_cfa_offset 10
+ 1195               		.cfi_offset 17, -9
+ 1196 0010 CF93      		push r28
+ 1197               	.LCFI29:
+ 1198               		.cfi_def_cfa_offset 11
+ 1199               		.cfi_offset 28, -10
+ 1200 0012 DF93      		push r29
+ 1201               	.LCFI30:
+ 1202               		.cfi_def_cfa_offset 12
+ 1203               		.cfi_offset 29, -11
+ 1204               	/* prologue: function */
+ 1205               	/* frame size = 0 */
+ 1206               	/* stack size = 10 */
+ 1207               	.L__stack_usage = 10
+ 1208 0014 C82F      		mov r28,r24
+ 1209 0016 D62F      		mov r29,r22
+ 1210 0018 5A01      		movw r10,r20
+ 1211 001a 6801      		movw r12,r16
+ 1212 001c 7901      		movw r14,r18
+ 192:MCP2515.c     **** 	if(mob == 0)return;						//no free mob or invalid mob
+ 1213               		.loc 1 192 2 is_stmt 1 view .LVU260
+ 1214               		.loc 1 192 4 is_stmt 0 view .LVU261
+ 1215 001e 8823      		tst r24
+ 1216 0020 01F4      		brne .+2
+ 1217 0022 00C0      		rjmp .L59
+ 193:MCP2515.c     **** 	MCP2515_reg_write(mob, 0x03);			//we shall set this to the highest priority so that it sends it im
+ 1218               		.loc 1 193 2 is_stmt 1 view .LVU262
+ 1219 0024 182F      		mov r17,r24
+ 1220 0026 63E0      		ldi r22,lo8(3)
+ 1221               	.LVL98:
+ 1222               		.loc 1 193 2 is_stmt 0 view .LVU263
+ 1223 0028 0E94 0000 		call MCP2515_reg_write
+ 1224               	.LVL99:
+ 194:MCP2515.c     **** 	MCP2515_reg_write(mob+1, (ID>>21) & 0xFF);	//shift the ID data to fill the respective MCP register
+ 1225               		.loc 1 194 2 is_stmt 1 view .LVU264
+ 1226               		.loc 1 194 30 is_stmt 0 view .LVU265
+ 1227 002c C701      		movw r24,r14
+ 1228 002e B601      		movw r22,r12
+ 1229 0030 25E1      		ldi r18,21
+ 1230               		1:
+ 1231 0032 9695      		lsr r25
+ 1232 0034 8795      		ror r24
+ 1233 0036 7795      		ror r23
+ 1234 0038 6795      		ror r22
+ 1235 003a 2A95      		dec r18
+ 1236 003c 01F4      		brne 1b
+ 1237               		.loc 1 194 2 view .LVU266
+ 1238 003e 81E0      		ldi r24,lo8(1)
+ 1239 0040 8C0F      		add r24,r28
+ 1240 0042 0E94 0000 		call MCP2515_reg_write
+ 1241               	.LVL100:
+ 195:MCP2515.c     **** 	MCP2515_reg_write(mob+2, (((ID>>13) & 224)| ((ID>>16) & 3) | ((1<<3) & 0xFF)));	//set the EXIDE bi
+ 1242               		.loc 1 195 2 is_stmt 1 view .LVU267
+ 1243               		.loc 1 195 32 is_stmt 0 view .LVU268
+ 1244 0046 D701      		movw r26,r14
+ 1245 0048 C601      		movw r24,r12
+ 1246 004a 3DE0      		ldi r19,13
+ 1247               		1:
+ 1248 004c B695      		lsr r27
+ 1249 004e A795      		ror r26
+ 1250 0050 9795      		ror r25
+ 1251 0052 8795      		ror r24
+ 1252 0054 3A95      		dec r19
+ 1253 0056 01F4      		brne 1b
+ 1254               		.loc 1 195 38 view .LVU269
+ 1255 0058 807E      		andi r24,lo8(-32)
+ 1256               		.loc 1 195 56 view .LVU270
+ 1257 005a 6E2D      		mov r22,r14
+ 1258 005c 6370      		andi r22,lo8(3)
+ 1259               		.loc 1 195 44 view .LVU271
+ 1260 005e 682B      		or r22,r24
+ 1261               		.loc 1 195 2 view .LVU272
+ 1262 0060 6860      		ori r22,lo8(8)
+ 1263 0062 82E0      		ldi r24,lo8(2)
+ 1264 0064 8C0F      		add r24,r28
+ 1265 0066 0E94 0000 		call MCP2515_reg_write
+ 1266               	.LVL101:
+ 196:MCP2515.c     **** 	MCP2515_reg_write(mob+3, (ID>>8) & 0xFF );
+ 1267               		.loc 1 196 2 is_stmt 1 view .LVU273
+ 1268               		.loc 1 196 30 is_stmt 0 view .LVU274
+ 1269 006a 9927      		clr r25
+ 1270 006c 8F2D      		mov r24,r15
+ 1271 006e 7E2D      		mov r23,r14
+ 1272 0070 6D2D      		mov r22,r13
+ 1273               		.loc 1 196 2 view .LVU275
+ 1274 0072 83E0      		ldi r24,lo8(3)
+ 1275 0074 8C0F      		add r24,r28
+ 1276 0076 0E94 0000 		call MCP2515_reg_write
+ 1277               	.LVL102:
+ 197:MCP2515.c     **** 	MCP2515_reg_write(mob+4, ID & 0xFF );
+ 1278               		.loc 1 197 2 is_stmt 1 view .LVU276
+ 1279 007a 6C2D      		mov r22,r12
+ 1280 007c 84E0      		ldi r24,lo8(4)
+ 1281 007e 8C0F      		add r24,r28
+ 1282 0080 0E94 0000 		call MCP2515_reg_write
+ 1283               	.LVL103:
+ 198:MCP2515.c     **** 	MCP2515_reg_write(mob+5, numBytes);		//set how many bytes we wish to send
+ 1284               		.loc 1 198 2 view .LVU277
+ 1285 0084 6D2F      		mov r22,r29
+ 1286 0086 85E0      		ldi r24,lo8(5)
+ 1287 0088 8C0F      		add r24,r28
+ 1288 008a 0E94 0000 		call MCP2515_reg_write
+ 1289               	.LVL104:
+ 199:MCP2515.c     **** 	//MCP2515_reg_write(mob, 0x03);
+ 200:MCP2515.c     **** 	//MCP2515_reg_write(mob+1, 0);
+ 201:MCP2515.c     **** 	//MCP2515_reg_write(mob+2, (1<<3));
+ 202:MCP2515.c     **** 	//MCP2515_reg_write(mob+3, 0);
+ 203:MCP2515.c     **** 	//MCP2515_reg_write(mob+4, 0);
+ 204:MCP2515.c     **** 	//MCP2515_reg_write(mob+5, 0);
+ 205:MCP2515.c     **** 	
+ 206:MCP2515.c     **** 	for (uint8_t byteCount = 0; byteCount < numBytes; byteCount++)
+ 1290               		.loc 1 206 2 view .LVU278
+ 1291               	.LBB14:
+ 1292               		.loc 1 206 7 view .LVU279
+ 1293               		.loc 1 206 7 is_stmt 0 view .LVU280
+ 1294 008e 7501      		movw r14,r10
+ 1295 0090 DC0F      		add r29,r28
+ 1296               	.LVL105:
+ 1297               	.L61:
+ 1298               		.loc 1 206 2 discriminator 1 view .LVU281
+ 1299 0092 1D13      		cpse r17,r29
+ 1300 0094 00C0      		rjmp .L62
+ 1301               	.LBE14:
+ 207:MCP2515.c     **** 	{
+ 208:MCP2515.c     **** 		MCP2515_reg_write(mob+6+byteCount, *(data+byteCount));	//fill the data bytes register.
+ 209:MCP2515.c     **** 	}
+ 210:MCP2515.c     **** 	MCP2515_instruction(128|(1<<((mob>>4) - 3)));		//creates an instruction that matches the mob that 
+ 1302               		.loc 1 210 2 is_stmt 1 view .LVU282
+ 1303               		.loc 1 210 35 is_stmt 0 view .LVU283
+ 1304 0096 C595      		asr r28
+ 1305 0098 C595      		asr r28
+ 1306 009a C595      		asr r28
+ 1307 009c C595      		asr r28
+ 1308               	.LVL106:
+ 1309               		.loc 1 210 40 view .LVU284
+ 1310 009e C350      		subi r28,lo8(-(-3))
+ 1311               		.loc 1 210 28 view .LVU285
+ 1312 00a0 81E0      		ldi r24,lo8(1)
+ 1313 00a2 90E0      		ldi r25,0
+ 1314 00a4 00C0      		rjmp 2f
+ 1315               		1:
+ 1316 00a6 880F      		lsl r24
+ 1317               		2:
+ 1318 00a8 CA95      		dec r28
+ 1319 00aa 02F4      		brpl 1b
+ 1320               		.loc 1 210 2 view .LVU286
+ 1321 00ac 8068      		ori r24,lo8(-128)
+ 1322               	/* epilogue start */
+ 211:MCP2515.c     **** 	//PORTC &= ~(1<<PINC7);		//Drop the TX
+ 212:MCP2515.c     **** 	//_delay_us(50);
+ 213:MCP2515.c     **** 	//PORTC |= (1<<PINC7);		
+ 214:MCP2515.c     **** }
+ 1323               		.loc 1 214 1 view .LVU287
+ 1324 00ae DF91      		pop r29
+ 1325 00b0 CF91      		pop r28
+ 1326 00b2 1F91      		pop r17
+ 1327               	.LVL107:
+ 1328               		.loc 1 214 1 view .LVU288
+ 1329 00b4 0F91      		pop r16
+ 1330               	.LVL108:
+ 1331               		.loc 1 214 1 view .LVU289
+ 1332 00b6 FF90      		pop r15
+ 1333 00b8 EF90      		pop r14
+ 1334 00ba DF90      		pop r13
+ 1335 00bc CF90      		pop r12
+ 1336 00be BF90      		pop r11
+ 1337 00c0 AF90      		pop r10
+ 1338               	.LVL109:
+ 210:MCP2515.c     **** 	//PORTC &= ~(1<<PINC7);		//Drop the TX
+ 1339               		.loc 1 210 2 view .LVU290
+ 1340 00c2 0C94 0000 		jmp MCP2515_instruction
+ 1341               	.LVL110:
+ 1342               	.L62:
+ 1343               	.LBB15:
+ 208:MCP2515.c     **** 	}
+ 1344               		.loc 1 208 3 is_stmt 1 discriminator 3 view .LVU291
+ 1345 00c6 F701      		movw r30,r14
+ 1346 00c8 6191      		ld r22,Z+
+ 1347 00ca 7F01      		movw r14,r30
+ 1348 00cc 86E0      		ldi r24,lo8(6)
+ 1349 00ce 810F      		add r24,r17
+ 1350 00d0 0E94 0000 		call MCP2515_reg_write
+ 1351               	.LVL111:
+ 208:MCP2515.c     **** 	}
+ 1352               		.loc 1 208 3 is_stmt 0 discriminator 3 view .LVU292
+ 1353 00d4 1F5F      		subi r17,lo8(-(1))
+ 1354               	.LVL112:
+ 208:MCP2515.c     **** 	}
+ 1355               		.loc 1 208 3 discriminator 3 view .LVU293
+ 1356 00d6 00C0      		rjmp .L61
+ 1357               	.LVL113:
+ 1358               	.L59:
+ 1359               	/* epilogue start */
+ 208:MCP2515.c     **** 	}
+ 1360               		.loc 1 208 3 discriminator 3 view .LVU294
+ 1361               	.LBE15:
+ 1362               		.loc 1 214 1 view .LVU295
+ 1363 00d8 DF91      		pop r29
+ 1364 00da CF91      		pop r28
+ 1365 00dc 1F91      		pop r17
+ 1366 00de 0F91      		pop r16
+ 1367               	.LVL114:
+ 1368               		.loc 1 214 1 view .LVU296
+ 1369 00e0 FF90      		pop r15
+ 1370 00e2 EF90      		pop r14
+ 1371 00e4 DF90      		pop r13
+ 1372 00e6 CF90      		pop r12
+ 1373 00e8 BF90      		pop r11
+ 1374 00ea AF90      		pop r10
+ 1375               	.LVL115:
+ 1376               		.loc 1 214 1 view .LVU297
+ 1377 00ec 0895      		ret
+ 1378               		.cfi_endproc
+ 1379               	.LFE16:
+ 1381               		.section	.text.MCP2515_check_receive_status,"ax",@progbits
+ 1382               	.global	MCP2515_check_receive_status
+ 1384               	MCP2515_check_receive_status:
+ 1385               	.LFB17:
+ 215:MCP2515.c     **** 
+ 216:MCP2515.c     **** 
+ 217:MCP2515.c     **** uint8_t MCP2515_check_receive_status()
+ 218:MCP2515.c     **** {
+ 1386               		.loc 1 218 1 is_stmt 1 view -0
+ 1387               		.cfi_startproc
+ 1388 0000 CF93      		push r28
+ 1389               	.LCFI31:
+ 1390               		.cfi_def_cfa_offset 3
+ 1391               		.cfi_offset 28, -2
+ 1392               	/* prologue: function */
+ 1393               	/* frame size = 0 */
+ 1394               	/* stack size = 1 */
+ 1395               	.L__stack_usage = 1
+ 219:MCP2515.c     **** 	uint8_t status;
+ 1396               		.loc 1 219 2 view .LVU299
+ 220:MCP2515.c     **** 	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+ 1397               		.loc 1 220 2 view .LVU300
+ 1398               		.loc 1 220 18 is_stmt 0 view .LVU301
+ 1399 0002 2E98      		cbi 0x5,6
+ 221:MCP2515.c     **** 	SPI_send_byte(MCP2515_RXSTATUS);
+ 1400               		.loc 1 221 2 is_stmt 1 view .LVU302
+ 1401 0004 80EB      		ldi r24,lo8(-80)
+ 1402 0006 0E94 0000 		call SPI_send_byte
+ 1403               	.LVL116:
+ 222:MCP2515.c     **** 	status = SPI_send_byte(0x00);						//send zeros to get data
+ 1404               		.loc 1 222 2 view .LVU303
+ 1405               		.loc 1 222 11 is_stmt 0 view .LVU304
+ 1406 000a 80E0      		ldi r24,0
+ 1407 000c 0E94 0000 		call SPI_send_byte
+ 1408               	.LVL117:
+ 1409 0010 C82F      		mov r28,r24
+ 1410               	.LVL118:
+ 223:MCP2515.c     **** 	SPI_send_byte(0x00);							//MCP2515 will repeat the data output, so send another batch of zeros
+ 1411               		.loc 1 223 2 is_stmt 1 view .LVU305
+ 1412 0012 80E0      		ldi r24,0
+ 1413               	.LVL119:
+ 1414               		.loc 1 223 2 is_stmt 0 view .LVU306
+ 1415 0014 0E94 0000 		call SPI_send_byte
+ 1416               	.LVL120:
+ 224:MCP2515.c     **** 	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS
+ 1417               		.loc 1 224 2 is_stmt 1 view .LVU307
+ 1418               		.loc 1 224 18 is_stmt 0 view .LVU308
+ 1419 0018 2E9A      		sbi 0x5,6
+ 225:MCP2515.c     **** 	return status;
+ 1420               		.loc 1 225 2 is_stmt 1 view .LVU309
+ 226:MCP2515.c     **** }
+ 1421               		.loc 1 226 1 is_stmt 0 view .LVU310
+ 1422 001a 8C2F      		mov r24,r28
+ 1423               	/* epilogue start */
+ 1424 001c CF91      		pop r28
+ 1425               	.LVL121:
+ 1426               		.loc 1 226 1 view .LVU311
+ 1427 001e 0895      		ret
+ 1428               		.cfi_endproc
+ 1429               	.LFE17:
+ 1431               		.section	.text.MCP2515_send_audit_request,"ax",@progbits
+ 1432               	.global	MCP2515_send_audit_request
+ 1434               	MCP2515_send_audit_request:
+ 1435               	.LFB18:
+ 227:MCP2515.c     **** 
+ 228:MCP2515.c     **** uint8_t MCP2515_send_audit_request()
+ 229:MCP2515.c     **** {
+ 1436               		.loc 1 229 1 is_stmt 1 view -0
+ 1437               		.cfi_startproc
+ 1438               	/* prologue: function */
+ 1439               	/* frame size = 0 */
+ 1440               	/* stack size = 0 */
+ 1441               	.L__stack_usage = 0
+ 230:MCP2515.c     **** 	//uint8_t data = 0x00;
+ 231:MCP2515.c     **** 	uint8_t free_buffer = MCP2515_findFreeTxBuffer();						//obtain a free transmit buffer.
+ 1442               		.loc 1 231 2 view .LVU313
+ 1443               		.loc 1 231 24 is_stmt 0 view .LVU314
+ 1444 0000 0E94 0000 		call MCP2515_findFreeTxBuffer
+ 1445               	.LVL122:
+ 232:MCP2515.c     **** 
+ 233:MCP2515.c     **** 	if(free_buffer)
+ 1446               		.loc 1 233 2 is_stmt 1 view .LVU315
+ 1447               		.loc 1 233 4 is_stmt 0 view .LVU316
+ 1448 0004 91E0      		ldi r25,lo8(1)
+ 1449 0006 8111      		cpse r24,__zero_reg__
+ 1450 0008 00C0      		rjmp .L65
+ 1451 000a 90E0      		ldi r25,0
+ 1452               	.L65:
+ 234:MCP2515.c     **** 	{
+ 235:MCP2515.c     **** 		//flash_LED(1, YELLOW_LED, 50);
+ 236:MCP2515.c     **** 		//MCP2515_tx(AMU,free_buffer,DEVICE_ID,0x00,AUDIT_REQUEST,0,&data);		//send a CAN packet from a f
+ 237:MCP2515.c     **** 		//MCP2515_TX(MCP2515_findFreeTxBuffer(), 0, &status, ((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|
+ 238:MCP2515.c     **** 		return 1;					//return successful
+ 239:MCP2515.c     **** 	}
+ 240:MCP2515.c     **** 	else
+ 241:MCP2515.c     **** 	{
+ 242:MCP2515.c     **** 		return 0;					//return error, there were no free buffers.
+ 243:MCP2515.c     **** 	}
+ 244:MCP2515.c     **** }...
+ 1453               		.loc 1 244 1 view .LVU317
+ 1454 000c 892F      		mov r24,r25
+ 1455               	.LVL123:
+ 1456               	/* epilogue start */
+ 1457               		.loc 1 244 1 view .LVU318
+ 1458 000e 0895      		ret
+ 1459               		.cfi_endproc
+ 1460               	.LFE18:
+ 1462               		.text
+ 1463               	.Letext0:
+ 1464               		.file 3 "/usr/local/Cellar/avr-gcc/8.1.0/avr/include/stdint.h"
+ 1465               		.file 4 "SPI.h"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 MCP2515.c
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:2      *ABS*:000000000000003e __SP_H__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:3      *ABS*:000000000000003d __SP_L__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:4      *ABS*:000000000000003f __SREG__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:5      *ABS*:0000000000000000 __tmp_reg__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:6      *ABS*:0000000000000001 __zero_reg__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:13     .text.MCP2515_reg_write:0000000000000000 MCP2515_reg_write
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:69     .text.MCP2515_instruction:0000000000000000 MCP2515_instruction
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:96     .text.MCP2515_bit_modify:0000000000000000 MCP2515_bit_modify
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:163    .text.MCP2515_init:0000000000000000 MCP2515_init
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:243    .text.MCP2515_receive_status:0000000000000000 MCP2515_receive_status
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:294    .text.MCP2515_RxBufferRead:0000000000000000 MCP2515_RxBufferRead
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:434    .text.MCP2515_reg_read:0000000000000000 MCP2515_reg_read
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:484    .text.MCP2515_findFreeTxBuffer:0000000000000000 MCP2515_findFreeTxBuffer
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:547    .text.MCP2515_FilterInit:0000000000000000 MCP2515_FilterInit
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:954    .text.MCP2515_RXInit:0000000000000000 MCP2515_RXInit
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:1158   .text.MCP2515_TX:0000000000000000 MCP2515_TX
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:1384   .text.MCP2515_check_receive_status:0000000000000000 MCP2515_check_receive_status
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccGUBg8e.s:1434   .text.MCP2515_send_audit_request:0000000000000000 MCP2515_send_audit_request
+
+UNDEFINED SYMBOLS
+SPI_send_byte

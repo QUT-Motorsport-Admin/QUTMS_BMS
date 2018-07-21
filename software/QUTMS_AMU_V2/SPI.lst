@@ -1,0 +1,101 @@
+   1               		.file	"SPI.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.Ltext0:
+   9               		.cfi_sections	.debug_frame
+  10               		.section	.text.SPI_send_byte,"ax",@progbits
+  11               	.global	SPI_send_byte
+  13               	SPI_send_byte:
+  14               	.LVL0:
+  15               	.LFB0:
+  16               		.file 1 "SPI.c"
+   1:SPI.c         **** #include "SPI.h"
+   2:SPI.c         **** 
+   3:SPI.c         **** uint8_t SPI_send_byte(uint8_t c)
+   4:SPI.c         **** {
+  17               		.loc 1 4 1 view -0
+  18               		.cfi_startproc
+  19               	/* prologue: function */
+  20               	/* frame size = 0 */
+  21               	/* stack size = 0 */
+  22               	.L__stack_usage = 0
+   5:SPI.c         **** 	SPDR = c;					//write data to the transmission register. Writing to this initiates transmission.
+  23               		.loc 1 5 2 view .LVU1
+  24               		.loc 1 5 7 is_stmt 0 view .LVU2
+  25 0000 8EBD      		out 0x2e,r24
+   6:SPI.c         **** 	while(!(SPSR & (1<<SPIF)));
+  26               		.loc 1 6 2 is_stmt 1 view .LVU3
+  27               	.L2:
+  28               		.loc 1 6 28 discriminator 1 view .LVU4
+  29               		.loc 1 6 7 is_stmt 0 discriminator 1 view .LVU5
+  30 0002 0DB4      		in __tmp_reg__,0x2d
+  31 0004 07FE      		sbrs __tmp_reg__,7
+  32 0006 00C0      		rjmp .L2
+   7:SPI.c         **** 	return SPDR;				//return any data that was shifted into this register upon transmission.
+  33               		.loc 1 7 2 is_stmt 1 view .LVU6
+  34               		.loc 1 7 9 is_stmt 0 view .LVU7
+  35 0008 8EB5      		in r24,0x2e
+  36               	.LVL1:
+  37               	/* epilogue start */
+   8:SPI.c         **** }
+  38               		.loc 1 8 1 view .LVU8
+  39 000a 0895      		ret
+  40               		.cfi_endproc
+  41               	.LFE0:
+  43               		.section	.text.SPI_init,"ax",@progbits
+  44               	.global	SPI_init
+  46               	SPI_init:
+  47               	.LFB1:
+   9:SPI.c         **** 
+  10:SPI.c         **** void SPI_init()
+  11:SPI.c         **** {
+  48               		.loc 1 11 1 is_stmt 1 view -0
+  49               		.cfi_startproc
+  50               	/* prologue: function */
+  51               	/* frame size = 0 */
+  52               	/* stack size = 0 */
+  53               	.L__stack_usage = 0
+  12:SPI.c         **** 	MCUCR &= ~(1<<SPIPS);		//make sure we are getting spi not on the _A spi pins.
+  54               		.loc 1 12 2 view .LVU10
+  55               		.loc 1 12 8 is_stmt 0 view .LVU11
+  56 0000 85B7      		in r24,0x35
+  57 0002 8F77      		andi r24,lo8(127)
+  58 0004 85BF      		out 0x35,r24
+  13:SPI.c         **** 	SPCR = (0<<SPIE)|(1<<SPE)|(0<<DORD)|(1<<MSTR)|(0<<CPOL)|(0<<CPHA)|(1<<SPR0)|(0<<SPR1);  //set inte
+  59               		.loc 1 13 2 is_stmt 1 view .LVU12
+  60               		.loc 1 13 7 is_stmt 0 view .LVU13
+  61 0006 81E5      		ldi r24,lo8(81)
+  62 0008 8CBD      		out 0x2c,r24
+  14:SPI.c         **** 	SPSR = (1<<SPI2X);	//set whether we want 2x speed or not (1=2x speed).
+  63               		.loc 1 14 2 is_stmt 1 view .LVU14
+  64               		.loc 1 14 7 is_stmt 0 view .LVU15
+  65 000a 81E0      		ldi r24,lo8(1)
+  66 000c 8DBD      		out 0x2d,r24
+  15:SPI.c         **** 	SPDR = 0x00;		//ensure data register has nothing in it
+  67               		.loc 1 15 2 is_stmt 1 view .LVU16
+  68               		.loc 1 15 7 is_stmt 0 view .LVU17
+  69 000e 1EBC      		out 0x2e,__zero_reg__
+  70               	/* epilogue start */
+  16:SPI.c         **** }...
+  71               		.loc 1 16 1 view .LVU18
+  72 0010 0895      		ret
+  73               		.cfi_endproc
+  74               	.LFE1:
+  76               		.text
+  77               	.Letext0:
+  78               		.file 2 "/usr/local/Cellar/avr-gcc/8.1.0/avr/include/stdint.h"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 SPI.c
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccbvchOd.s:2      *ABS*:000000000000003e __SP_H__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccbvchOd.s:3      *ABS*:000000000000003d __SP_L__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccbvchOd.s:4      *ABS*:000000000000003f __SREG__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccbvchOd.s:5      *ABS*:0000000000000000 __tmp_reg__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccbvchOd.s:6      *ABS*:0000000000000001 __zero_reg__
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccbvchOd.s:13     .text.SPI_send_byte:0000000000000000 SPI_send_byte
+/var/folders/my/0z6f376568j9tywzmdyvysy80000gn/T//ccbvchOd.s:46     .text.SPI_init:0000000000000000 SPI_init
+
+NO UNDEFINED SYMBOLS

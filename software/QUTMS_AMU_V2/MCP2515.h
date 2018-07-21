@@ -15,7 +15,7 @@
 
 #define MCP2515_RESET		0xC0		//***
 #define MCP2515_READ		0x03		//***
-#define MCP2515_WRITE		0x02		//***send this, then send address byte, then send data
+#define MCP2515_WRITE		0x02		//*** send this, then send address byte, then send data
 #define MCP2515_CNF1		0x2A		//***
 #define MCP2515_CNF2		0x29		//***
 #define MCP2515_CNF3		0x28		//***
@@ -35,7 +35,7 @@
 #define MCP2515_TX0_EID8	0x33		//***
 #define MCP2515_TX0_EID0	0x34		//***
 #define MCP2515_TX0_DLC		0x35		//***
-#define MCP2515_TX0_DATA	0x36		//***data for tx0 is from 0x36 to 0x3D. 0 to 7 respectively.
+#define MCP2515_TX0_DATA	0x36		//*** data for tx0 is from 0x36 to 0x3D. 0 to 7 respectively.
 #define MCP2515_TX0_RTSPIN	PINC7		//***
 
 #define MCP2515_TX1			0x40		//***

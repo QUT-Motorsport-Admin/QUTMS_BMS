@@ -5,7 +5,7 @@
  *  Author: julius
  */ 
 
-#include "QUTMS_CMU.h"
+#include "main.h"
 
 void IO_init()
 {
@@ -49,12 +49,10 @@ void Cells_init(cell * _cells)
 	
 	for(uint8_t cParse = 0; cParse <=7; cParse++)
 	{
-
 		_cells[cParse].cell_num = cParse;								//assign our cell objects a local identifier number
 		_cells[cParse].temp_channel	= cell_temp_config[cParse];			//assign cell object the multiplexer value it needs to set before reading ADC value
 		_cells[cParse].voltage_channel = cell_vLevel_config[cParse];		//assign cell ADC channel to use when reading
 		_cells[cParse].discharge_pin = cell_discharge_config[cParse];	//assign which pin to use to discharge
-
 	}
 }
 
@@ -110,13 +108,14 @@ void LED_off()
 	DDRC &= ~(1<<PINC0);
 }
 
-
 uint16_t Convert_ADCtoMilliVolts(uint16_t ADCValue)
 {
-
-	if(ADCValue >= 1023) return  65535;						//return as invalid;
-	if(ADCValue <  20 ) return 65535;						//finish the conversion with error if the value will be completely unreasonable.
-	return (uint16_t)(((double)ADCValue*0.000977517f)*RAIL_V-MV_OFFSET);		//xxxxx.xxxxf results in the calculated value being a float, instead of an integer
+    //return as invalid;
+	if(ADCValue >= 1023) return  65535;
+    //finish the conversion with error if the value will be completely unreasonable.
+	if(ADCValue <  20 ) return 65535;
+    //xxxxx.xxxxf results in the calculated value being a float, instead of an integer
+	return (uint16_t)(((double)ADCValue*0.000977517f)*RAIL_V-MV_OFFSET);
 
 }
 
@@ -280,9 +279,8 @@ void Discharge_cells(cell high_1, cell high_2, cell high_3, cell lowest)					//p
 		if(count >= duration_high_2 && (_cells & CellNum[high_2.cell_num])) _cells &= ~(CellNum[high_2.cell_num]);
 
 	}*/
-
-
 }
+
 void Balance_on()
 {
 	TCCR0A = 0;
@@ -292,13 +290,14 @@ void Balance_on()
 	TIMSK0 = (1<<OCIE0A);
 	
 }
+
 void Balance_off()
 {
 	//TCCR0B = 0;
 	TIMSK0 = 0;
-	PORTB &= ~((CELL2>>2)|(CELL3>>2)|(CELL5>>2)|(CELL6>>2));					//turn off discharge for cells 7..4, if they are specified in _cellsToBalance
-	PORTC &= ~((CELL1)|(CELL7));													//turn off discharge for cells 3 and 0, if their corresponding bits are specified in _cellsToBalance
-	PORTD &= ~((CELL0<<1)|(CELL4<<3));									//turn off discharge for cells 2 and 1, if their corresponding bits are on in _cellsToBalance
+	PORTB &= ~((CELL2>>2)|(CELL3>>2)|(CELL5>>2)|(CELL6>>2)); //turn off discharge for cells 7..4, if they are specified in _cellsToBalance
+	PORTC &= ~((CELL1)|(CELL7)); //turn off discharge for cells 3 and 0, if their corresponding bits are specified in _cellsToBalance
+	PORTD &= ~((CELL0<<1)|(CELL4<<3)); //turn off discharge for cells 2 and 1, if their corresponding bits are on in _cellsToBalance
 	LED_off();
 }
 void Balance_init(cell * _cells)
@@ -410,18 +409,12 @@ int main(void)
 	CAN_init();		//initialises CAN, without enabling any receive MOBs
 	CAN_RXInit(4, 0, 0, 0);	//set mob up for listening to audit requests
 	
-	
-	
 	//srand(ADC_read(0));
 	Parameters_init();	//disable this until we have the parameters on the eeprom
-	
 	PowerDown();		//shutdown until woken for the first time
-	
-	//
 	_delay_ms(200);	//await registration messages which will be automatically handled in interrupts
 	
 	if(!registered)_delay_ms(800);
-	//while(WAKE_IN_PIN);
 	if (WAKE_IN_PIN && !registered) //if the wake in pin is still high and we aren't registered, there is a problem
 	{
 		while(1)					//loop endlessly
@@ -487,7 +480,6 @@ int main(void)
 			_delay_ms(1);
 			Wake_Unset();
 			PowerDown();
-			
 			//LED_on();
 		}
 		else
@@ -560,7 +552,6 @@ ISR(CAN_INT_vect)
 						break;
 					default:
 						break;
-						
 				}
 			}
 			if(BALANCE_TARGET_VOLTAGE > 3200 && BALANCE_TARGET_VOLTAGE < 4200 && BALANCE_DUTY_CYCLE < 50) CellBalanceMode = 1;		//only if the packets we have received are valid, will we turn balancing on
@@ -570,11 +561,7 @@ ISR(CAN_INT_vect)
 			CellBalanceMode = 0;
 		}
 		CAN_RXInit(4,0,AMUmsk, AMU);	//set mob up for listening to the AMU
-		
-		
 	}
-	
-
 	CANPAGE = (4 << 4);
 	CANSTMOB &= ~(1 << RXOK);	//unset the RXOK bit to clear the interrupt.
 	LED_off();
@@ -598,5 +585,4 @@ ISR(TIMER0_COMPA_vect)
 		LED_off();
 	}
 	if(CellBalanceCounter >= 100)CellBalanceCounter = 0;
-														
 }

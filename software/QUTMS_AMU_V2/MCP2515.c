@@ -5,11 +5,9 @@
 void MCP2515_init()
 {
 	//DDRC |= (1<<MCP2515_PIN_RESET);		//set the reset pin to output
-
 	MCP2515_PORT_RESET &= ~(1<<MCP2515_PIN_RESET);
 	_delay_us(50);
 	MCP2515_PORT_RESET |= (1<<MCP2515_PIN_RESET);
-
 
 	//SPI_send_byte(MCP2515_RESET); //instead of hard reset, perform software rest.
 	MCP2515_bit_modify(MCP2515_CANCTRL,128,0xE0);		//put the device into configuration mode.
@@ -23,7 +21,6 @@ void MCP2515_init()
 	MCP2515_bit_modify(MCP2515_CANCTRL, 0x00, 0xE0);		//put the device into it's functional mode currently: normal 0xE0, listen is 0x60
 	
 }
-
 
 void MCP2515_reg_write(uint8_t reg_address, uint8_t reg_value)
 {

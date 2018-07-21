@@ -5,7 +5,7 @@
  *      Author: julius
  */
 
-#include "QUTMS_AMU.h"
+#include "main.h"
 
 uint16_t AMU_eeprom_read(uint16_t address)
 {
@@ -25,7 +25,7 @@ void Parameters_init()
 	fw_version = AMU_eeprom_read(EEPROM_FW_VERSION);
 }
 
-void PCINT_init()	//Needed for detecting interrupts from the MCP2515
+void PCINT_init() //Needed for detecting interrupts from the MCP2515
 {
 	PCICR = (1<<PCIE0);			//enable from pin 26 to pin 16
 	MCP2515_reg_write(MCP2515_CANINTF, 0b00000000);
@@ -33,6 +33,10 @@ void PCINT_init()	//Needed for detecting interrupts from the MCP2515
 	
 }
 
+/**
+ * Function: init_cmuData
+ * Will fill in the blank cmu struct array with zeros
+ */
 void init_cmuData(CMU * cmu)
 {
 	for(uint8_t count = 0; count < CMU_COUNT; count++)
@@ -50,7 +54,6 @@ void init_cmuData(CMU * cmu)
 
 void IO_init()
 {
-	
 	DDRB  = 0b11000110;
 	DDRD  = 0b10001011;
 	DDRC  = 0b10100111;
@@ -92,14 +95,11 @@ uint16_t ADC_read(uint8_t channel)
 
 uint8_t CMU_send_read_receipt(CMU * cmu)
 {
-	uint8_t data = 0x00;					//data to send,(zeros)
-	uint8_t mob = MCP2515_findFreeTxBuffer();						//obtain a free transmit buffer.
-
-
-	MCP2515_TX(mob,0,&data,((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|((uint32_t)cmu->CMU_ID<<8)|READ_RECEIPT);		//send a CAN packet from a free buffer, with recipient of our CMU ID, type: audit request (to now get other CMUs to talk), with 1 byte of zeros
-
-	return 1;					//return successful
-
+	uint8_t data = 0x00; //data to send,(zeros)
+	uint8_t mob = MCP2515_findFreeTxBuffer(); //obtain a free transmit buffer.
+    //send a CAN packet from a free buffer, with recipient of our CMU ID, type: audit request (to now get other CMUs to talk), with 1 byte of zeros
+	MCP2515_TX(mob, 0, &data, ((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|((uint32_t)cmu->CMU_ID<<8)|READ_RECEIPT);		
+	return 1; //return successful
 }
 
 uint16_t CoulombCount_init(){
@@ -166,17 +166,21 @@ uint8_t SoC_calculation(uint32_t voltage, uint16_t coulombCount, uint16_t coulom
 void CMU_process_inbound_message(uint8_t rx_buf_address,CMU * cmu)
 {
 	//potential for optimisation here
-	uint16_t CMU_ID = (((MCP2515_reg_read(rx_buf_address+1) & 0x3F)<<3)|((MCP2515_reg_read(rx_buf_address+2) & 0xE0)>>5));		//combine 5 LSBs of SIDH(bits 26..21) and 3 MSBs of SIDL(bits 20..18) which is the CMU ID in the packet structures.
-	uint8_t message_type = (MCP2515_reg_read(rx_buf_address+4) & 0x1F);			//message type is held in the 5 LSBs of EID0
+    //combine 5 LSBs of SIDH(bits 26..21) and 3 MSBs of SIDL(bits 20..18) which is the CMU ID in the packet structures.
+	uint16_t CMU_ID = ( ((MCP2515_reg_read(rx_buf_address+1) & 0x3F)<<3)|
+                        ((MCP2515_reg_read(rx_buf_address+2) & 0xE0)>>5) );
+    //message type is held in the 5 LSBs of EID0	
+	uint8_t message_type = (MCP2515_reg_read(rx_buf_address+4) & 0x1F);
 
 	switch(message_type)
 	{
-		case AUDIT_RESPONSE:			//if we get a audit response message, we need to register this CMU
-			//flash_LED(5,YELLOW_LED,10);
+        // If we get a audit response message, we need to register this CMU
+		case AUDIT_RESPONSE:
+			// flash_LED(5,YELLOW_LED,10);
 			switch(CMU_Register(cmu, CMU_ID))
 			{
 				case 0:
-					break;	//no issues with registering.
+					break;	// No issues with registering.
 				case 1:
 					error_state(ERROR_DUPLICATE_CMU_ID);
 					break;
@@ -186,60 +190,44 @@ void CMU_process_inbound_message(uint8_t rx_buf_address,CMU * cmu)
 				default:
 					break;
 			}
-			
 			break;
 		case TEMP1_ID:
-
 			if(!CMU_Store_Data(cmu, CMU_ID, TEMP1_ID, rx_buf_address))
-			{
-				error_state(ERROR_UNKNOWN_CMU_ID);
-
-			}
+			    { error_state(ERROR_UNKNOWN_CMU_ID); } // Fails if the CMU ID is not known 
 			break;
 		case TEMP2_ID:
 			if(!CMU_Store_Data(cmu, CMU_ID, message_type, rx_buf_address))
-			{
-				error_state(ERROR_UNKNOWN_CMU_ID);
-
-			}
+			    { error_state(ERROR_UNKNOWN_CMU_ID); } // Fails if the CMU ID is not known 
 			break;
 		case VOLT1_ID:
 			if(!CMU_Store_Data(cmu, CMU_ID, message_type, rx_buf_address))
-			{
-				error_state(ERROR_UNKNOWN_CMU_ID);
-
-			}
+			    { error_state(ERROR_UNKNOWN_CMU_ID); } // Fails if the CMU ID is not known 
 			break;
 		case VOLT2_ID:
 			if(!CMU_Store_Data(cmu, CMU_ID, message_type, rx_buf_address))
-			{
-				error_state(ERROR_UNKNOWN_CMU_ID);
-			}
-
+			    { error_state(ERROR_UNKNOWN_CMU_ID); } // Fails if the CMU ID is not known 
 			break;
 		default:
-
 			break;
-
-	}																				//this next section could be better off with the bit modify function.
-	
+	} // This next section could be better off with the bit modify function.
 }
 
 uint8_t CMU_send_audit_request()
 {
 	//uint8_t data = 0x00;
-	uint8_t free_buffer = MCP2515_findFreeTxBuffer();						//obtain a free transmit buffer.
+	uint8_t free_buffer = MCP2515_findFreeTxBuffer(); //obtain a free transmit buffer.
 
 	if(free_buffer)
 	{
 		//flash_LED(1, YELLOW_LED, 50);
-		//MCP2515_tx(AMU,free_buffer,DEVICE_ID,0x00,AUDIT_REQUEST,0,&data);		//send a CAN packet from a free buffer, with recipient of our CMU ID, type audit request (to now get others to talk), with 1 byte of zeros
-		//MCP2515_TX(MCP2515_findFreeTxBuffer(), 0, &status, ((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|AUDIT_REQUEST );
-		return 1;					//return successful
+        // Send a CAN packet from a free buffer, with recipient of our CMU ID, type audit request (to now get others to talk), with 1 byte of zeros
+		// MCP2515_tx(AMU,free_buffer,DEVICE_ID,0x00,AUDIT_REQUEST,0,&data);		
+		// MCP2515_TX(MCP2515_findFreeTxBuffer(), 0, &status, ((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|AUDIT_REQUEST );
+		return 1; //return successful
 	}
 	else
 	{
-		return 0;					//return error, there were no free buffers.
+		return 0; //return error, there were no free buffers.
 	}
 }
 
@@ -410,10 +398,10 @@ uint8_t CMU_Store_Data(CMU * cmu, uint8_t CMU_ID, uint8_t message_type2, uint8_t
 			}
 		
 		}
-		cmu++;										//if this cmu was not a match, check the next one.
+		cmu++; //if this cmu was not a match, check the next one.
 	}
-	if (!found) return 0;							//if we went through the entire cell database and couldn't find the cell ID, we will need to error and do another audit request.
-	else return 1;									//otherwise all ok.
+	if (!found) return 0; //if we went through the entire cell database and couldn't find the cell ID, we will need to error and do another audit request.
+	else return 1; //otherwise all ok.
 	return 1;
 }
 
@@ -585,7 +573,6 @@ void error_state(uint8_t code)
 		flash_LED(2,YELLOW_LED,100);
 		flash_LED(2,RED_LED,100);
 	}
-	
 }
 
 int main(void)
@@ -599,38 +586,41 @@ int main(void)
 	CMU_Wake_reset();
 	_delay_ms(50);
 	SPI_init();
-	init_cmuData(cmuData);				//initialise our struct(s) with valid null data.
-	CAN_init();						//enable this for AVR CAN
+	init_cmuData(cmuData); //initialise our struct(s) with valid null data.
+	CAN_init();	//enable this for AVR CAN
 	MCP2515_init();
 	PCINT_init();
 	timer_init();
 	CAN_RXInit(5, 4, 0, 0);
-	MCP2515_reg_write(MCP2515_CANINTF, 0b00000000);		//mark the transmit buffer as free. seems hacky, but the first interrupt never actually sets, seeing as the tx buffers were never actually busy.
+    //mark the transmit buffer as free. seems hacky, but the first interrupt never actually sets, seeing as the tx buffers were never actually busy.
+	MCP2515_reg_write(MCP2515_CANINTF, 0b00000000);		
 	sei();
 	CMUAudit = 0;
 
 	uint8_t status = 0; 
-	MCP2515_FilterInit(0, AUDIT_RESPONSE);		//setup the filter to receive audit responses
-	MCP2515_RXInit(0, 0);	//setup the buffer to match to the packet type bits
+	MCP2515_FilterInit(0, AUDIT_RESPONSE); //setup the filter to receive audit responses
+	MCP2515_RXInit(0, 0); //setup the buffer to match to the packet type bits
 	_delay_ms(50);
 	CMU_Wake_set();
 	LED_on(RED_LED);
 	HEARTBEATCOUNTER = 0;
 	CMU_WAKE_TIMER = 0;
-	while(CMUAudit != CMU_COUNT)		//if the number of registered CMU does not match the required number
+    //if the number of registered CMU does not match the required number
+	while(CMUAudit != CMU_COUNT)
 	{
 		flash_LED(1,YELLOW_LED,50);
-		MCP2515_TX(MCP2515_findFreeTxBuffer(), 0, &status, ((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|AUDIT_REQUEST ); //the &status is just dummy data so in case the function is written wrong, no harm should come to RAM
+        //the &status is just dummy data so in case the function is written wrong, no harm should come to RAM
+		MCP2515_TX(MCP2515_findFreeTxBuffer(), 0, &status, ((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|AUDIT_REQUEST );
 		_delay_ms(5);
+        // If the time the checking for the CMU responses are over 1 second
 		if(CMU_WAKE_TIMER > TIM_1_SEC)error_state(ERROR_CMU_TIMEOUT);
 		if(STATUS_REG & MCP2515_DataWaiting)
 		{
-			
 			status = MCP2515_reg_read(MCP2515_CANINTF);
-
 			if(status & 3)
 			{
-				CMU_PollandProcess_RxBuffers(cmuData);	//if the program has indicated there is data waiting on the MCP2515, process this data.
+                //if the program has indicated there is data waiting on the MCP2515, process this data.
+				CMU_PollandProcess_RxBuffers(cmuData);
 			}
 			STATUS_REG &= ~(MCP2515_DataWaiting);
 			MCP2515_reg_write(MCP2515_CANINTF, 0b00000000);
@@ -650,11 +640,9 @@ int main(void)
 	while(!(STATUS_REG & MODE_HEARTBEATRECVD));
 	CMUTimeToScan = 1;
 	
+    // Loop forever
     while(1)
     {
-		
-		
-
 		if(STATUS_REG & MODE_BALANCING)
 		{
 			uint8_t balanceInstruction[5] = { (uint8_t)(3700>>8),(uint8_t)(3700),45,0,0};
@@ -666,9 +654,8 @@ int main(void)
 			LED_off(YELLOW_LED);
 		}
 		
-		if(CMUTimeToScan)													//if the program indicates that we will need new cell information, send wake signals.
+		if(CMUTimeToScan) //if the program indicates that we will need new cell information, send wake signals.
 		{
-
 			CMU_data_count = 0;
 			CMU_Wake_set();
 			_delay_ms(5);
@@ -677,37 +664,26 @@ int main(void)
 				STATUS_REG &= ~MODE_BALANCING;
 				//send alarm code here
 				//this is an error state
-				
 			}
-			
-			
 			if(STATUS_REG & MODE_BALANCING)
-			{
-				CMU_Wake_set();
-			}
+			{ CMU_Wake_set(); }
 			else
-			{
-				CMU_Wake_reset();
-			}
+			{ CMU_Wake_reset(); }
 
 			LED_on(RED_LED);
 			
 			CMU_WAKE_TIMER = 0;
 			do
 			{
-				if(CMU_WAKE_TIMER > TIM_1_SEC)			//give all CMUs a total of 1 second to respond
-				{
-					error_state(ERROR_CMU_TIMEOUT);
-				}
+                //give all CMUs a total of 1 second to respond
+				if(CMU_WAKE_TIMER > TIM_1_SEC) error_state(ERROR_CMU_TIMEOUT);
 				if(STATUS_REG & MCP2515_DataWaiting)
 				{
 					status = MCP2515_reg_read(MCP2515_CANINTF);
-
 					if(status & 3)
 					{
 						CMU_PollandProcess_RxBuffers(cmuData);	//if the program has indicated there is data waiting on the MCP2515, process this data.
 						STATUS_REG &= ~(MCP2515_DataWaiting);
-
 					}
 				}
 			}while(CMU_data_count != CMU_COUNT*4);
@@ -728,17 +704,13 @@ int main(void)
 			{
 				TX_cellVoltage(cmuData[i], &max_volt, &min_volt, &avgVSum);
 				TX_cellTemps(cmuData[i], &max_temp, &min_temp, &avgTSum);
-				
 			}
 			TX_globalData( max_volt, min_volt, max_temp, min_temp, avgVSum, avgTSum);
-
 			//CoulombCount_readAndUpdate();
-
 			STATUS_REG &= ~MODE_HEARTBEATRECVD;
 			if(max_volt > CELL_V_ERR_MAX || min_volt < CELL_V_ERR_MIN || max_temp > CELL_T_ERR_MAX || min_temp < CELL_T_ERR_MIN)
 				error_state(ERROR_V_T_OOR);
 		}
-		
 		CAN_RXInit(5,0,CCmsk,CC);
 		_delay_ms(50);
     }
@@ -759,19 +731,16 @@ ISR(PCINT0_vect)
 		STATUS_REG |= MCP2515_DataWaiting;
 	}
 	PCIFR |= (1<<PCIE0);								//clear the interrupt.
-
 }
 
 ISR(CAN_INT_vect)
 {
 	//CANIDT4 is l
-	
-
 	if(CANSIT2 & (1 << SIT5))	//we received a CAN message on mob 5, which is set up to receive exclusively from the Chassis controller.
 	{
 		CANPAGE = (5 << 4);			//set the canpage to the receiver MOB
 		CANSTMOB &= ~(1 << RXOK);	//unset the RXOK bit to clear the interrupt.
-		if((CANIDT1 == ((1<<6)|(1<<4))) && (CANIDT2==deviceID) && ((CANIDT4>>3)==CC_HEARTBEAT) )	//if the received ID has a mode change packet
+		if((CANIDT1 == ((1<<6)|(1<<4))) && (CANIDT2==deviceID) && ((CANIDT4>>3)==CC_HEARTBEAT) )	//if the received ID has a heartbeat packet
 		{
 			STATUS_REG |= MODE_HEARTBEATRECVD;
 			HEARTBEATCOUNTER = 0;
@@ -829,12 +798,12 @@ ISR(TIMER0_OVF_vect)
 	{
 		//using the timer, we will re-wake all the CMU's approximately every CMUAuditTimeout*1 seconds.
 		timerCounter = 0;
-		CMUTimeToScan = 1;						//this actually only triggers a new scan when in auditing mode.
+		CMUTimeToScan = 1; //this actually only triggers a new scan when in auditing mode.
 	}
-	if (timerCounter >= CMUScanInterval*61)		//CMUInterval seconds,
+	if (timerCounter >= CMUScanInterval*61) //CMUInterval seconds,
 	{
-		timerCounter = 0;						//reset our counter
-		CMUTimeToScan = 1;						//set the flag that will trigger a scan routine on next flag.
+		timerCounter = 0; //reset our counter
+		CMUTimeToScan = 1; //set the flag that will trigger a scan routine on next flag.
 	}
 }
 

@@ -1,0 +1,3795 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000198  00800100  0000166a  000016fe  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000166a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000081  00800298  00800298  00001896  2**0
+                  ALLOC
+  3 .comment      00000011  00000000  00000000  00001896  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000018a8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000002a0  00000000  00000000  000018e8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00003810  00000000  00000000  00001b88  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000141d  00000000  00000000  00005398  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00003b11  00000000  00000000  000067b5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000081c  00000000  00000000  0000a2c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000c95  00000000  00000000  0000aae4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000028e6  00000000  00000000  0000b779  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000428  00000000  00000000  0000e05f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	3d c0       	rjmp	.+122    	; 0x7c <__ctors_end>
+       2:	00 00       	nop
+       4:	57 c0       	rjmp	.+174    	; 0xb4 <__bad_interrupt>
+       6:	00 00       	nop
+       8:	55 c0       	rjmp	.+170    	; 0xb4 <__bad_interrupt>
+       a:	00 00       	nop
+       c:	53 c0       	rjmp	.+166    	; 0xb4 <__bad_interrupt>
+       e:	00 00       	nop
+      10:	51 c0       	rjmp	.+162    	; 0xb4 <__bad_interrupt>
+      12:	00 00       	nop
+      14:	4f c0       	rjmp	.+158    	; 0xb4 <__bad_interrupt>
+      16:	00 00       	nop
+      18:	4d c0       	rjmp	.+154    	; 0xb4 <__bad_interrupt>
+      1a:	00 00       	nop
+      1c:	4b c0       	rjmp	.+150    	; 0xb4 <__bad_interrupt>
+      1e:	00 00       	nop
+      20:	49 c0       	rjmp	.+146    	; 0xb4 <__bad_interrupt>
+      22:	00 00       	nop
+      24:	47 c0       	rjmp	.+142    	; 0xb4 <__bad_interrupt>
+      26:	00 00       	nop
+      28:	45 c0       	rjmp	.+138    	; 0xb4 <__bad_interrupt>
+      2a:	00 00       	nop
+      2c:	43 c0       	rjmp	.+134    	; 0xb4 <__bad_interrupt>
+      2e:	00 00       	nop
+      30:	41 c0       	rjmp	.+130    	; 0xb4 <__bad_interrupt>
+      32:	00 00       	nop
+      34:	3f c0       	rjmp	.+126    	; 0xb4 <__bad_interrupt>
+      36:	00 00       	nop
+      38:	3d c0       	rjmp	.+122    	; 0xb4 <__bad_interrupt>
+      3a:	00 00       	nop
+      3c:	3b c0       	rjmp	.+118    	; 0xb4 <__bad_interrupt>
+      3e:	00 00       	nop
+      40:	39 c0       	rjmp	.+114    	; 0xb4 <__bad_interrupt>
+      42:	00 00       	nop
+      44:	e0 c6       	rjmp	.+3520   	; 0xe06 <__vector_17>
+      46:	00 00       	nop
+      48:	4e c6       	rjmp	.+3228   	; 0xce6 <__vector_18>
+      4a:	00 00       	nop
+      4c:	33 c0       	rjmp	.+102    	; 0xb4 <__bad_interrupt>
+      4e:	00 00       	nop
+      50:	31 c0       	rjmp	.+98     	; 0xb4 <__bad_interrupt>
+      52:	00 00       	nop
+      54:	2f c0       	rjmp	.+94     	; 0xb4 <__bad_interrupt>
+      56:	00 00       	nop
+      58:	1d c6       	rjmp	.+3130   	; 0xc94 <__vector_22>
+      5a:	00 00       	nop
+      5c:	2b c0       	rjmp	.+86     	; 0xb4 <__bad_interrupt>
+      5e:	00 00       	nop
+      60:	29 c0       	rjmp	.+82     	; 0xb4 <__bad_interrupt>
+      62:	00 00       	nop
+      64:	27 c0       	rjmp	.+78     	; 0xb4 <__bad_interrupt>
+      66:	00 00       	nop
+      68:	25 c0       	rjmp	.+74     	; 0xb4 <__bad_interrupt>
+      6a:	00 00       	nop
+      6c:	23 c0       	rjmp	.+70     	; 0xb4 <__bad_interrupt>
+      6e:	00 00       	nop
+      70:	21 c0       	rjmp	.+66     	; 0xb4 <__bad_interrupt>
+      72:	00 00       	nop
+      74:	1f c0       	rjmp	.+62     	; 0xb4 <__bad_interrupt>
+      76:	00 00       	nop
+      78:	1d c0       	rjmp	.+58     	; 0xb4 <__bad_interrupt>
+      7a:	00 00       	nop
+
+0000007c <__ctors_end>:
+      7c:	11 24       	eor	r1, r1
+      7e:	1f be       	out	0x3f, r1	; 63
+      80:	cf ef       	ldi	r28, 0xFF	; 255
+      82:	d0 e1       	ldi	r29, 0x10	; 16
+      84:	de bf       	out	0x3e, r29	; 62
+      86:	cd bf       	out	0x3d, r28	; 61
+
+00000088 <__do_copy_data>:
+      88:	12 e0       	ldi	r17, 0x02	; 2
+      8a:	a0 e0       	ldi	r26, 0x00	; 0
+      8c:	b1 e0       	ldi	r27, 0x01	; 1
+      8e:	ea e6       	ldi	r30, 0x6A	; 106
+      90:	f6 e1       	ldi	r31, 0x16	; 22
+      92:	02 c0       	rjmp	.+4      	; 0x98 <__do_copy_data+0x10>
+      94:	05 90       	lpm	r0, Z+
+      96:	0d 92       	st	X+, r0
+      98:	a8 39       	cpi	r26, 0x98	; 152
+      9a:	b1 07       	cpc	r27, r17
+      9c:	d9 f7       	brne	.-10     	; 0x94 <__do_copy_data+0xc>
+
+0000009e <__do_clear_bss>:
+      9e:	23 e0       	ldi	r18, 0x03	; 3
+      a0:	a8 e9       	ldi	r26, 0x98	; 152
+      a2:	b2 e0       	ldi	r27, 0x02	; 2
+      a4:	01 c0       	rjmp	.+2      	; 0xa8 <.do_clear_bss_start>
+
+000000a6 <.do_clear_bss_loop>:
+      a6:	1d 92       	st	X+, r1
+
+000000a8 <.do_clear_bss_start>:
+      a8:	a9 31       	cpi	r26, 0x19	; 25
+      aa:	b2 07       	cpc	r27, r18
+      ac:	e1 f7       	brne	.-8      	; 0xa6 <.do_clear_bss_loop>
+      ae:	61 d4       	rcall	.+2242   	; 0x972 <main>
+      b0:	0c 94 33 0b 	jmp	0x1666	; 0x1666 <_exit>
+
+000000b4 <__bad_interrupt>:
+      b4:	a5 cf       	rjmp	.-182    	; 0x0 <__vectors>
+
+000000b6 <AMU_eeprom_read>:
+
+#include "main.h"
+
+uint16_t AMU_eeprom_read(uint16_t address)
+{
+	while(!eeprom_is_ready());
+      b6:	f9 99       	sbic	0x1f, 1	; 31
+      b8:	fe cf       	rjmp	.-4      	; 0xb6 <AMU_eeprom_read>
+	return eeprom_read_word((const uint16_t *)address);
+      ba:	0c 94 0d 0b 	jmp	0x161a	; 0x161a <eeprom_read_word>
+
+000000be <AMU_eeprom_write>:
+}
+
+void AMU_eeprom_write(uint16_t address, uint16_t value)
+{
+	while(!eeprom_is_ready());
+      be:	f9 99       	sbic	0x1f, 1	; 31
+      c0:	fe cf       	rjmp	.-4      	; 0xbe <AMU_eeprom_write>
+	eeprom_write_word((uint16_t *)address, value);
+      c2:	0c 94 12 0b 	jmp	0x1624	; 0x1624 <eeprom_write_word>
+
+000000c6 <Parameters_init>:
+}
+
+void Parameters_init()
+{
+	deviceID  = AMU_eeprom_read(EEPROM_DEVICE_ID);
+      c6:	90 e0       	ldi	r25, 0x00	; 0
+      c8:	80 e0       	ldi	r24, 0x00	; 0
+      ca:	f5 df       	rcall	.-22     	; 0xb6 <AMU_eeprom_read>
+      cc:	90 93 0d 03 	sts	0x030D, r25	; 0x80030d <deviceID+0x1>
+      d0:	80 93 0c 03 	sts	0x030C, r24	; 0x80030c <deviceID>
+	fw_version = AMU_eeprom_read(EEPROM_FW_VERSION);
+      d4:	82 e0       	ldi	r24, 0x02	; 2
+      d6:	90 e0       	ldi	r25, 0x00	; 0
+      d8:	ee df       	rcall	.-36     	; 0xb6 <AMU_eeprom_read>
+      da:	90 93 0f 03 	sts	0x030F, r25	; 0x80030f <fw_version+0x1>
+      de:	80 93 0e 03 	sts	0x030E, r24	; 0x80030e <fw_version>
+}
+      e2:	08 95       	ret
+
+000000e4 <PCINT_init>:
+
+void PCINT_init() //Needed for detecting interrupts from the MCP2515
+{
+	PCICR = (1<<PCIE0);			//enable from pin 26 to pin 16
+      e4:	81 e0       	ldi	r24, 0x01	; 1
+      e6:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <__TEXT_REGION_LENGTH__+0x7e0068>
+	MCP2515_reg_write(MCP2515_CANINTF, 0b00000000);
+      ea:	60 e0       	ldi	r22, 0x00	; 0
+      ec:	8c e2       	ldi	r24, 0x2C	; 44
+      ee:	ef d6       	rcall	.+3550   	; 0xece <MCP2515_reg_write>
+	PCMSK0 = (1<<PCINT4)|(1<<PCINT3);
+      f0:	88 e1       	ldi	r24, 0x18	; 24
+      f2:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <__TEXT_REGION_LENGTH__+0x7e006a>
+	
+}
+      f6:	08 95       	ret
+
+000000f8 <init_cmuData>:
+ * Function: init_cmuData
+ * Will fill in the blank cmu struct array with zeros
+ */
+void init_cmuData(CMU * cmu)
+{
+	for(uint8_t count = 0; count < CMU_COUNT; count++)
+      f8:	9c 01       	movw	r18, r24
+      fa:	2e 5e       	subi	r18, 0xEE	; 238
+      fc:	3f 4f       	sbci	r19, 0xFF	; 255
+      fe:	ac 01       	movw	r20, r24
+     100:	4a 59       	subi	r20, 0x9A	; 154
+     102:	5f 4f       	sbci	r21, 0xFF	; 255
+	{
+		cmu->CMU_num = 0;
+     104:	fc 01       	movw	r30, r24
+     106:	10 82       	st	Z, r1
+		cmu->CMU_ID = 0;
+     108:	11 82       	std	Z+1, r1	; 0x01
+		for(uint8_t count2 = 0; count2 < CMU_CELL_COUNT; count2++)
+     10a:	32 96       	adiw	r30, 0x02	; 2
+		{
+			cmu->temperatures[count2]=0;
+     10c:	11 8a       	std	Z+17, r1	; 0x11
+     10e:	10 8a       	std	Z+16, r1	; 0x10
+			cmu->voltages[count2]=0;
+     110:	11 92       	st	Z+, r1
+     112:	11 92       	st	Z+, r1
+		for(uint8_t count2 = 0; count2 < CMU_CELL_COUNT; count2++)
+     114:	e2 17       	cp	r30, r18
+     116:	f3 07       	cpc	r31, r19
+     118:	c9 f7       	brne	.-14     	; 0x10c <init_cmuData+0x14>
+		}
+		cmu++;
+     11a:	82 96       	adiw	r24, 0x22	; 34
+     11c:	9f 01       	movw	r18, r30
+     11e:	2e 5d       	subi	r18, 0xDE	; 222
+     120:	3f 4f       	sbci	r19, 0xFF	; 255
+	for(uint8_t count = 0; count < CMU_COUNT; count++)
+     122:	84 17       	cp	r24, r20
+     124:	95 07       	cpc	r25, r21
+     126:	71 f7       	brne	.-36     	; 0x104 <init_cmuData+0xc>
+	}
+}
+     128:	08 95       	ret
+
+0000012a <IO_init>:
+
+void IO_init()
+{
+	DDRB  = 0b11000110;
+     12a:	86 ec       	ldi	r24, 0xC6	; 198
+     12c:	84 b9       	out	0x04, r24	; 4
+	DDRD  = 0b10001011;
+     12e:	8b e8       	ldi	r24, 0x8B	; 139
+     130:	8a b9       	out	0x0a, r24	; 10
+	DDRC  = 0b10100111;
+     132:	87 ea       	ldi	r24, 0xA7	; 167
+     134:	87 b9       	out	0x07, r24	; 7
+	PORTB = 0b00000000;
+     136:	15 b8       	out	0x05, r1	; 5
+
+	PORTD |= (1<<PIND1)|(1<<PIND7)|(1<<PIND3);		//the SS pin needs to be configured as an output, otherwise we get issues on removal of the programmer.
+     138:	8b b1       	in	r24, 0x0b	; 11
+     13a:	8a 68       	ori	r24, 0x8A	; 138
+     13c:	8b b9       	out	0x0b, r24	; 11
+	PORTC |= 1<<PINC7;					//set CS high
+     13e:	47 9a       	sbi	0x08, 7	; 8
+	PORTC |= (1<<MCP2515_PIN_RESET);	//set reset to high
+     140:	45 9a       	sbi	0x08, 5	; 8
+	PORTB &= ~(1<<PINB7);		//make sure it's set up for input.
+     142:	2f 98       	cbi	0x05, 7	; 5
+	ALARM_PORT |= (1<<ALARM_PIN);
+     144:	40 9a       	sbi	0x08, 0	; 8
+}
+     146:	08 95       	ret
+
+00000148 <timer_init>:
+
+void timer_init()
+{
+	TCCR0A = 0x00;							//normal mode.
+     148:	14 bc       	out	0x24, r1	; 36
+	TCCR0B = (1<<CS02)|(0<<CS01)|(1<<CS00);	//prescale clock by 1024
+     14a:	85 e0       	ldi	r24, 0x05	; 5
+     14c:	85 bd       	out	0x25, r24	; 37
+	TIMSK0 = (1<<TOIE0);					//allow interrupts
+     14e:	81 e0       	ldi	r24, 0x01	; 1
+     150:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
+}
+     154:	08 95       	ret
+
+00000156 <CMU_send_read_receipt>:
+	ADCSRA|=(1<<ADIF);							//once read and done, clear the 'complete' status by writing 1 to the ADIF bit.
+	return result;								//pass the 10 bit ADC number to requesting function.
+}
+
+uint8_t CMU_send_read_receipt(CMU * cmu)
+{
+     156:	0f 93       	push	r16
+     158:	1f 93       	push	r17
+     15a:	cf 93       	push	r28
+     15c:	df 93       	push	r29
+     15e:	0f 92       	push	r0
+     160:	cd b7       	in	r28, 0x3d	; 61
+     162:	de b7       	in	r29, 0x3e	; 62
+     164:	8c 01       	movw	r16, r24
+	uint8_t data = 0x00; //data to send,(zeros)
+     166:	19 82       	std	Y+1, r1	; 0x01
+	uint8_t mob = MCP2515_findFreeTxBuffer(); //obtain a free transmit buffer.
+     168:	48 d7       	rcall	.+3728   	; 0xffa <MCP2515_findFreeTxBuffer>
+    //send a CAN packet from a free buffer, with recipient of our CMU ID, type: audit request (to now get other CMUs to talk), with 1 byte of zeros
+	MCP2515_TX(mob, 0, &data, ((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|((uint32_t)cmu->CMU_ID<<8)|READ_RECEIPT);		
+     16a:	f8 01       	movw	r30, r16
+     16c:	01 81       	ldd	r16, Z+1	; 0x01
+     16e:	10 e0       	ldi	r17, 0x00	; 0
+     170:	30 e0       	ldi	r19, 0x00	; 0
+     172:	20 e0       	ldi	r18, 0x00	; 0
+     174:	32 2f       	mov	r19, r18
+     176:	21 2f       	mov	r18, r17
+     178:	10 2f       	mov	r17, r16
+     17a:	00 27       	eor	r16, r16
+     17c:	02 61       	ori	r16, 0x12	; 18
+     17e:	24 60       	ori	r18, 0x04	; 4
+     180:	38 60       	ori	r19, 0x08	; 8
+     182:	ae 01       	movw	r20, r28
+     184:	4f 5f       	subi	r20, 0xFF	; 255
+     186:	5f 4f       	sbci	r21, 0xFF	; 255
+     188:	60 e0       	ldi	r22, 0x00	; 0
+     18a:	0e 94 76 09 	call	0x12ec	; 0x12ec <MCP2515_TX>
+	return 1; //return successful
+}
+     18e:	81 e0       	ldi	r24, 0x01	; 1
+     190:	0f 90       	pop	r0
+     192:	df 91       	pop	r29
+     194:	cf 91       	pop	r28
+     196:	1f 91       	pop	r17
+     198:	0f 91       	pop	r16
+     19a:	08 95       	ret
+
+0000019c <CMU_Register.part.0>:
+
+	PORTC |= (1<<PINC1);
+}
+
+
+uint8_t CMU_Register(CMU * cmu, uint16_t CMU_ID)
+     19c:	1f 93       	push	r17
+     19e:	cf 93       	push	r28
+     1a0:	df 93       	push	r29
+     1a2:	ec 01       	movw	r28, r24
+     1a4:	8c 5b       	subi	r24, 0xBC	; 188
+     1a6:	9f 4f       	sbci	r25, 0xFF	; 255
+{
+	for(uint8_t count = 0; count < CMU_COUNT; count++)			//parsing through our cmu array, looking for a free spot, or if we are already registered.
+	{
+
+		if(cmu->CMU_ID == 0)			//if the cmu element of the array has not been allocated, or if the cmu is already registered,
+     1a8:	19 81       	ldd	r17, Y+1	; 0x01
+     1aa:	11 11       	cpse	r17, r1
+     1ac:	13 c0       	rjmp	.+38     	; 0x1d4 <CMU_Register.part.0+0x38>
+		{
+			if(!CMUAllRegistered)CMUAudit++;		//while it is in it's registration phase, increment the registration counter;
+     1ae:	80 91 a1 02 	lds	r24, 0x02A1	; 0x8002a1 <CMUAllRegistered>
+     1b2:	81 11       	cpse	r24, r1
+     1b4:	05 c0       	rjmp	.+10     	; 0x1c0 <CMU_Register.part.0+0x24>
+     1b6:	80 91 9a 02 	lds	r24, 0x029A	; 0x80029a <CMUAudit>
+     1ba:	8f 5f       	subi	r24, 0xFF	; 255
+     1bc:	80 93 9a 02 	sts	0x029A, r24	; 0x80029a <CMUAudit>
+			cmu->CMU_ID = CMU_ID;								//assign this element to the CMU that sent the reg request.
+     1c0:	69 83       	std	Y+1, r22	; 0x01
+
+			while (!CMU_send_read_receipt(cmu));			//keep trying to send, until a tx buffer is free.
+     1c2:	ce 01       	movw	r24, r28
+     1c4:	c8 df       	rcall	.-112    	; 0x156 <CMU_send_read_receipt>
+     1c6:	88 23       	and	r24, r24
+     1c8:	e1 f3       	breq	.-8      	; 0x1c2 <CMU_Register.part.0+0x26>
+			return 2;		//return error
+		}
+	}
+	return 0;
+	
+}
+     1ca:	81 2f       	mov	r24, r17
+     1cc:	df 91       	pop	r29
+     1ce:	cf 91       	pop	r28
+     1d0:	1f 91       	pop	r17
+     1d2:	08 95       	ret
+		else if(cmu->CMU_ID == CMU_ID)		//if this function encounters its own ID, it means there is a duplicate ID. 
+     1d4:	16 17       	cp	r17, r22
+     1d6:	17 06       	cpc	r1, r23
+     1d8:	29 f0       	breq	.+10     	; 0x1e4 <CMU_Register.part.0+0x48>
+		if(count == (CMU_COUNT-1))		//otherwise if all of the elements have already been allocated, we have an extra CMU.
+     1da:	c8 17       	cp	r28, r24
+     1dc:	d9 07       	cpc	r29, r25
+     1de:	21 f0       	breq	.+8      	; 0x1e8 <CMU_Register.part.0+0x4c>
+		cmu++;
+     1e0:	a2 96       	adiw	r28, 0x22	; 34
+     1e2:	e2 cf       	rjmp	.-60     	; 0x1a8 <CMU_Register.part.0+0xc>
+			return 1;			//return error.
+     1e4:	11 e0       	ldi	r17, 0x01	; 1
+     1e6:	f1 cf       	rjmp	.-30     	; 0x1ca <CMU_Register.part.0+0x2e>
+			return 2;		//return error
+     1e8:	12 e0       	ldi	r17, 0x02	; 2
+     1ea:	ef cf       	rjmp	.-34     	; 0x1ca <CMU_Register.part.0+0x2e>
+
+000001ec <CMU_Wake_set>:
+	CMURxPacketCount= 0;
+     1ec:	10 92 a5 02 	sts	0x02A5, r1	; 0x8002a5 <CMURxPacketCount>
+	PORTC &= ~(1<<PINC1);
+     1f0:	41 98       	cbi	0x08, 1	; 8
+}
+     1f2:	08 95       	ret
+
+000001f4 <CMU_Wake_reset>:
+	PORTC |= (1<<PINC1);
+     1f4:	41 9a       	sbi	0x08, 1	; 8
+}
+     1f6:	08 95       	ret
+
+000001f8 <CMU_Store_Data>:
+
+uint8_t CMU_Store_Data(CMU * cmu, uint8_t CMU_ID, uint8_t message_type2, uint8_t address)
+{
+     1f8:	cf 92       	push	r12
+     1fa:	df 92       	push	r13
+     1fc:	ef 92       	push	r14
+     1fe:	ff 92       	push	r15
+     200:	0f 93       	push	r16
+     202:	1f 93       	push	r17
+     204:	cf 93       	push	r28
+     206:	df 93       	push	r29
+     208:	cd b7       	in	r28, 0x3d	; 61
+     20a:	de b7       	in	r29, 0x3e	; 62
+     20c:	28 97       	sbiw	r28, 0x08	; 8
+     20e:	0f b6       	in	r0, 0x3f	; 63
+     210:	f8 94       	cli
+     212:	de bf       	out	0x3e, r29	; 62
+     214:	0f be       	out	0x3f, r0	; 63
+     216:	cd bf       	out	0x3d, r28	; 61
+     218:	8c 01       	movw	r16, r24
+     21a:	e6 2e       	mov	r14, r22
+     21c:	f4 2e       	mov	r15, r20
+	uint8_t data[8];											//make a bucket for our data.
+	CMU * cmu2 = cmu;
+	cmu2++;
+	
+	//this function takes a pointer of a suitably sized array for the first address of the data we will acquire.
+	MCP2515_RxBufferRead(data, address+6);						//collect our data, using the rx read buffer instruction.
+     21e:	66 e0       	ldi	r22, 0x06	; 6
+     220:	62 0f       	add	r22, r18
+     222:	ce 01       	movw	r24, r28
+     224:	01 96       	adiw	r24, 0x01	; 1
+     226:	a6 d6       	rcall	.+3404   	; 0xf74 <MCP2515_RxBufferRead>
+					
+					CMU_data_count++;
+					break;
+				case TEMP2_ID:							//if it was the second TEMPERATURE packet,
+				
+					cmu->temperatures[4]=data[0]<<8;	//data 0 will hold the 8 MSBs of temp cell 4
+     228:	89 81       	ldd	r24, Y+1	; 0x01
+					cmu->temperatures[4]|=data[1];		//data 1 will hold the 8 LSBs of temp cell 4
+     22a:	2a 81       	ldd	r18, Y+2	; 0x02
+     22c:	38 2f       	mov	r19, r24
+					cmu->temperatures[5]=data[2]<<8;	//data 2 will hold the 8 MSBs of temp cell 5
+     22e:	8b 81       	ldd	r24, Y+3	; 0x03
+					cmu->temperatures[5]|=data[3];		//and so on...
+     230:	4c 81       	ldd	r20, Y+4	; 0x04
+     232:	58 2f       	mov	r21, r24
+					cmu->temperatures[6]=data[4]<<8;
+     234:	8d 81       	ldd	r24, Y+5	; 0x05
+					cmu->temperatures[6]|=data[5];
+     236:	6e 81       	ldd	r22, Y+6	; 0x06
+     238:	78 2f       	mov	r23, r24
+					cmu->temperatures[7]=data[6]<<8;
+     23a:	8f 81       	ldd	r24, Y+7	; 0x07
+					cmu->temperatures[7]|=data[7];
+     23c:	e8 85       	ldd	r30, Y+8	; 0x08
+     23e:	f8 2f       	mov	r31, r24
+     240:	68 01       	movw	r12, r16
+     242:	86 e6       	ldi	r24, 0x66	; 102
+     244:	c8 0e       	add	r12, r24
+     246:	d1 1c       	adc	r13, r1
+	uint8_t found = 0;
+     248:	80 e0       	ldi	r24, 0x00	; 0
+		if(cmu->CMU_ID == CMU_ID)				//if cmu is the one we are looking for,
+     24a:	d8 01       	movw	r26, r16
+     24c:	11 96       	adiw	r26, 0x01	; 1
+     24e:	9c 91       	ld	r25, X
+     250:	9e 11       	cpse	r25, r14
+     252:	09 c0       	rjmp	.+18     	; 0x266 <CMU_Store_Data+0x6e>
+			switch(message_type2)				//depending on the message type
+     254:	b2 e0       	ldi	r27, 0x02	; 2
+     256:	fb 16       	cp	r15, r27
+     258:	09 f4       	brne	.+2      	; 0x25c <CMU_Store_Data+0x64>
+     25a:	5c c0       	rjmp	.+184    	; 0x314 <CMU_Store_Data+0x11c>
+     25c:	bf 15       	cp	r27, r15
+     25e:	b8 f0       	brcs	.+46     	; 0x28e <CMU_Store_Data+0x96>
+     260:	81 e0       	ldi	r24, 0x01	; 1
+     262:	f8 16       	cp	r15, r24
+     264:	99 f1       	breq	.+102    	; 0x2cc <CMU_Store_Data+0xd4>
+				
+					break;
+			}
+		
+		}
+		cmu++; //if this cmu was not a match, check the next one.
+     266:	0e 5d       	subi	r16, 0xDE	; 222
+     268:	1f 4f       	sbci	r17, 0xFF	; 255
+	for(uint8_t counter = 0; counter < CMU_COUNT; counter++)	//move through the cells, looking for a matching one to the ID we have.
+     26a:	c0 16       	cp	r12, r16
+     26c:	d1 06       	cpc	r13, r17
+     26e:	69 f7       	brne	.-38     	; 0x24a <CMU_Store_Data+0x52>
+	}
+	if (!found) return 0; //if we went through the entire cell database and couldn't find the cell ID, we will need to error and do another audit request.
+	else return 1; //otherwise all ok.
+	return 1;
+}
+     270:	28 96       	adiw	r28, 0x08	; 8
+     272:	0f b6       	in	r0, 0x3f	; 63
+     274:	f8 94       	cli
+     276:	de bf       	out	0x3e, r29	; 62
+     278:	0f be       	out	0x3f, r0	; 63
+     27a:	cd bf       	out	0x3d, r28	; 61
+     27c:	df 91       	pop	r29
+     27e:	cf 91       	pop	r28
+     280:	1f 91       	pop	r17
+     282:	0f 91       	pop	r16
+     284:	ff 90       	pop	r15
+     286:	ef 90       	pop	r14
+     288:	df 90       	pop	r13
+     28a:	cf 90       	pop	r12
+     28c:	08 95       	ret
+     28e:	a4 e0       	ldi	r26, 0x04	; 4
+     290:	fa 16       	cp	r15, r26
+     292:	29 f0       	breq	.+10     	; 0x29e <CMU_Store_Data+0xa6>
+     294:	b5 e0       	ldi	r27, 0x05	; 5
+     296:	fb 16       	cp	r15, r27
+     298:	59 f1       	breq	.+86     	; 0x2f0 <CMU_Store_Data+0xf8>
+			found = 1;
+     29a:	81 e0       	ldi	r24, 0x01	; 1
+					break;
+     29c:	e4 cf       	rjmp	.-56     	; 0x266 <CMU_Store_Data+0x6e>
+					cmu->temperatures[0]|=data[1];		//data 1 will hold the 8 LSBs of temp cell 0
+     29e:	d8 01       	movw	r26, r16
+     2a0:	53 96       	adiw	r26, 0x13	; 19
+     2a2:	3c 93       	st	X, r19
+     2a4:	2e 93       	st	-X, r18
+     2a6:	52 97       	sbiw	r26, 0x12	; 18
+					cmu->temperatures[1]|=data[3];		//and so on...
+     2a8:	55 96       	adiw	r26, 0x15	; 21
+     2aa:	5c 93       	st	X, r21
+     2ac:	4e 93       	st	-X, r20
+     2ae:	54 97       	sbiw	r26, 0x14	; 20
+					cmu->temperatures[2]|=data[5];
+     2b0:	57 96       	adiw	r26, 0x17	; 23
+     2b2:	7c 93       	st	X, r23
+     2b4:	6e 93       	st	-X, r22
+     2b6:	56 97       	sbiw	r26, 0x16	; 22
+					cmu->temperatures[3]|=data[7];
+     2b8:	59 96       	adiw	r26, 0x19	; 25
+     2ba:	fc 93       	st	X, r31
+     2bc:	ee 93       	st	-X, r30
+     2be:	58 97       	sbiw	r26, 0x18	; 24
+					CMU_data_count++;
+     2c0:	80 91 9d 02 	lds	r24, 0x029D	; 0x80029d <CMU_data_count>
+     2c4:	8f 5f       	subi	r24, 0xFF	; 255
+     2c6:	80 93 9d 02 	sts	0x029D, r24	; 0x80029d <CMU_data_count>
+     2ca:	e7 cf       	rjmp	.-50     	; 0x29a <CMU_Store_Data+0xa2>
+					cmu->voltages[0]|=data[1];			//data 1 will hold the 8 LSBs of voltages cell 0
+     2cc:	d8 01       	movw	r26, r16
+     2ce:	13 96       	adiw	r26, 0x03	; 3
+     2d0:	3c 93       	st	X, r19
+     2d2:	2e 93       	st	-X, r18
+     2d4:	12 97       	sbiw	r26, 0x02	; 2
+					cmu->voltages[1]|=data[3];			//and so on...
+     2d6:	15 96       	adiw	r26, 0x05	; 5
+     2d8:	5c 93       	st	X, r21
+     2da:	4e 93       	st	-X, r20
+     2dc:	14 97       	sbiw	r26, 0x04	; 4
+					cmu->voltages[2]|=data[5];
+     2de:	17 96       	adiw	r26, 0x07	; 7
+     2e0:	7c 93       	st	X, r23
+     2e2:	6e 93       	st	-X, r22
+     2e4:	16 97       	sbiw	r26, 0x06	; 6
+					cmu->voltages[3]|=data[7];
+     2e6:	19 96       	adiw	r26, 0x09	; 9
+     2e8:	fc 93       	st	X, r31
+     2ea:	ee 93       	st	-X, r30
+     2ec:	18 97       	sbiw	r26, 0x08	; 8
+					CMU_data_count++;
+     2ee:	e8 cf       	rjmp	.-48     	; 0x2c0 <CMU_Store_Data+0xc8>
+					cmu->temperatures[4]|=data[1];		//data 1 will hold the 8 LSBs of temp cell 4
+     2f0:	d8 01       	movw	r26, r16
+     2f2:	5b 96       	adiw	r26, 0x1b	; 27
+     2f4:	3c 93       	st	X, r19
+     2f6:	2e 93       	st	-X, r18
+     2f8:	5a 97       	sbiw	r26, 0x1a	; 26
+					cmu->temperatures[5]|=data[3];		//and so on...
+     2fa:	5d 96       	adiw	r26, 0x1d	; 29
+     2fc:	5c 93       	st	X, r21
+     2fe:	4e 93       	st	-X, r20
+     300:	5c 97       	sbiw	r26, 0x1c	; 28
+					cmu->temperatures[6]|=data[5];
+     302:	5f 96       	adiw	r26, 0x1f	; 31
+     304:	7c 93       	st	X, r23
+     306:	6e 93       	st	-X, r22
+     308:	5e 97       	sbiw	r26, 0x1e	; 30
+					cmu->temperatures[7]|=data[7];
+     30a:	91 96       	adiw	r26, 0x21	; 33
+     30c:	fc 93       	st	X, r31
+     30e:	ee 93       	st	-X, r30
+     310:	90 97       	sbiw	r26, 0x20	; 32
+					CMU_data_count++;
+     312:	d6 cf       	rjmp	.-84     	; 0x2c0 <CMU_Store_Data+0xc8>
+					cmu->voltages[4]|=data[1];			//data 1 will hold the 8 LSBs of voltages cell 0
+     314:	d8 01       	movw	r26, r16
+     316:	1b 96       	adiw	r26, 0x0b	; 11
+     318:	3c 93       	st	X, r19
+     31a:	2e 93       	st	-X, r18
+     31c:	1a 97       	sbiw	r26, 0x0a	; 10
+					cmu->voltages[5]|=data[3];			//and so on...
+     31e:	1d 96       	adiw	r26, 0x0d	; 13
+     320:	5c 93       	st	X, r21
+     322:	4e 93       	st	-X, r20
+     324:	1c 97       	sbiw	r26, 0x0c	; 12
+					cmu->voltages[6]|=data[5];
+     326:	1f 96       	adiw	r26, 0x0f	; 15
+     328:	7c 93       	st	X, r23
+     32a:	6e 93       	st	-X, r22
+     32c:	1e 97       	sbiw	r26, 0x0e	; 14
+					cmu->voltages[7]|=data[7];
+     32e:	51 96       	adiw	r26, 0x11	; 17
+     330:	fc 93       	st	X, r31
+     332:	ee 93       	st	-X, r30
+     334:	50 97       	sbiw	r26, 0x10	; 16
+     336:	c4 cf       	rjmp	.-120    	; 0x2c0 <CMU_Store_Data+0xc8>
+
+00000338 <TX_cellTemps>:
+
+
+uint16_t TX_cellTemps(CMU _cmu, uint16_t * max_cell, uint16_t * min_cell, uint32_t *avgSum)
+{
+     338:	2f 92       	push	r2
+     33a:	3f 92       	push	r3
+     33c:	5f 92       	push	r5
+     33e:	6f 92       	push	r6
+     340:	7f 92       	push	r7
+     342:	8f 92       	push	r8
+     344:	9f 92       	push	r9
+     346:	af 92       	push	r10
+     348:	bf 92       	push	r11
+     34a:	cf 92       	push	r12
+     34c:	df 92       	push	r13
+     34e:	ef 92       	push	r14
+     350:	ff 92       	push	r15
+     352:	0f 93       	push	r16
+     354:	1f 93       	push	r17
+     356:	cf 93       	push	r28
+     358:	df 93       	push	r29
+     35a:	cd b7       	in	r28, 0x3d	; 61
+     35c:	de b7       	in	r29, 0x3e	; 62
+     35e:	28 97       	sbiw	r28, 0x08	; 8
+     360:	0f b6       	in	r0, 0x3f	; 63
+     362:	f8 94       	cli
+     364:	de bf       	out	0x3e, r29	; 62
+     366:	0f be       	out	0x3f, r0	; 63
+     368:	cd bf       	out	0x3d, r28	; 61
+     36a:	ce ac       	ldd	r12, Y+62	; 0x3e
+     36c:	df ac       	ldd	r13, Y+63	; 0x3f
+     36e:	22 96       	adiw	r28, 0x02	; 2
+     370:	ae ac       	ldd	r10, Y+62	; 0x3e
+     372:	bf ac       	ldd	r11, Y+63	; 0x3f
+     374:	22 97       	sbiw	r28, 0x02	; 2
+     376:	24 96       	adiw	r28, 0x04	; 4
+     378:	8e ac       	ldd	r8, Y+62	; 0x3e
+     37a:	9f ac       	ldd	r9, Y+63	; 0x3f
+     37c:	24 97       	sbiw	r28, 0x04	; 4
+	int8_t mob;
+	uint8_t tempData[8];
+
+	for(uint8_t cellCount = 0; cellCount <= 3; cellCount++)
+     37e:	d4 01       	movw	r26, r8
+     380:	4d 91       	ld	r20, X+
+     382:	5d 91       	ld	r21, X+
+     384:	6d 91       	ld	r22, X+
+     386:	7c 91       	ld	r23, X
+     388:	1e 01       	movw	r2, r28
+     38a:	be e2       	ldi	r27, 0x2E	; 46
+     38c:	2b 0e       	add	r2, r27
+     38e:	31 1c       	adc	r3, r1
+     390:	fe 01       	movw	r30, r28
+     392:	31 96       	adiw	r30, 0x01	; 1
+     394:	3f 01       	movw	r6, r30
+     396:	8e 01       	movw	r16, r28
+     398:	0a 5c       	subi	r16, 0xCA	; 202
+     39a:	1f 4f       	sbci	r17, 0xFF	; 255
+     39c:	5e 2e       	mov	r5, r30
+     39e:	f7 2c       	mov	r15, r7
+	{
+		*avgSum +=_cmu.temperatures[cellCount];
+     3a0:	d1 01       	movw	r26, r2
+     3a2:	8d 91       	ld	r24, X+
+     3a4:	9d 91       	ld	r25, X+
+     3a6:	1d 01       	movw	r2, r26
+     3a8:	48 0f       	add	r20, r24
+     3aa:	59 1f       	adc	r21, r25
+     3ac:	61 1d       	adc	r22, r1
+     3ae:	71 1d       	adc	r23, r1
+		*min_cell = _cmu.temperatures[cellCount] < *min_cell ? _cmu.temperatures[cellCount] : *min_cell;		//if the cell temperature is lower than the current minimum temp, update the minimum temp
+     3b0:	d5 01       	movw	r26, r10
+     3b2:	2d 91       	ld	r18, X+
+     3b4:	3c 91       	ld	r19, X
+     3b6:	82 17       	cp	r24, r18
+     3b8:	93 07       	cpc	r25, r19
+     3ba:	08 f4       	brcc	.+2      	; 0x3be <TX_cellTemps+0x86>
+     3bc:	9c 01       	movw	r18, r24
+     3be:	d5 01       	movw	r26, r10
+     3c0:	2d 93       	st	X+, r18
+     3c2:	3c 93       	st	X, r19
+		*max_cell = _cmu.temperatures[cellCount] > *max_cell ? _cmu.temperatures[cellCount] : *max_cell;		//if the cell temperature is higher than the current maximum temp, update the maximum temp
+     3c4:	d6 01       	movw	r26, r12
+     3c6:	2d 91       	ld	r18, X+
+     3c8:	3c 91       	ld	r19, X
+     3ca:	28 17       	cp	r18, r24
+     3cc:	39 07       	cpc	r19, r25
+     3ce:	08 f4       	brcc	.+2      	; 0x3d2 <TX_cellTemps+0x9a>
+     3d0:	9c 01       	movw	r18, r24
+     3d2:	d6 01       	movw	r26, r12
+     3d4:	2d 93       	st	X+, r18
+     3d6:	3c 93       	st	X, r19
+		tempData[cellCount*2]	= _cmu.temperatures[cellCount] >> 8;
+     3d8:	90 83       	st	Z, r25
+		tempData[cellCount*2+1] = _cmu.temperatures[cellCount];
+     3da:	81 83       	std	Z+1, r24	; 0x01
+     3dc:	32 96       	adiw	r30, 0x02	; 2
+	for(uint8_t cellCount = 0; cellCount <= 3; cellCount++)
+     3de:	20 16       	cp	r2, r16
+     3e0:	31 06       	cpc	r3, r17
+     3e2:	f1 f6       	brne	.-68     	; 0x3a0 <TX_cellTemps+0x68>
+     3e4:	f4 01       	movw	r30, r8
+     3e6:	40 83       	st	Z, r20
+     3e8:	51 83       	std	Z+1, r21	; 0x01
+     3ea:	62 83       	std	Z+2, r22	; 0x02
+     3ec:	73 83       	std	Z+3, r23	; 0x03
+	}
+	mob = CAN_findFreeTXMOB();
+     3ee:	0e 94 ca 0a 	call	0x1594	; 0x1594 <CAN_findFreeTXMOB>
+	CAN_TXMOB(mob, 8, tempData, ((uint32_t)1<<25)|((uint32_t)DEVICE_ID<<13)|CC_TEMP1_ID, 0); //transmit first 4 cell data and do not wait for finish
+     3f2:	e1 2c       	mov	r14, r1
+     3f4:	04 e6       	ldi	r16, 0x64	; 100
+     3f6:	10 e2       	ldi	r17, 0x20	; 32
+     3f8:	20 e0       	ldi	r18, 0x00	; 0
+     3fa:	32 e0       	ldi	r19, 0x02	; 2
+     3fc:	a3 01       	movw	r20, r6
+     3fe:	68 e0       	ldi	r22, 0x08	; 8
+     400:	0e 94 77 0a 	call	0x14ee	; 0x14ee <CAN_TXMOB>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     404:	8f e9       	ldi	r24, 0x9F	; 159
+     406:	9f e0       	ldi	r25, 0x0F	; 15
+     408:	01 97       	sbiw	r24, 0x01	; 1
+     40a:	f1 f7       	brne	.-4      	; 0x408 <__FUSE_REGION_LENGTH__+0x8>
+     40c:	00 c0       	rjmp	.+0      	; 0x40e <__FUSE_REGION_LENGTH__+0xe>
+     40e:	00 00       	nop
+	_delay_ms(1);
+	
+	for(uint8_t cellCount = 4; cellCount <= 7; cellCount++)
+     410:	d4 01       	movw	r26, r8
+     412:	4d 91       	ld	r20, X+
+     414:	5d 91       	ld	r21, X+
+     416:	6d 91       	ld	r22, X+
+     418:	7c 91       	ld	r23, X
+     41a:	fe 01       	movw	r30, r28
+     41c:	f6 96       	adiw	r30, 0x36	; 54
+     41e:	8e 01       	movw	r16, r28
+     420:	02 5c       	subi	r16, 0xC2	; 194
+     422:	1f 4f       	sbci	r17, 0xFF	; 255
+	{
+		*avgSum +=_cmu.temperatures[cellCount];
+     424:	81 91       	ld	r24, Z+
+     426:	91 91       	ld	r25, Z+
+     428:	48 0f       	add	r20, r24
+     42a:	59 1f       	adc	r21, r25
+     42c:	61 1d       	adc	r22, r1
+     42e:	71 1d       	adc	r23, r1
+		*min_cell = _cmu.temperatures[cellCount] < *min_cell ? _cmu.temperatures[cellCount] : *min_cell;		//if the cell temperature is lower than the current minimum temp, update the minimum temp
+     430:	d5 01       	movw	r26, r10
+     432:	2d 91       	ld	r18, X+
+     434:	3c 91       	ld	r19, X
+     436:	82 17       	cp	r24, r18
+     438:	93 07       	cpc	r25, r19
+     43a:	08 f4       	brcc	.+2      	; 0x43e <__FUSE_REGION_LENGTH__+0x3e>
+     43c:	9c 01       	movw	r18, r24
+     43e:	d5 01       	movw	r26, r10
+     440:	2d 93       	st	X+, r18
+     442:	3c 93       	st	X, r19
+		*max_cell = _cmu.temperatures[cellCount] > *max_cell ? _cmu.temperatures[cellCount] : *max_cell;		//if the cell temperature is higher than the current maximum temp, update the maximum temp
+     444:	d6 01       	movw	r26, r12
+     446:	2d 91       	ld	r18, X+
+     448:	3c 91       	ld	r19, X
+     44a:	28 17       	cp	r18, r24
+     44c:	39 07       	cpc	r19, r25
+     44e:	08 f4       	brcc	.+2      	; 0x452 <__FUSE_REGION_LENGTH__+0x52>
+     450:	9c 01       	movw	r18, r24
+     452:	d6 01       	movw	r26, r12
+     454:	2d 93       	st	X+, r18
+     456:	3c 93       	st	X, r19
+		tempData[(cellCount-4)*2]	= _cmu.temperatures[cellCount] >> 8;
+     458:	d3 01       	movw	r26, r6
+     45a:	9c 93       	st	X, r25
+		tempData[(cellCount-4)*2+1] = _cmu.temperatures[cellCount];
+     45c:	11 96       	adiw	r26, 0x01	; 1
+     45e:	8c 93       	st	X, r24
+     460:	b2 e0       	ldi	r27, 0x02	; 2
+     462:	6b 0e       	add	r6, r27
+     464:	71 1c       	adc	r7, r1
+	for(uint8_t cellCount = 4; cellCount <= 7; cellCount++)
+     466:	0e 17       	cp	r16, r30
+     468:	1f 07       	cpc	r17, r31
+     46a:	e1 f6       	brne	.-72     	; 0x424 <__FUSE_REGION_LENGTH__+0x24>
+     46c:	f4 01       	movw	r30, r8
+     46e:	40 83       	st	Z, r20
+     470:	51 83       	std	Z+1, r21	; 0x01
+     472:	62 83       	std	Z+2, r22	; 0x02
+     474:	73 83       	std	Z+3, r23	; 0x03
+	}
+	mob = CAN_findFreeTXMOB();
+     476:	0e 94 ca 0a 	call	0x1594	; 0x1594 <CAN_findFreeTXMOB>
+	CAN_TXMOB(mob, 8, tempData, ((uint32_t)1<<25)|((uint32_t)DEVICE_ID<<13)|CC_TEMP2_ID, 0); //transmit first 4 cell data and do not wait for finish
+     47a:	e1 2c       	mov	r14, r1
+     47c:	05 e6       	ldi	r16, 0x65	; 101
+     47e:	10 e2       	ldi	r17, 0x20	; 32
+     480:	20 e0       	ldi	r18, 0x00	; 0
+     482:	32 e0       	ldi	r19, 0x02	; 2
+     484:	45 2d       	mov	r20, r5
+     486:	5f 2d       	mov	r21, r15
+     488:	68 e0       	ldi	r22, 0x08	; 8
+     48a:	0e 94 77 0a 	call	0x14ee	; 0x14ee <CAN_TXMOB>
+     48e:	8f e9       	ldi	r24, 0x9F	; 159
+     490:	9f e0       	ldi	r25, 0x0F	; 15
+     492:	01 97       	sbiw	r24, 0x01	; 1
+     494:	f1 f7       	brne	.-4      	; 0x492 <__FUSE_REGION_LENGTH__+0x92>
+     496:	00 c0       	rjmp	.+0      	; 0x498 <__FUSE_REGION_LENGTH__+0x98>
+     498:	00 00       	nop
+	_delay_ms(1);
+	
+	return 0;
+	
+}
+     49a:	90 e0       	ldi	r25, 0x00	; 0
+     49c:	80 e0       	ldi	r24, 0x00	; 0
+     49e:	28 96       	adiw	r28, 0x08	; 8
+     4a0:	0f b6       	in	r0, 0x3f	; 63
+     4a2:	f8 94       	cli
+     4a4:	de bf       	out	0x3e, r29	; 62
+     4a6:	0f be       	out	0x3f, r0	; 63
+     4a8:	cd bf       	out	0x3d, r28	; 61
+     4aa:	df 91       	pop	r29
+     4ac:	cf 91       	pop	r28
+     4ae:	1f 91       	pop	r17
+     4b0:	0f 91       	pop	r16
+     4b2:	ff 90       	pop	r15
+     4b4:	ef 90       	pop	r14
+     4b6:	df 90       	pop	r13
+     4b8:	cf 90       	pop	r12
+     4ba:	bf 90       	pop	r11
+     4bc:	af 90       	pop	r10
+     4be:	9f 90       	pop	r9
+     4c0:	8f 90       	pop	r8
+     4c2:	7f 90       	pop	r7
+     4c4:	6f 90       	pop	r6
+     4c6:	5f 90       	pop	r5
+     4c8:	3f 90       	pop	r3
+     4ca:	2f 90       	pop	r2
+     4cc:	08 95       	ret
+
+000004ce <TX_cellVoltage>:
+
+uint8_t TX_cellVoltage(CMU _cmu, uint16_t * max_cell, uint16_t * min_cell, uint32_t * avgSum)
+{
+     4ce:	2f 92       	push	r2
+     4d0:	3f 92       	push	r3
+     4d2:	5f 92       	push	r5
+     4d4:	6f 92       	push	r6
+     4d6:	7f 92       	push	r7
+     4d8:	8f 92       	push	r8
+     4da:	9f 92       	push	r9
+     4dc:	af 92       	push	r10
+     4de:	bf 92       	push	r11
+     4e0:	cf 92       	push	r12
+     4e2:	df 92       	push	r13
+     4e4:	ef 92       	push	r14
+     4e6:	ff 92       	push	r15
+     4e8:	0f 93       	push	r16
+     4ea:	1f 93       	push	r17
+     4ec:	cf 93       	push	r28
+     4ee:	df 93       	push	r29
+     4f0:	cd b7       	in	r28, 0x3d	; 61
+     4f2:	de b7       	in	r29, 0x3e	; 62
+     4f4:	28 97       	sbiw	r28, 0x08	; 8
+     4f6:	0f b6       	in	r0, 0x3f	; 63
+     4f8:	f8 94       	cli
+     4fa:	de bf       	out	0x3e, r29	; 62
+     4fc:	0f be       	out	0x3f, r0	; 63
+     4fe:	cd bf       	out	0x3d, r28	; 61
+     500:	ce ac       	ldd	r12, Y+62	; 0x3e
+     502:	df ac       	ldd	r13, Y+63	; 0x3f
+     504:	22 96       	adiw	r28, 0x02	; 2
+     506:	ae ac       	ldd	r10, Y+62	; 0x3e
+     508:	bf ac       	ldd	r11, Y+63	; 0x3f
+     50a:	22 97       	sbiw	r28, 0x02	; 2
+     50c:	24 96       	adiw	r28, 0x04	; 4
+     50e:	8e ac       	ldd	r8, Y+62	; 0x3e
+     510:	9f ac       	ldd	r9, Y+63	; 0x3f
+     512:	24 97       	sbiw	r28, 0x04	; 4
+	int8_t mob;
+	uint8_t tempData[8];
+	for(uint8_t cellCount = 0; cellCount <= 3; cellCount++)
+     514:	d4 01       	movw	r26, r8
+     516:	4d 91       	ld	r20, X+
+     518:	5d 91       	ld	r21, X+
+     51a:	6d 91       	ld	r22, X+
+     51c:	7c 91       	ld	r23, X
+     51e:	1e 01       	movw	r2, r28
+     520:	be e1       	ldi	r27, 0x1E	; 30
+     522:	2b 0e       	add	r2, r27
+     524:	31 1c       	adc	r3, r1
+     526:	fe 01       	movw	r30, r28
+     528:	31 96       	adiw	r30, 0x01	; 1
+     52a:	3f 01       	movw	r6, r30
+     52c:	8e 01       	movw	r16, r28
+     52e:	0a 5d       	subi	r16, 0xDA	; 218
+     530:	1f 4f       	sbci	r17, 0xFF	; 255
+     532:	5e 2e       	mov	r5, r30
+     534:	f7 2c       	mov	r15, r7
+	{
+		*min_cell = _cmu.voltages[cellCount] < *min_cell ? _cmu.voltages[cellCount] : *min_cell;		//if the cell temperature is lower than the current minimum temp, update the minimum temp
+     536:	d1 01       	movw	r26, r2
+     538:	8d 91       	ld	r24, X+
+     53a:	9d 91       	ld	r25, X+
+     53c:	1d 01       	movw	r2, r26
+     53e:	d5 01       	movw	r26, r10
+     540:	2d 91       	ld	r18, X+
+     542:	3c 91       	ld	r19, X
+     544:	82 17       	cp	r24, r18
+     546:	93 07       	cpc	r25, r19
+     548:	08 f4       	brcc	.+2      	; 0x54c <TX_cellVoltage+0x7e>
+     54a:	9c 01       	movw	r18, r24
+     54c:	d5 01       	movw	r26, r10
+     54e:	2d 93       	st	X+, r18
+     550:	3c 93       	st	X, r19
+		*max_cell = _cmu.voltages[cellCount] > *max_cell ? _cmu.voltages[cellCount] : *max_cell;		//if the cell temperature is higher than the current maximum temp, update the maximum temp
+     552:	d6 01       	movw	r26, r12
+     554:	2d 91       	ld	r18, X+
+     556:	3c 91       	ld	r19, X
+     558:	28 17       	cp	r18, r24
+     55a:	39 07       	cpc	r19, r25
+     55c:	08 f4       	brcc	.+2      	; 0x560 <TX_cellVoltage+0x92>
+     55e:	9c 01       	movw	r18, r24
+     560:	d6 01       	movw	r26, r12
+     562:	2d 93       	st	X+, r18
+     564:	3c 93       	st	X, r19
+		*avgSum +=_cmu.voltages[cellCount];
+     566:	48 0f       	add	r20, r24
+     568:	59 1f       	adc	r21, r25
+     56a:	61 1d       	adc	r22, r1
+     56c:	71 1d       	adc	r23, r1
+		tempData[cellCount*2]	= _cmu.voltages[cellCount] >> 8;
+     56e:	90 83       	st	Z, r25
+		tempData[cellCount*2+1] = _cmu.voltages[cellCount];
+     570:	81 83       	std	Z+1, r24	; 0x01
+     572:	32 96       	adiw	r30, 0x02	; 2
+	for(uint8_t cellCount = 0; cellCount <= 3; cellCount++)
+     574:	20 16       	cp	r2, r16
+     576:	31 06       	cpc	r3, r17
+     578:	f1 f6       	brne	.-68     	; 0x536 <TX_cellVoltage+0x68>
+     57a:	f4 01       	movw	r30, r8
+     57c:	40 83       	st	Z, r20
+     57e:	51 83       	std	Z+1, r21	; 0x01
+     580:	62 83       	std	Z+2, r22	; 0x02
+     582:	73 83       	std	Z+3, r23	; 0x03
+	}
+	mob = CAN_findFreeTXMOB();
+     584:	0e 94 ca 0a 	call	0x1594	; 0x1594 <CAN_findFreeTXMOB>
+	CAN_TXMOB(mob, 8, tempData, ((uint32_t)1<<25)|((uint32_t)DEVICE_ID<<13)|CC_VOLT1_ID, 0); //transmit first 4 cell data and do not wait for finish
+     588:	e1 2c       	mov	r14, r1
+     58a:	0a e0       	ldi	r16, 0x0A	; 10
+     58c:	10 e2       	ldi	r17, 0x20	; 32
+     58e:	20 e0       	ldi	r18, 0x00	; 0
+     590:	32 e0       	ldi	r19, 0x02	; 2
+     592:	a3 01       	movw	r20, r6
+     594:	68 e0       	ldi	r22, 0x08	; 8
+     596:	ab d7       	rcall	.+3926   	; 0x14ee <CAN_TXMOB>
+     598:	8f e9       	ldi	r24, 0x9F	; 159
+     59a:	9f e0       	ldi	r25, 0x0F	; 15
+     59c:	01 97       	sbiw	r24, 0x01	; 1
+     59e:	f1 f7       	brne	.-4      	; 0x59c <TX_cellVoltage+0xce>
+     5a0:	00 c0       	rjmp	.+0      	; 0x5a2 <TX_cellVoltage+0xd4>
+     5a2:	00 00       	nop
+	_delay_ms(1);
+	for(uint8_t cellCount = 4; cellCount <= 7; cellCount++)
+     5a4:	d4 01       	movw	r26, r8
+     5a6:	4d 91       	ld	r20, X+
+     5a8:	5d 91       	ld	r21, X+
+     5aa:	6d 91       	ld	r22, X+
+     5ac:	7c 91       	ld	r23, X
+     5ae:	fe 01       	movw	r30, r28
+     5b0:	b6 96       	adiw	r30, 0x26	; 38
+     5b2:	8e 01       	movw	r16, r28
+     5b4:	02 5d       	subi	r16, 0xD2	; 210
+     5b6:	1f 4f       	sbci	r17, 0xFF	; 255
+	{
+		*min_cell = _cmu.voltages[cellCount] < *min_cell ? _cmu.voltages[cellCount] : *min_cell;		//if the cell temperature is lower than the current minimum temp, update the minimum temp
+     5b8:	81 91       	ld	r24, Z+
+     5ba:	91 91       	ld	r25, Z+
+     5bc:	d5 01       	movw	r26, r10
+     5be:	2d 91       	ld	r18, X+
+     5c0:	3c 91       	ld	r19, X
+     5c2:	82 17       	cp	r24, r18
+     5c4:	93 07       	cpc	r25, r19
+     5c6:	08 f4       	brcc	.+2      	; 0x5ca <TX_cellVoltage+0xfc>
+     5c8:	9c 01       	movw	r18, r24
+     5ca:	d5 01       	movw	r26, r10
+     5cc:	2d 93       	st	X+, r18
+     5ce:	3c 93       	st	X, r19
+		*max_cell = _cmu.voltages[cellCount] > *max_cell ? _cmu.voltages[cellCount] : *max_cell;		//if the cell temperature is higher than the current maximum temp, update the maximum temp
+     5d0:	d6 01       	movw	r26, r12
+     5d2:	2d 91       	ld	r18, X+
+     5d4:	3c 91       	ld	r19, X
+     5d6:	28 17       	cp	r18, r24
+     5d8:	39 07       	cpc	r19, r25
+     5da:	08 f4       	brcc	.+2      	; 0x5de <TX_cellVoltage+0x110>
+     5dc:	9c 01       	movw	r18, r24
+     5de:	d6 01       	movw	r26, r12
+     5e0:	2d 93       	st	X+, r18
+     5e2:	3c 93       	st	X, r19
+		*avgSum +=_cmu.voltages[cellCount];
+     5e4:	48 0f       	add	r20, r24
+     5e6:	59 1f       	adc	r21, r25
+     5e8:	61 1d       	adc	r22, r1
+     5ea:	71 1d       	adc	r23, r1
+		tempData[(cellCount-4)*2]	= _cmu.voltages[cellCount] >> 8;
+     5ec:	d3 01       	movw	r26, r6
+     5ee:	9c 93       	st	X, r25
+		tempData[(cellCount-4)*2+1] = _cmu.voltages[cellCount];
+     5f0:	11 96       	adiw	r26, 0x01	; 1
+     5f2:	8c 93       	st	X, r24
+     5f4:	b2 e0       	ldi	r27, 0x02	; 2
+     5f6:	6b 0e       	add	r6, r27
+     5f8:	71 1c       	adc	r7, r1
+	for(uint8_t cellCount = 4; cellCount <= 7; cellCount++)
+     5fa:	0e 17       	cp	r16, r30
+     5fc:	1f 07       	cpc	r17, r31
+     5fe:	e1 f6       	brne	.-72     	; 0x5b8 <TX_cellVoltage+0xea>
+     600:	f4 01       	movw	r30, r8
+     602:	40 83       	st	Z, r20
+     604:	51 83       	std	Z+1, r21	; 0x01
+     606:	62 83       	std	Z+2, r22	; 0x02
+	}
+	mob = CAN_findFreeTXMOB();
+     608:	73 83       	std	Z+3, r23	; 0x03
+     60a:	c4 d7       	rcall	.+3976   	; 0x1594 <CAN_findFreeTXMOB>
+	CAN_TXMOB(mob, 8, tempData, ((uint32_t)1<<25)|((uint32_t)DEVICE_ID<<13)|CC_VOLT2_ID, 0); //transmit first 4 cell data and do not wait for finish
+     60c:	e1 2c       	mov	r14, r1
+     60e:	0b e0       	ldi	r16, 0x0B	; 11
+     610:	10 e2       	ldi	r17, 0x20	; 32
+     612:	20 e0       	ldi	r18, 0x00	; 0
+     614:	32 e0       	ldi	r19, 0x02	; 2
+     616:	45 2d       	mov	r20, r5
+     618:	5f 2d       	mov	r21, r15
+     61a:	68 e0       	ldi	r22, 0x08	; 8
+     61c:	68 d7       	rcall	.+3792   	; 0x14ee <CAN_TXMOB>
+     61e:	8f e9       	ldi	r24, 0x9F	; 159
+     620:	9f e0       	ldi	r25, 0x0F	; 15
+     622:	01 97       	sbiw	r24, 0x01	; 1
+     624:	f1 f7       	brne	.-4      	; 0x622 <TX_cellVoltage+0x154>
+     626:	00 c0       	rjmp	.+0      	; 0x628 <TX_cellVoltage+0x15a>
+     628:	00 00       	nop
+	_delay_ms(1);
+	return 0;
+}
+     62a:	80 e0       	ldi	r24, 0x00	; 0
+     62c:	28 96       	adiw	r28, 0x08	; 8
+     62e:	0f b6       	in	r0, 0x3f	; 63
+     630:	f8 94       	cli
+     632:	de bf       	out	0x3e, r29	; 62
+     634:	0f be       	out	0x3f, r0	; 63
+     636:	cd bf       	out	0x3d, r28	; 61
+     638:	df 91       	pop	r29
+     63a:	cf 91       	pop	r28
+     63c:	1f 91       	pop	r17
+     63e:	0f 91       	pop	r16
+     640:	ff 90       	pop	r15
+     642:	ef 90       	pop	r14
+     644:	df 90       	pop	r13
+     646:	cf 90       	pop	r12
+     648:	bf 90       	pop	r11
+     64a:	af 90       	pop	r10
+     64c:	9f 90       	pop	r9
+     64e:	8f 90       	pop	r8
+     650:	7f 90       	pop	r7
+     652:	6f 90       	pop	r6
+     654:	5f 90       	pop	r5
+     656:	3f 90       	pop	r3
+     658:	2f 90       	pop	r2
+     65a:	08 95       	ret
+
+0000065c <TX_globalData>:
+
+uint8_t TX_globalData(uint16_t max_volt, uint16_t min_volt, uint16_t max_temp, uint16_t min_temp, uint32_t avgVSum, uint32_t avgTSum )
+{
+     65c:	2f 92       	push	r2
+     65e:	3f 92       	push	r3
+     660:	4f 92       	push	r4
+     662:	5f 92       	push	r5
+     664:	6f 92       	push	r6
+     666:	7f 92       	push	r7
+     668:	8f 92       	push	r8
+     66a:	9f 92       	push	r9
+     66c:	af 92       	push	r10
+     66e:	bf 92       	push	r11
+     670:	cf 92       	push	r12
+     672:	df 92       	push	r13
+     674:	ef 92       	push	r14
+     676:	ff 92       	push	r15
+     678:	0f 93       	push	r16
+     67a:	1f 93       	push	r17
+     67c:	cf 93       	push	r28
+     67e:	df 93       	push	r29
+     680:	cd b7       	in	r28, 0x3d	; 61
+     682:	de b7       	in	r29, 0x3e	; 62
+     684:	28 97       	sbiw	r28, 0x08	; 8
+     686:	0f b6       	in	r0, 0x3f	; 63
+     688:	f8 94       	cli
+     68a:	de bf       	out	0x3e, r29	; 62
+     68c:	0f be       	out	0x3f, r0	; 63
+     68e:	cd bf       	out	0x3d, r28	; 61
+     690:	4a 01       	movw	r8, r20
+     692:	39 01       	movw	r6, r18
+	int8_t mob;
+	uint8_t tempData[8];
+	uint16_t avgV = avgVSum/(CMU_COUNT*8), avgT = avgTSum/(CMU_COUNT*8);
+	
+	tempData[0]	= min_volt >> 8;
+     694:	f6 2f       	mov	r31, r22
+     696:	e7 2f       	mov	r30, r23
+     698:	fa 83       	std	Y+2, r31	; 0x02
+     69a:	e9 83       	std	Y+1, r30	; 0x01
+	tempData[1] = min_volt;
+	tempData[2]	= max_volt >> 8;
+     69c:	98 27       	eor	r25, r24
+     69e:	89 27       	eor	r24, r25
+     6a0:	98 27       	eor	r25, r24
+     6a2:	9c 83       	std	Y+4, r25	; 0x04
+     6a4:	8b 83       	std	Y+3, r24	; 0x03
+	uint16_t avgV = avgVSum/(CMU_COUNT*8), avgT = avgTSum/(CMU_COUNT*8);
+     6a6:	88 e1       	ldi	r24, 0x18	; 24
+     6a8:	28 2e       	mov	r2, r24
+     6aa:	31 2c       	mov	r3, r1
+     6ac:	41 2c       	mov	r4, r1
+     6ae:	51 2c       	mov	r5, r1
+     6b0:	c8 01       	movw	r24, r16
+     6b2:	b7 01       	movw	r22, r14
+     6b4:	a2 01       	movw	r20, r4
+     6b6:	91 01       	movw	r18, r2
+     6b8:	8e d7       	rcall	.+3868   	; 0x15d6 <__udivmodsi4>
+	tempData[3] = max_volt;
+	tempData[4]	= avgV >> 8;
+     6ba:	32 27       	eor	r19, r18
+     6bc:	23 27       	eor	r18, r19
+     6be:	32 27       	eor	r19, r18
+     6c0:	3e 83       	std	Y+6, r19	; 0x06
+     6c2:	2d 83       	std	Y+5, r18	; 0x05
+	tempData[5] = avgV;
+	mob = CAN_findFreeTXMOB();
+     6c4:	67 d7       	rcall	.+3790   	; 0x1594 <CAN_findFreeTXMOB>
+	CAN_TXMOB(mob, 6, tempData, ((uint32_t)1<<25)|((uint32_t)deviceID<<13)|CC_V_GLOBAL_ID, 0); //transmit first 4 cell data and do not wait for finish
+     6c6:	00 91 0c 03 	lds	r16, 0x030C	; 0x80030c <deviceID>
+     6ca:	10 91 0d 03 	lds	r17, 0x030D	; 0x80030d <deviceID+0x1>
+     6ce:	30 e0       	ldi	r19, 0x00	; 0
+     6d0:	20 e0       	ldi	r18, 0x00	; 0
+     6d2:	9d e0       	ldi	r25, 0x0D	; 13
+     6d4:	00 0f       	add	r16, r16
+     6d6:	11 1f       	adc	r17, r17
+     6d8:	22 1f       	adc	r18, r18
+     6da:	33 1f       	adc	r19, r19
+     6dc:	9a 95       	dec	r25
+     6de:	d1 f7       	brne	.-12     	; 0x6d4 <TX_globalData+0x78>
+     6e0:	01 60       	ori	r16, 0x01	; 1
+     6e2:	32 60       	ori	r19, 0x02	; 2
+     6e4:	e1 2c       	mov	r14, r1
+     6e6:	ae 01       	movw	r20, r28
+     6e8:	4f 5f       	subi	r20, 0xFF	; 255
+     6ea:	5f 4f       	sbci	r21, 0xFF	; 255
+     6ec:	66 e0       	ldi	r22, 0x06	; 6
+     6ee:	ff d6       	rcall	.+3582   	; 0x14ee <CAN_TXMOB>
+     6f0:	8f e9       	ldi	r24, 0x9F	; 159
+     6f2:	9f e0       	ldi	r25, 0x0F	; 15
+     6f4:	01 97       	sbiw	r24, 0x01	; 1
+     6f6:	f1 f7       	brne	.-4      	; 0x6f4 <TX_globalData+0x98>
+     6f8:	00 c0       	rjmp	.+0      	; 0x6fa <TX_globalData+0x9e>
+     6fa:	00 00       	nop
+	_delay_ms(1);
+	tempData[0]	= min_temp >> 8;
+     6fc:	76 24       	eor	r7, r6
+     6fe:	67 24       	eor	r6, r7
+     700:	76 24       	eor	r7, r6
+     702:	7a 82       	std	Y+2, r7	; 0x02
+     704:	69 82       	std	Y+1, r6	; 0x01
+	tempData[1] = min_temp;
+	tempData[2]	= max_temp >> 8;
+     706:	98 24       	eor	r9, r8
+     708:	89 24       	eor	r8, r9
+     70a:	98 24       	eor	r9, r8
+     70c:	9c 82       	std	Y+4, r9	; 0x04
+     70e:	8b 82       	std	Y+3, r8	; 0x03
+	uint16_t avgV = avgVSum/(CMU_COUNT*8), avgT = avgTSum/(CMU_COUNT*8);
+     710:	c6 01       	movw	r24, r12
+     712:	b5 01       	movw	r22, r10
+     714:	a2 01       	movw	r20, r4
+     716:	91 01       	movw	r18, r2
+     718:	5e d7       	rcall	.+3772   	; 0x15d6 <__udivmodsi4>
+	tempData[3] = max_temp;
+	tempData[4]	= avgT >> 8;
+     71a:	32 27       	eor	r19, r18
+     71c:	23 27       	eor	r18, r19
+     71e:	32 27       	eor	r19, r18
+     720:	3e 83       	std	Y+6, r19	; 0x06
+	tempData[5] = avgT;
+	mob = CAN_findFreeTXMOB();
+     722:	2d 83       	std	Y+5, r18	; 0x05
+     724:	37 d7       	rcall	.+3694   	; 0x1594 <CAN_findFreeTXMOB>
+	CAN_TXMOB(mob, 6, tempData, ((uint32_t)1<<25)|((uint32_t)deviceID<<13)|CC_T_GLOBAL_ID, 0); //transmit first 4 cell data and do not wait for finish
+     726:	00 91 0c 03 	lds	r16, 0x030C	; 0x80030c <deviceID>
+     72a:	10 91 0d 03 	lds	r17, 0x030D	; 0x80030d <deviceID+0x1>
+     72e:	30 e0       	ldi	r19, 0x00	; 0
+     730:	20 e0       	ldi	r18, 0x00	; 0
+     732:	4d e0       	ldi	r20, 0x0D	; 13
+     734:	00 0f       	add	r16, r16
+     736:	11 1f       	adc	r17, r17
+     738:	22 1f       	adc	r18, r18
+     73a:	33 1f       	adc	r19, r19
+     73c:	4a 95       	dec	r20
+     73e:	d1 f7       	brne	.-12     	; 0x734 <TX_globalData+0xd8>
+     740:	02 60       	ori	r16, 0x02	; 2
+     742:	32 60       	ori	r19, 0x02	; 2
+     744:	ae 01       	movw	r20, r28
+     746:	4f 5f       	subi	r20, 0xFF	; 255
+     748:	5f 4f       	sbci	r21, 0xFF	; 255
+     74a:	66 e0       	ldi	r22, 0x06	; 6
+     74c:	d0 d6       	rcall	.+3488   	; 0x14ee <CAN_TXMOB>
+     74e:	8f e9       	ldi	r24, 0x9F	; 159
+     750:	9f e0       	ldi	r25, 0x0F	; 15
+     752:	01 97       	sbiw	r24, 0x01	; 1
+     754:	f1 f7       	brne	.-4      	; 0x752 <TX_globalData+0xf6>
+     756:	00 c0       	rjmp	.+0      	; 0x758 <TX_globalData+0xfc>
+     758:	00 00       	nop
+	_delay_ms(1);
+	
+	return 0;
+}
+     75a:	80 e0       	ldi	r24, 0x00	; 0
+     75c:	28 96       	adiw	r28, 0x08	; 8
+     75e:	0f b6       	in	r0, 0x3f	; 63
+     760:	f8 94       	cli
+     762:	de bf       	out	0x3e, r29	; 62
+     764:	0f be       	out	0x3f, r0	; 63
+     766:	cd bf       	out	0x3d, r28	; 61
+     768:	df 91       	pop	r29
+     76a:	cf 91       	pop	r28
+     76c:	1f 91       	pop	r17
+     76e:	0f 91       	pop	r16
+     770:	ff 90       	pop	r15
+     772:	ef 90       	pop	r14
+     774:	df 90       	pop	r13
+     776:	cf 90       	pop	r12
+     778:	bf 90       	pop	r11
+     77a:	af 90       	pop	r10
+     77c:	9f 90       	pop	r9
+     77e:	8f 90       	pop	r8
+     780:	7f 90       	pop	r7
+     782:	6f 90       	pop	r6
+     784:	5f 90       	pop	r5
+     786:	4f 90       	pop	r4
+     788:	3f 90       	pop	r3
+     78a:	2f 90       	pop	r2
+     78c:	08 95       	ret
+
+0000078e <LED_on>:
+void LED_on( uint8_t selection)
+{
+	switch(selection)
+     78e:	88 23       	and	r24, r24
+     790:	19 f0       	breq	.+6      	; 0x798 <LED_on+0xa>
+     792:	81 30       	cpi	r24, 0x01	; 1
+     794:	19 f0       	breq	.+6      	; 0x79c <LED_on+0xe>
+     796:	08 95       	ret
+	{
+		case YELLOW_LED:
+			PORTD &= ~(1<<PIND7);
+     798:	5f 98       	cbi	0x0b, 7	; 11
+			break;
+     79a:	08 95       	ret
+		case RED_LED:
+			PORTD &= ~(1<<PIND1);
+     79c:	59 98       	cbi	0x0b, 1	; 11
+			break;
+		default:
+			break;
+	}
+}
+     79e:	08 95       	ret
+
+000007a0 <LED_off>:
+void LED_off( uint8_t selection)
+{
+	switch(selection)
+     7a0:	88 23       	and	r24, r24
+     7a2:	19 f0       	breq	.+6      	; 0x7aa <LED_off+0xa>
+     7a4:	81 30       	cpi	r24, 0x01	; 1
+     7a6:	19 f0       	breq	.+6      	; 0x7ae <LED_off+0xe>
+     7a8:	08 95       	ret
+	{
+		case YELLOW_LED:
+			PORTD |= (1<<PIND7);
+     7aa:	5f 9a       	sbi	0x0b, 7	; 11
+			break;
+     7ac:	08 95       	ret
+		case RED_LED:
+			PORTD |= (1<<PIND1);
+     7ae:	59 9a       	sbi	0x0b, 1	; 11
+			break;
+		default:
+			break;
+	}
+}
+     7b0:	08 95       	ret
+
+000007b2 <flash_LED>:
+void flash_LED(uint8_t number, uint8_t selection, uint8_t duration)
+{
+	duration = duration/2;
+     7b2:	46 95       	lsr	r20
+	if(selection == RED_LED)
+	{
+		for(uint8_t count = 0; count < number ;count++)
+     7b4:	90 e0       	ldi	r25, 0x00	; 0
+	if(selection == RED_LED)
+     7b6:	61 30       	cpi	r22, 0x01	; 1
+     7b8:	61 f0       	breq	.+24     	; 0x7d2 <flash_LED+0x20>
+			}
+		}
+	}
+	else
+	{
+		for(uint8_t count = 0;count<number;count++)
+     7ba:	98 13       	cpse	r25, r24
+     7bc:	1d c0       	rjmp	.+58     	; 0x7f8 <flash_LED+0x46>
+				_delay_us(995);
+			}
+		}
+	}
+
+}
+     7be:	08 95       	ret
+			PORTD &= ~(1<<PIND1);
+     7c0:	59 98       	cbi	0x0b, 1	; 11
+			for(uint8_t counter = 0; counter < duration; counter++)
+     7c2:	20 e0       	ldi	r18, 0x00	; 0
+     7c4:	24 13       	cpse	r18, r20
+     7c6:	08 c0       	rjmp	.+16     	; 0x7d8 <flash_LED+0x26>
+			PORTD |= (1<<PIND1);
+     7c8:	59 9a       	sbi	0x0b, 1	; 11
+			for(uint8_t counter = 0; counter < duration; counter++)
+     7ca:	20 e0       	ldi	r18, 0x00	; 0
+     7cc:	24 13       	cpse	r18, r20
+     7ce:	0c c0       	rjmp	.+24     	; 0x7e8 <flash_LED+0x36>
+		for(uint8_t count = 0; count < number ;count++)
+     7d0:	9f 5f       	subi	r25, 0xFF	; 255
+     7d2:	98 13       	cpse	r25, r24
+     7d4:	f5 cf       	rjmp	.-22     	; 0x7c0 <flash_LED+0xe>
+     7d6:	08 95       	ret
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     7d8:	eb e8       	ldi	r30, 0x8B	; 139
+     7da:	ff e0       	ldi	r31, 0x0F	; 15
+     7dc:	31 97       	sbiw	r30, 0x01	; 1
+     7de:	f1 f7       	brne	.-4      	; 0x7dc <flash_LED+0x2a>
+     7e0:	00 c0       	rjmp	.+0      	; 0x7e2 <flash_LED+0x30>
+     7e2:	00 00       	nop
+			for(uint8_t counter = 0; counter < duration; counter++)
+     7e4:	2f 5f       	subi	r18, 0xFF	; 255
+     7e6:	ee cf       	rjmp	.-36     	; 0x7c4 <flash_LED+0x12>
+     7e8:	eb e8       	ldi	r30, 0x8B	; 139
+     7ea:	ff e0       	ldi	r31, 0x0F	; 15
+     7ec:	31 97       	sbiw	r30, 0x01	; 1
+     7ee:	f1 f7       	brne	.-4      	; 0x7ec <flash_LED+0x3a>
+     7f0:	00 c0       	rjmp	.+0      	; 0x7f2 <flash_LED+0x40>
+     7f2:	00 00       	nop
+			for(uint8_t counter = 0; counter < duration; counter++)
+     7f4:	2f 5f       	subi	r18, 0xFF	; 255
+     7f6:	ea cf       	rjmp	.-44     	; 0x7cc <flash_LED+0x1a>
+			PORTD &= ~(1<<PIND7);
+     7f8:	5f 98       	cbi	0x0b, 7	; 11
+			for(uint8_t counter = 0; counter < duration; counter++)
+     7fa:	20 e0       	ldi	r18, 0x00	; 0
+     7fc:	24 13       	cpse	r18, r20
+     7fe:	06 c0       	rjmp	.+12     	; 0x80c <flash_LED+0x5a>
+			PORTD |= (1<<PIND7);
+     800:	5f 9a       	sbi	0x0b, 7	; 11
+			for(uint8_t counter = 0; counter < duration; counter++)
+     802:	20 e0       	ldi	r18, 0x00	; 0
+     804:	24 13       	cpse	r18, r20
+     806:	0a c0       	rjmp	.+20     	; 0x81c <flash_LED+0x6a>
+		for(uint8_t count = 0;count<number;count++)
+     808:	9f 5f       	subi	r25, 0xFF	; 255
+     80a:	d7 cf       	rjmp	.-82     	; 0x7ba <flash_LED+0x8>
+     80c:	eb e8       	ldi	r30, 0x8B	; 139
+     80e:	ff e0       	ldi	r31, 0x0F	; 15
+     810:	31 97       	sbiw	r30, 0x01	; 1
+     812:	f1 f7       	brne	.-4      	; 0x810 <flash_LED+0x5e>
+     814:	00 c0       	rjmp	.+0      	; 0x816 <flash_LED+0x64>
+     816:	00 00       	nop
+			for(uint8_t counter = 0; counter < duration; counter++)
+     818:	2f 5f       	subi	r18, 0xFF	; 255
+     81a:	f0 cf       	rjmp	.-32     	; 0x7fc <flash_LED+0x4a>
+     81c:	eb e8       	ldi	r30, 0x8B	; 139
+     81e:	ff e0       	ldi	r31, 0x0F	; 15
+     820:	31 97       	sbiw	r30, 0x01	; 1
+     822:	f1 f7       	brne	.-4      	; 0x820 <flash_LED+0x6e>
+     824:	00 c0       	rjmp	.+0      	; 0x826 <flash_LED+0x74>
+     826:	00 00       	nop
+			for(uint8_t counter = 0; counter < duration; counter++)
+     828:	2f 5f       	subi	r18, 0xFF	; 255
+     82a:	ec cf       	rjmp	.-40     	; 0x804 <flash_LED+0x52>
+
+0000082c <error_state>:
+
+void error_state(uint8_t code)
+{
+     82c:	cf 93       	push	r28
+     82e:	df 93       	push	r29
+     830:	0f 92       	push	r0
+     832:	cd b7       	in	r28, 0x3d	; 61
+     834:	de b7       	in	r29, 0x3e	; 62
+     836:	89 83       	std	Y+1, r24	; 0x01
+	CMU_Wake_reset();
+     838:	dd dc       	rcall	.-1606   	; 0x1f4 <CMU_Wake_reset>
+	ALARM_PORT &= ~(ALARM_PIN);
+     83a:	88 b1       	in	r24, 0x08	; 8
+     83c:	88 b9       	out	0x08, r24	; 8
+	cli();
+     83e:	f8 94       	cli
+	while(1)
+	{
+		ALARM_PORT ^= (1<<ALARM_PIN);
+     840:	ff 24       	eor	r15, r15
+     842:	f3 94       	inc	r15
+     844:	88 b1       	in	r24, 0x08	; 8
+     846:	8f 25       	eor	r24, r15
+     848:	88 b9       	out	0x08, r24	; 8
+		CAN_TXMOB(CAN_findFreeTXMOB(), 1, &code, ((uint32_t)1<<25)|((uint32_t)deviceID<<13)|ALARM_MSG,0);
+     84a:	80 90 0c 03 	lds	r8, 0x030C	; 0x80030c <deviceID>
+     84e:	90 90 0d 03 	lds	r9, 0x030D	; 0x80030d <deviceID+0x1>
+     852:	b1 2c       	mov	r11, r1
+     854:	a1 2c       	mov	r10, r1
+     856:	8d e0       	ldi	r24, 0x0D	; 13
+     858:	88 0c       	add	r8, r8
+     85a:	99 1c       	adc	r9, r9
+     85c:	aa 1c       	adc	r10, r10
+     85e:	bb 1c       	adc	r11, r11
+     860:	8a 95       	dec	r24
+     862:	d1 f7       	brne	.-12     	; 0x858 <error_state+0x2c>
+     864:	83 e0       	ldi	r24, 0x03	; 3
+     866:	88 2a       	or	r8, r24
+     868:	68 94       	set
+     86a:	b1 f8       	bld	r11, 1
+     86c:	93 d6       	rcall	.+3366   	; 0x1594 <CAN_findFreeTXMOB>
+     86e:	e1 2c       	mov	r14, r1
+     870:	95 01       	movw	r18, r10
+     872:	84 01       	movw	r16, r8
+     874:	ae 01       	movw	r20, r28
+     876:	4f 5f       	subi	r20, 0xFF	; 255
+     878:	5f 4f       	sbci	r21, 0xFF	; 255
+     87a:	61 e0       	ldi	r22, 0x01	; 1
+     87c:	38 d6       	rcall	.+3184   	; 0x14ee <CAN_TXMOB>
+		flash_LED(2,YELLOW_LED,100);
+     87e:	44 e6       	ldi	r20, 0x64	; 100
+     880:	60 e0       	ldi	r22, 0x00	; 0
+     882:	82 e0       	ldi	r24, 0x02	; 2
+     884:	96 df       	rcall	.-212    	; 0x7b2 <flash_LED>
+		flash_LED(2,RED_LED,100);
+     886:	44 e6       	ldi	r20, 0x64	; 100
+     888:	61 e0       	ldi	r22, 0x01	; 1
+     88a:	82 e0       	ldi	r24, 0x02	; 2
+     88c:	92 df       	rcall	.-220    	; 0x7b2 <flash_LED>
+     88e:	da cf       	rjmp	.-76     	; 0x844 <error_state+0x18>
+
+00000890 <CMU_process_inbound_message>:
+     890:	ef 92       	push	r14
+{
+     892:	ff 92       	push	r15
+     894:	1f 93       	push	r17
+     896:	cf 93       	push	r28
+     898:	df 93       	push	r29
+     89a:	18 2f       	mov	r17, r24
+     89c:	7b 01       	movw	r14, r22
+	uint16_t CMU_ID = ( ((MCP2515_reg_read(rx_buf_address+1) & 0x3F)<<3)|
+     89e:	81 e0       	ldi	r24, 0x01	; 1
+     8a0:	81 0f       	add	r24, r17
+     8a2:	9f d3       	rcall	.+1854   	; 0xfe2 <MCP2515_reg_read>
+     8a4:	c8 2f       	mov	r28, r24
+                        ((MCP2515_reg_read(rx_buf_address+2) & 0xE0)>>5) );
+     8a6:	82 e0       	ldi	r24, 0x02	; 2
+     8a8:	81 0f       	add	r24, r17
+     8aa:	9b d3       	rcall	.+1846   	; 0xfe2 <MCP2515_reg_read>
+	uint16_t CMU_ID = ( ((MCP2515_reg_read(rx_buf_address+1) & 0x3F)<<3)|
+     8ac:	98 e0       	ldi	r25, 0x08	; 8
+     8ae:	c9 9f       	mul	r28, r25
+     8b0:	e0 01       	movw	r28, r0
+     8b2:	11 24       	eor	r1, r1
+     8b4:	c8 7f       	andi	r28, 0xF8	; 248
+     8b6:	d1 70       	andi	r29, 0x01	; 1
+                        ((MCP2515_reg_read(rx_buf_address+2) & 0xE0)>>5) );
+     8b8:	90 e0       	ldi	r25, 0x00	; 0
+     8ba:	25 e0       	ldi	r18, 0x05	; 5
+     8bc:	95 95       	asr	r25
+     8be:	87 95       	ror	r24
+     8c0:	2a 95       	dec	r18
+     8c2:	e1 f7       	brne	.-8      	; 0x8bc <CMU_process_inbound_message+0x2c>
+	uint16_t CMU_ID = ( ((MCP2515_reg_read(rx_buf_address+1) & 0x3F)<<3)|
+     8c4:	c8 2b       	or	r28, r24
+     8c6:	d9 2b       	or	r29, r25
+	uint8_t message_type = (MCP2515_reg_read(rx_buf_address+4) & 0x1F);
+     8c8:	84 e0       	ldi	r24, 0x04	; 4
+     8ca:	81 0f       	add	r24, r17
+     8cc:	8a d3       	rcall	.+1812   	; 0xfe2 <MCP2515_reg_read>
+     8ce:	8f 71       	andi	r24, 0x1F	; 31
+	switch(message_type)
+     8d0:	84 30       	cpi	r24, 0x04	; 4
+     8d2:	e1 f0       	breq	.+56     	; 0x90c <CMU_process_inbound_message+0x7c>
+     8d4:	60 f4       	brcc	.+24     	; 0x8ee <CMU_process_inbound_message+0x5e>
+     8d6:	81 30       	cpi	r24, 0x01	; 1
+     8d8:	29 f1       	breq	.+74     	; 0x924 <CMU_process_inbound_message+0x94>
+			if(!CMU_Store_Data(cmu, CMU_ID, message_type, rx_buf_address))
+     8da:	21 2f       	mov	r18, r17
+     8dc:	42 e0       	ldi	r20, 0x02	; 2
+     8de:	82 30       	cpi	r24, 0x02	; 2
+     8e0:	b9 f0       	breq	.+46     	; 0x910 <CMU_process_inbound_message+0x80>
+}
+     8e2:	df 91       	pop	r29
+     8e4:	cf 91       	pop	r28
+     8e6:	1f 91       	pop	r17
+     8e8:	ff 90       	pop	r15
+     8ea:	ef 90       	pop	r14
+     8ec:	08 95       	ret
+     8ee:	85 30       	cpi	r24, 0x05	; 5
+     8f0:	b1 f0       	breq	.+44     	; 0x91e <CMU_process_inbound_message+0x8e>
+     8f2:	83 31       	cpi	r24, 0x13	; 19
+	for(uint8_t count = 0; count < CMU_COUNT; count++)			//parsing through our cmu array, looking for a free spot, or if we are already registered.
+     8f4:	b1 f7       	brne	.-20     	; 0x8e2 <CMU_process_inbound_message+0x52>
+     8f6:	be 01       	movw	r22, r28
+     8f8:	c7 01       	movw	r24, r14
+     8fa:	50 dc       	rcall	.-1888   	; 0x19c <CMU_Register.part.0>
+     8fc:	81 30       	cpi	r24, 0x01	; 1
+     8fe:	21 f0       	breq	.+8      	; 0x908 <CMU_process_inbound_message+0x78>
+     900:	82 30       	cpi	r24, 0x02	; 2
+					error_state(ERROR_NUMEROUS_CMU);
+     902:	79 f7       	brne	.-34     	; 0x8e2 <CMU_process_inbound_message+0x52>
+     904:	83 e0       	ldi	r24, 0x03	; 3
+					error_state(ERROR_DUPLICATE_CMU_ID);
+     906:	01 c0       	rjmp	.+2      	; 0x90a <CMU_process_inbound_message+0x7a>
+					error_state(ERROR_NUMEROUS_CMU);
+     908:	82 e0       	ldi	r24, 0x02	; 2
+			if(!CMU_Store_Data(cmu, CMU_ID, TEMP1_ID, rx_buf_address))
+     90a:	90 df       	rcall	.-224    	; 0x82c <error_state>
+     90c:	21 2f       	mov	r18, r17
+     90e:	44 e0       	ldi	r20, 0x04	; 4
+     910:	6c 2f       	mov	r22, r28
+     912:	c7 01       	movw	r24, r14
+     914:	71 dc       	rcall	.-1822   	; 0x1f8 <CMU_Store_Data>
+     916:	81 11       	cpse	r24, r1
+     918:	e4 cf       	rjmp	.-56     	; 0x8e2 <CMU_process_inbound_message+0x52>
+			    { error_state(ERROR_UNKNOWN_CMU_ID); } // Fails if the CMU ID is not known 
+     91a:	86 e0       	ldi	r24, 0x06	; 6
+     91c:	f6 cf       	rjmp	.-20     	; 0x90a <CMU_process_inbound_message+0x7a>
+			if(!CMU_Store_Data(cmu, CMU_ID, message_type, rx_buf_address))
+     91e:	21 2f       	mov	r18, r17
+     920:	45 e0       	ldi	r20, 0x05	; 5
+     922:	f6 cf       	rjmp	.-20     	; 0x910 <CMU_process_inbound_message+0x80>
+			if(!CMU_Store_Data(cmu, CMU_ID, message_type, rx_buf_address))
+     924:	21 2f       	mov	r18, r17
+     926:	41 e0       	ldi	r20, 0x01	; 1
+     928:	f3 cf       	rjmp	.-26     	; 0x910 <CMU_process_inbound_message+0x80>
+
+0000092a <CMU_PollandProcess_RxBuffers>:
+{
+     92a:	cf 93       	push	r28
+     92c:	df 93       	push	r29
+     92e:	ec 01       	movw	r28, r24
+	uint8_t status = (MCP2515_receive_status() & 3);		//poll to see if we have a message waiting.
+     930:	14 d3       	rcall	.+1576   	; 0xf5a <MCP2515_receive_status>
+     932:	83 70       	andi	r24, 0x03	; 3
+	switch(status)
+     934:	82 30       	cpi	r24, 0x02	; 2
+     936:	69 f0       	breq	.+26     	; 0x952 <CMU_PollandProcess_RxBuffers+0x28>
+     938:	83 30       	cpi	r24, 0x03	; 3
+     93a:	81 f0       	breq	.+32     	; 0x95c <CMU_PollandProcess_RxBuffers+0x32>
+     93c:	81 30       	cpi	r24, 0x01	; 1
+     93e:	b1 f4       	brne	.+44     	; 0x96c <CMU_PollandProcess_RxBuffers+0x42>
+			CMU_process_inbound_message(MCP2515_RXB0, cmu);
+     940:	be 01       	movw	r22, r28
+     942:	80 e6       	ldi	r24, 0x60	; 96
+     944:	a5 df       	rcall	.-182    	; 0x890 <CMU_process_inbound_message>
+			MCP2515_bit_modify(MCP2515_CANINTF,0x00, status);				//e.g if status is 0b00000001, it will only modify the 0th pin.
+     946:	41 e0       	ldi	r20, 0x01	; 1
+			MCP2515_bit_modify(MCP2515_CANINTF,0x00, status);
+     948:	60 e0       	ldi	r22, 0x00	; 0
+     94a:	8c e2       	ldi	r24, 0x2C	; 44
+}
+     94c:	df 91       	pop	r29
+			MCP2515_bit_modify(MCP2515_CANINTF,0x00, status);
+     94e:	cf 91       	pop	r28
+			CMU_process_inbound_message(MCP2515_RXB1, cmu);
+     950:	d1 c2       	rjmp	.+1442   	; 0xef4 <MCP2515_bit_modify>
+     952:	be 01       	movw	r22, r28
+     954:	80 e7       	ldi	r24, 0x70	; 112
+     956:	9c df       	rcall	.-200    	; 0x890 <CMU_process_inbound_message>
+			MCP2515_bit_modify(MCP2515_CANINTF,0x00, status);
+     958:	42 e0       	ldi	r20, 0x02	; 2
+			CMU_process_inbound_message(MCP2515_RXB1, cmu);
+     95a:	f6 cf       	rjmp	.-20     	; 0x948 <CMU_PollandProcess_RxBuffers+0x1e>
+     95c:	be 01       	movw	r22, r28
+     95e:	80 e7       	ldi	r24, 0x70	; 112
+			CMU_process_inbound_message(MCP2515_RXB0, cmu);
+     960:	97 df       	rcall	.-210    	; 0x890 <CMU_process_inbound_message>
+     962:	be 01       	movw	r22, r28
+     964:	80 e6       	ldi	r24, 0x60	; 96
+     966:	94 df       	rcall	.-216    	; 0x890 <CMU_process_inbound_message>
+			MCP2515_bit_modify(MCP2515_CANINTF,0x00, status);
+     968:	43 e0       	ldi	r20, 0x03	; 3
+     96a:	ee cf       	rjmp	.-36     	; 0x948 <CMU_PollandProcess_RxBuffers+0x1e>
+}
+     96c:	df 91       	pop	r29
+     96e:	cf 91       	pop	r28
+     970:	08 95       	ret
+
+00000972 <main>:
+	}
+}
+
+int main(void)
+{
+     972:	cd b7       	in	r28, 0x3d	; 61
+     974:	de b7       	in	r29, 0x3e	; 62
+     976:	68 97       	sbiw	r28, 0x18	; 24
+     978:	0f b6       	in	r0, 0x3f	; 63
+     97a:	f8 94       	cli
+     97c:	de bf       	out	0x3e, r29	; 62
+     97e:	0f be       	out	0x3f, r0	; 63
+     980:	cd bf       	out	0x3d, r28	; 61
+	AMU_eeprom_write(EEPROM_FW_VERSION, 1002);
+     982:	6a ee       	ldi	r22, 0xEA	; 234
+     984:	73 e0       	ldi	r23, 0x03	; 3
+     986:	82 e0       	ldi	r24, 0x02	; 2
+     988:	90 e0       	ldi	r25, 0x00	; 0
+     98a:	99 db       	rcall	.-2254   	; 0xbe <AMU_eeprom_write>
+	AMU_eeprom_write(EEPROM_DEVICE_ID, 2);
+     98c:	62 e0       	ldi	r22, 0x02	; 2
+     98e:	70 e0       	ldi	r23, 0x00	; 0
+     990:	90 e0       	ldi	r25, 0x00	; 0
+     992:	80 e0       	ldi	r24, 0x00	; 0
+     994:	94 db       	rcall	.-2264   	; 0xbe <AMU_eeprom_write>
+	__builtin_avr_delay_cycles(__ticks_dc);
+     996:	8f e3       	ldi	r24, 0x3F	; 63
+     998:	9c e9       	ldi	r25, 0x9C	; 156
+     99a:	01 97       	sbiw	r24, 0x01	; 1
+     99c:	f1 f7       	brne	.-4      	; 0x99a <main+0x28>
+     99e:	00 c0       	rjmp	.+0      	; 0x9a0 <main+0x2e>
+	
+	_delay_ms(10);
+	IO_init();
+     9a0:	00 00       	nop
+	Parameters_init();
+     9a2:	c3 db       	rcall	.-2170   	; 0x12a <IO_init>
+     9a4:	90 db       	rcall	.-2272   	; 0xc6 <Parameters_init>
+	CMU_Wake_reset();
+     9a6:	26 dc       	rcall	.-1972   	; 0x1f4 <CMU_Wake_reset>
+     9a8:	9f ef       	ldi	r25, 0xFF	; 255
+     9aa:	20 e7       	ldi	r18, 0x70	; 112
+     9ac:	32 e0       	ldi	r19, 0x02	; 2
+     9ae:	91 50       	subi	r25, 0x01	; 1
+     9b0:	20 40       	sbci	r18, 0x00	; 0
+     9b2:	30 40       	sbci	r19, 0x00	; 0
+     9b4:	e1 f7       	brne	.-8      	; 0x9ae <main+0x3c>
+     9b6:	00 c0       	rjmp	.+0      	; 0x9b8 <main+0x46>
+	_delay_ms(50);
+	SPI_init();
+     9b8:	00 00       	nop
+	init_cmuData(cmuData); //initialise our struct(s) with valid null data.
+     9ba:	04 d6       	rcall	.+3080   	; 0x15c4 <SPI_init>
+     9bc:	86 ea       	ldi	r24, 0xA6	; 166
+     9be:	92 e0       	ldi	r25, 0x02	; 2
+	CAN_init();	//enable this for AVR CAN
+     9c0:	9b db       	rcall	.-2250   	; 0xf8 <init_cmuData>
+     9c2:	03 d5       	rcall	.+2566   	; 0x13ca <CAN_init>
+	MCP2515_init();
+     9c4:	ab d2       	rcall	.+1366   	; 0xf1c <MCP2515_init>
+     9c6:	8e db       	rcall	.-2276   	; 0xe4 <PCINT_init>
+	PCINT_init();
+     9c8:	bf db       	rcall	.-2178   	; 0x148 <timer_init>
+	timer_init();
+     9ca:	e1 2c       	mov	r14, r1
+     9cc:	f1 2c       	mov	r15, r1
+	CAN_RXInit(5, 4, 0, 0);
+     9ce:	87 01       	movw	r16, r14
+     9d0:	20 e0       	ldi	r18, 0x00	; 0
+     9d2:	30 e0       	ldi	r19, 0x00	; 0
+     9d4:	a9 01       	movw	r20, r18
+     9d6:	64 e0       	ldi	r22, 0x04	; 4
+     9d8:	85 e0       	ldi	r24, 0x05	; 5
+     9da:	2f d5       	rcall	.+2654   	; 0x143a <CAN_RXInit>
+     9dc:	60 e0       	ldi	r22, 0x00	; 0
+     9de:	8c e2       	ldi	r24, 0x2C	; 44
+    //mark the transmit buffer as free. seems hacky, but the first interrupt never actually sets, seeing as the tx buffers were never actually busy.
+	MCP2515_reg_write(MCP2515_CANINTF, 0b00000000);		
+     9e0:	76 d2       	rcall	.+1260   	; 0xece <MCP2515_reg_write>
+     9e2:	78 94       	sei
+     9e4:	10 92 9a 02 	sts	0x029A, r1	; 0x80029a <CMUAudit>
+	sei();
+	CMUAudit = 0;
+     9e8:	1a 8a       	std	Y+18, r1	; 0x12
+
+	uint8_t status = 0; 
+     9ea:	43 e1       	ldi	r20, 0x13	; 19
+	MCP2515_FilterInit(0, AUDIT_RESPONSE); //setup the filter to receive audit responses
+     9ec:	50 e0       	ldi	r21, 0x00	; 0
+     9ee:	60 e0       	ldi	r22, 0x00	; 0
+     9f0:	70 e0       	ldi	r23, 0x00	; 0
+     9f2:	80 e0       	ldi	r24, 0x00	; 0
+     9f4:	16 d3       	rcall	.+1580   	; 0x1022 <MCP2515_FilterInit>
+     9f6:	40 e0       	ldi	r20, 0x00	; 0
+     9f8:	50 e0       	ldi	r21, 0x00	; 0
+	MCP2515_RXInit(0, 0); //setup the buffer to match to the packet type bits
+     9fa:	ba 01       	movw	r22, r20
+     9fc:	80 e0       	ldi	r24, 0x00	; 0
+     9fe:	09 d4       	rcall	.+2066   	; 0x1212 <MCP2515_RXInit>
+     a00:	8f ef       	ldi	r24, 0xFF	; 255
+     a02:	90 e7       	ldi	r25, 0x70	; 112
+     a04:	22 e0       	ldi	r18, 0x02	; 2
+     a06:	81 50       	subi	r24, 0x01	; 1
+     a08:	90 40       	sbci	r25, 0x00	; 0
+     a0a:	20 40       	sbci	r18, 0x00	; 0
+     a0c:	e1 f7       	brne	.-8      	; 0xa06 <main+0x94>
+     a0e:	00 c0       	rjmp	.+0      	; 0xa10 <main+0x9e>
+	_delay_ms(50);
+	CMU_Wake_set();
+     a10:	00 00       	nop
+	LED_on(RED_LED);
+     a12:	ec db       	rcall	.-2088   	; 0x1ec <CMU_Wake_set>
+     a14:	81 e0       	ldi	r24, 0x01	; 1
+     a16:	bb de       	rcall	.-650    	; 0x78e <LED_on>
+	HEARTBEATCOUNTER = 0;
+     a18:	1a ba       	out	0x1a, r1	; 26
+	CMU_WAKE_TIMER = 0;
+     a1a:	19 ba       	out	0x19, r1	; 25
+    //if the number of registered CMU does not match the required number
+	while(CMUAudit != CMU_COUNT)
+     a1c:	80 91 9a 02 	lds	r24, 0x029A	; 0x80029a <CMUAudit>
+     a20:	83 30       	cpi	r24, 0x03	; 3
+     a22:	09 f0       	breq	.+2      	; 0xa26 <main+0xb4>
+     a24:	f6 c0       	rjmp	.+492    	; 0xc12 <main+0x2a0>
+			STATUS_REG &= ~(MCP2515_DataWaiting);
+			MCP2515_reg_write(MCP2515_CANINTF, 0b00000000);
+		}
+	}
+	
+	LED_off(RED_LED);
+     a26:	81 e0       	ldi	r24, 0x01	; 1
+     a28:	bb de       	rcall	.-650    	; 0x7a0 <LED_off>
+     a2a:	e4 db       	rcall	.-2104   	; 0x1f4 <CMU_Wake_reset>
+	CMU_Wake_reset();
+     a2c:	48 ec       	ldi	r20, 0xC8	; 200
+     a2e:	60 e0       	ldi	r22, 0x00	; 0
+	flash_LED(2,YELLOW_LED,200);
+     a30:	82 e0       	ldi	r24, 0x02	; 2
+     a32:	bf de       	rcall	.-642    	; 0x7b2 <flash_LED>
+     a34:	9f ef       	ldi	r25, 0xFF	; 255
+     a36:	29 e6       	ldi	r18, 0x69	; 105
+     a38:	38 e1       	ldi	r19, 0x18	; 24
+     a3a:	91 50       	subi	r25, 0x01	; 1
+     a3c:	20 40       	sbci	r18, 0x00	; 0
+     a3e:	30 40       	sbci	r19, 0x00	; 0
+     a40:	e1 f7       	brne	.-8      	; 0xa3a <main+0xc8>
+     a42:	00 c0       	rjmp	.+0      	; 0xa44 <main+0xd2>
+     a44:	00 00       	nop
+     a46:	f2 9b       	sbis	0x1e, 2	; 30
+     a48:	fe cf       	rjmp	.-4      	; 0xa46 <main+0xd4>
+     a4a:	81 e0       	ldi	r24, 0x01	; 1
+	//MCP2515_FilterInit(0, 0);
+	//MCP2515_FilterInit(1, 0);
+	//MCP2515_RXInit(0, 0);	//setup the buffer to match to the packet type bits
+	//MCP2515_RXInit(1, 0);	//setup the buffer to match to the packet type bits
+	
+	while(!(STATUS_REG & MODE_HEARTBEATRECVD));
+     a4c:	80 93 a2 02 	sts	0x02A2, r24	; 0x8002a2 <CMUTimeToScan>
+	CMUTimeToScan = 1;
+     a50:	ce 01       	movw	r24, r28
+     a52:	01 96       	adiw	r24, 0x01	; 1
+     a54:	4c 01       	movw	r8, r24
+    // Loop forever
+    while(1)
+    {
+		if(STATUS_REG & MODE_BALANCING)
+		{
+			uint8_t balanceInstruction[5] = { (uint8_t)(3700>>8),(uint8_t)(3700),45,0,0};
+     a56:	66 24       	eor	r6, r6
+     a58:	6a 94       	dec	r6
+     a5a:	76 2c       	mov	r7, r6
+			CMUTimeToScan = 0;
+			
+		}
+		if(STATUS_REG & MODE_HEARTBEATRECVD)
+		{
+			uint16_t min_temp = 0xFFFF;		//set it to maximum value
+     a5c:	1e 01       	movw	r2, r28
+     a5e:	96 e0       	ldi	r25, 0x06	; 6
+     a60:	29 0e       	add	r2, r25
+			uint16_t max_volt = 0x00;
+			uint32_t avgVSum = 0;
+			uint32_t avgTSum = 0;
+			for(uint8_t i = 0; i<CMU_COUNT; i++)
+			{
+				TX_cellVoltage(cmuData[i], &max_volt, &min_volt, &avgVSum);
+     a62:	31 1c       	adc	r3, r1
+     a64:	9e 01       	movw	r18, r28
+     a66:	24 5f       	subi	r18, 0xF4	; 244
+     a68:	3f 4f       	sbci	r19, 0xFF	; 255
+     a6a:	3c 8b       	std	Y+20, r19	; 0x14
+     a6c:	2b 8b       	std	Y+19, r18	; 0x13
+     a6e:	ce 01       	movw	r24, r28
+     a70:	0a 96       	adiw	r24, 0x0a	; 10
+     a72:	9e 8b       	std	Y+22, r25	; 0x16
+     a74:	8d 8b       	std	Y+21, r24	; 0x15
+     a76:	2c 5f       	subi	r18, 0xFC	; 252
+     a78:	3f 4f       	sbci	r19, 0xFF	; 255
+				TX_cellTemps(cmuData[i], &max_temp, &min_temp, &avgTSum);
+     a7a:	38 8f       	std	Y+24, r19	; 0x18
+     a7c:	2f 8b       	std	Y+23, r18	; 0x17
+     a7e:	2e 01       	movw	r4, r28
+     a80:	3e e0       	ldi	r19, 0x0E	; 14
+     a82:	43 0e       	add	r4, r19
+     a84:	51 1c       	adc	r5, r1
+     a86:	f1 9b       	sbis	0x1e, 1	; 30
+		if(STATUS_REG & MODE_BALANCING)
+     a88:	ec c0       	rjmp	.+472    	; 0xc62 <main+0x2f0>
+     a8a:	85 e0       	ldi	r24, 0x05	; 5
+			uint8_t balanceInstruction[5] = { (uint8_t)(3700>>8),(uint8_t)(3700),45,0,0};
+     a8c:	e2 e9       	ldi	r30, 0x92	; 146
+     a8e:	f2 e0       	ldi	r31, 0x02	; 2
+     a90:	d4 01       	movw	r26, r8
+     a92:	01 90       	ld	r0, Z+
+     a94:	0d 92       	st	X+, r0
+     a96:	8a 95       	dec	r24
+     a98:	e1 f7       	brne	.-8      	; 0xa92 <main+0x120>
+			MCP2515_TX(MCP2515_findFreeTxBuffer(),sizeof(balanceInstruction),balanceInstruction,((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|BALANCE_ON);
+     a9a:	af d2       	rcall	.+1374   	; 0xffa <MCP2515_findFreeTxBuffer>
+     a9c:	04 e1       	ldi	r16, 0x14	; 20
+     a9e:	10 e0       	ldi	r17, 0x00	; 0
+     aa0:	24 e0       	ldi	r18, 0x04	; 4
+     aa2:	38 e0       	ldi	r19, 0x08	; 8
+     aa4:	a4 01       	movw	r20, r8
+     aa6:	65 e0       	ldi	r22, 0x05	; 5
+     aa8:	21 d4       	rcall	.+2114   	; 0x12ec <MCP2515_TX>
+			PORTD &= ~(1<<PIND7);
+     aaa:	5f 98       	cbi	0x0b, 7	; 11
+		if(CMUTimeToScan) //if the program indicates that we will need new cell information, send wake signals.
+     aac:	80 91 a2 02 	lds	r24, 0x02A2	; 0x8002a2 <CMUTimeToScan>
+     ab0:	88 23       	and	r24, r24
+     ab2:	41 f1       	breq	.+80     	; 0xb04 <main+0x192>
+			CMU_data_count = 0;
+     ab4:	10 92 9d 02 	sts	0x029D, r1	; 0x80029d <CMU_data_count>
+			CMU_Wake_set();
+     ab8:	99 db       	rcall	.-2254   	; 0x1ec <CMU_Wake_set>
+     aba:	8f e1       	ldi	r24, 0x1F	; 31
+     abc:	9e e4       	ldi	r25, 0x4E	; 78
+     abe:	01 97       	sbiw	r24, 0x01	; 1
+     ac0:	f1 f7       	brne	.-4      	; 0xabe <main+0x14c>
+     ac2:	00 c0       	rjmp	.+0      	; 0xac4 <main+0x152>
+			if((STATUS_REG & MODE_HEARTBEATRECVD)==0)
+     ac4:	00 00       	nop
+				STATUS_REG &= ~MODE_BALANCING;
+     ac6:	f2 9b       	sbis	0x1e, 2	; 30
+			if(STATUS_REG & MODE_BALANCING)
+     ac8:	f1 98       	cbi	0x1e, 1	; 30
+     aca:	f1 9b       	sbis	0x1e, 1	; 30
+			{ CMU_Wake_set(); }
+     acc:	cc c0       	rjmp	.+408    	; 0xc66 <main+0x2f4>
+			LED_on(RED_LED);
+     ace:	8e db       	rcall	.-2276   	; 0x1ec <CMU_Wake_set>
+     ad0:	81 e0       	ldi	r24, 0x01	; 1
+     ad2:	5d de       	rcall	.-838    	; 0x78e <LED_on>
+			CMU_WAKE_TIMER = 0;
+     ad4:	19 ba       	out	0x19, r1	; 25
+				if(CMU_WAKE_TIMER > TIM_1_SEC) error_state(ERROR_CMU_TIMEOUT);
+     ad6:	89 b3       	in	r24, 0x19	; 25
+     ad8:	8e 33       	cpi	r24, 0x3E	; 62
+     ada:	08 f0       	brcs	.+2      	; 0xade <main+0x16c>
+     adc:	b1 c0       	rjmp	.+354    	; 0xc40 <main+0x2ce>
+				if(STATUS_REG & MCP2515_DataWaiting)
+     ade:	f7 9b       	sbis	0x1e, 7	; 30
+     ae0:	09 c0       	rjmp	.+18     	; 0xaf4 <main+0x182>
+					status = MCP2515_reg_read(MCP2515_CANINTF);
+     ae2:	8c e2       	ldi	r24, 0x2C	; 44
+     ae4:	7e d2       	rcall	.+1276   	; 0xfe2 <MCP2515_reg_read>
+     ae6:	8a 8b       	std	Y+18, r24	; 0x12
+     ae8:	83 70       	andi	r24, 0x03	; 3
+					if(status & 3)
+     aea:	21 f0       	breq	.+8      	; 0xaf4 <main+0x182>
+     aec:	86 ea       	ldi	r24, 0xA6	; 166
+						CMU_PollandProcess_RxBuffers(cmuData);	//if the program has indicated there is data waiting on the MCP2515, process this data.
+     aee:	92 e0       	ldi	r25, 0x02	; 2
+     af0:	1c df       	rcall	.-456    	; 0x92a <CMU_PollandProcess_RxBuffers>
+     af2:	f7 98       	cbi	0x1e, 7	; 30
+     af4:	80 91 9d 02 	lds	r24, 0x029D	; 0x80029d <CMU_data_count>
+			}while(CMU_data_count != CMU_COUNT*4);
+     af8:	8c 30       	cpi	r24, 0x0C	; 12
+     afa:	69 f7       	brne	.-38     	; 0xad6 <main+0x164>
+     afc:	81 e0       	ldi	r24, 0x01	; 1
+     afe:	50 de       	rcall	.-864    	; 0x7a0 <LED_off>
+			LED_off(RED_LED);
+     b00:	10 92 a2 02 	sts	0x02A2, r1	; 0x8002a2 <CMUTimeToScan>
+     b04:	f2 9b       	sbis	0x1e, 2	; 30
+			CMUTimeToScan = 0;
+     b06:	b1 c0       	rjmp	.+354    	; 0xc6a <main+0x2f8>
+     b08:	79 8a       	std	Y+17, r7	; 0x11
+		if(STATUS_REG & MODE_HEARTBEATRECVD)
+     b0a:	68 8a       	std	Y+16, r6	; 0x10
+     b0c:	1f 86       	std	Y+15, r1	; 0x0f
+			uint16_t min_temp = 0xFFFF;		//set it to maximum value
+     b0e:	1e 86       	std	Y+14, r1	; 0x0e
+     b10:	7d 86       	std	Y+13, r7	; 0x0d
+			uint16_t max_temp = 0x00;		//set it to minimum value
+     b12:	6c 86       	std	Y+12, r6	; 0x0c
+     b14:	1b 86       	std	Y+11, r1	; 0x0b
+			uint16_t min_volt = 0xFFFF;
+     b16:	1a 86       	std	Y+10, r1	; 0x0a
+     b18:	1e 82       	std	Y+6, r1	; 0x06
+			uint16_t max_volt = 0x00;
+     b1a:	1f 82       	std	Y+7, r1	; 0x07
+     b1c:	18 86       	std	Y+8, r1	; 0x08
+			uint32_t avgVSum = 0;
+     b1e:	19 86       	std	Y+9, r1	; 0x09
+     b20:	19 82       	std	Y+1, r1	; 0x01
+     b22:	1a 82       	std	Y+2, r1	; 0x02
+     b24:	1b 82       	std	Y+3, r1	; 0x03
+			uint32_t avgTSum = 0;
+     b26:	1c 82       	std	Y+4, r1	; 0x04
+     b28:	10 e0       	ldi	r17, 0x00	; 0
+     b2a:	00 e0       	ldi	r16, 0x00	; 0
+     b2c:	3f 92       	push	r3
+     b2e:	2f 92       	push	r2
+     b30:	9c 89       	ldd	r25, Y+20	; 0x14
+				TX_cellVoltage(cmuData[i], &max_volt, &min_volt, &avgVSum);
+     b32:	9f 93       	push	r25
+     b34:	2b 89       	ldd	r18, Y+19	; 0x13
+     b36:	2f 93       	push	r18
+     b38:	3e 89       	ldd	r19, Y+22	; 0x16
+     b3a:	3f 93       	push	r19
+     b3c:	8d 89       	ldd	r24, Y+21	; 0x15
+     b3e:	8f 93       	push	r24
+     b40:	22 e2       	ldi	r18, 0x22	; 34
+     b42:	20 9f       	mul	r18, r16
+     b44:	c0 01       	movw	r24, r0
+     b46:	21 9f       	mul	r18, r17
+     b48:	90 0d       	add	r25, r0
+     b4a:	11 24       	eor	r1, r1
+     b4c:	9c 01       	movw	r18, r24
+     b4e:	2a 55       	subi	r18, 0x5A	; 90
+     b50:	3d 4f       	sbci	r19, 0xFD	; 253
+     b52:	79 01       	movw	r14, r18
+     b54:	8d b7       	in	r24, 0x3d	; 61
+     b56:	9e b7       	in	r25, 0x3e	; 62
+     b58:	82 97       	sbiw	r24, 0x22	; 34
+     b5a:	0f b6       	in	r0, 0x3f	; 63
+     b5c:	f8 94       	cli
+     b5e:	9e bf       	out	0x3e, r25	; 62
+     b60:	0f be       	out	0x3f, r0	; 63
+     b62:	8d bf       	out	0x3d, r24	; 61
+     b64:	ad b7       	in	r26, 0x3d	; 61
+     b66:	be b7       	in	r27, 0x3e	; 62
+     b68:	11 96       	adiw	r26, 0x01	; 1
+     b6a:	f9 01       	movw	r30, r18
+     b6c:	82 e2       	ldi	r24, 0x22	; 34
+     b6e:	01 90       	ld	r0, Z+
+     b70:	0d 92       	st	X+, r0
+     b72:	8a 95       	dec	r24
+     b74:	e1 f7       	brne	.-8      	; 0xb6e <main+0x1fc>
+     b76:	ab dc       	rcall	.-1706   	; 0x4ce <TX_cellVoltage>
+     b78:	0f b6       	in	r0, 0x3f	; 63
+     b7a:	f8 94       	cli
+     b7c:	de bf       	out	0x3e, r29	; 62
+				TX_cellTemps(cmuData[i], &max_temp, &min_temp, &avgTSum);
+     b7e:	0f be       	out	0x3f, r0	; 63
+     b80:	cd bf       	out	0x3d, r28	; 61
+     b82:	9f 92       	push	r9
+     b84:	8f 92       	push	r8
+     b86:	38 8d       	ldd	r19, Y+24	; 0x18
+     b88:	3f 93       	push	r19
+     b8a:	8f 89       	ldd	r24, Y+23	; 0x17
+     b8c:	8f 93       	push	r24
+     b8e:	5f 92       	push	r5
+     b90:	4f 92       	push	r4
+     b92:	2d b7       	in	r18, 0x3d	; 61
+     b94:	3e b7       	in	r19, 0x3e	; 62
+     b96:	22 52       	subi	r18, 0x22	; 34
+     b98:	31 09       	sbc	r19, r1
+     b9a:	0f b6       	in	r0, 0x3f	; 63
+     b9c:	f8 94       	cli
+     b9e:	3e bf       	out	0x3e, r19	; 62
+     ba0:	0f be       	out	0x3f, r0	; 63
+     ba2:	2d bf       	out	0x3d, r18	; 61
+     ba4:	ad b7       	in	r26, 0x3d	; 61
+     ba6:	be b7       	in	r27, 0x3e	; 62
+     ba8:	11 96       	adiw	r26, 0x01	; 1
+     baa:	f7 01       	movw	r30, r14
+     bac:	82 e2       	ldi	r24, 0x22	; 34
+     bae:	01 90       	ld	r0, Z+
+     bb0:	0d 92       	st	X+, r0
+     bb2:	8a 95       	dec	r24
+     bb4:	e1 f7       	brne	.-8      	; 0xbae <main+0x23c>
+     bb6:	c0 db       	rcall	.-2176   	; 0x338 <TX_cellTemps>
+     bb8:	0f 5f       	subi	r16, 0xFF	; 255
+     bba:	1f 4f       	sbci	r17, 0xFF	; 255
+     bbc:	0f b6       	in	r0, 0x3f	; 63
+     bbe:	f8 94       	cli
+			for(uint8_t i = 0; i<CMU_COUNT; i++)
+     bc0:	de bf       	out	0x3e, r29	; 62
+     bc2:	0f be       	out	0x3f, r0	; 63
+     bc4:	cd bf       	out	0x3d, r28	; 61
+     bc6:	03 30       	cpi	r16, 0x03	; 3
+     bc8:	11 05       	cpc	r17, r1
+     bca:	09 f0       	breq	.+2      	; 0xbce <main+0x25c>
+     bcc:	af cf       	rjmp	.-162    	; 0xb2c <main+0x1ba>
+     bce:	a9 80       	ldd	r10, Y+1	; 0x01
+     bd0:	ba 80       	ldd	r11, Y+2	; 0x02
+			}
+			TX_globalData( max_volt, min_volt, max_temp, min_temp, avgVSum, avgTSum);
+     bd2:	cb 80       	ldd	r12, Y+3	; 0x03
+     bd4:	dc 80       	ldd	r13, Y+4	; 0x04
+     bd6:	ee 80       	ldd	r14, Y+6	; 0x06
+     bd8:	ff 80       	ldd	r15, Y+7	; 0x07
+     bda:	08 85       	ldd	r16, Y+8	; 0x08
+     bdc:	19 85       	ldd	r17, Y+9	; 0x09
+     bde:	28 89       	ldd	r18, Y+16	; 0x10
+     be0:	39 89       	ldd	r19, Y+17	; 0x11
+     be2:	4e 85       	ldd	r20, Y+14	; 0x0e
+     be4:	5f 85       	ldd	r21, Y+15	; 0x0f
+     be6:	6c 85       	ldd	r22, Y+12	; 0x0c
+     be8:	7d 85       	ldd	r23, Y+13	; 0x0d
+     bea:	8a 85       	ldd	r24, Y+10	; 0x0a
+     bec:	9b 85       	ldd	r25, Y+11	; 0x0b
+     bee:	36 dd       	rcall	.-1428   	; 0x65c <TX_globalData>
+     bf0:	f2 98       	cbi	0x1e, 2	; 30
+			//CoulombCount_readAndUpdate();
+			STATUS_REG &= ~MODE_HEARTBEATRECVD;
+     bf2:	8a 85       	ldd	r24, Y+10	; 0x0a
+			if(max_volt > CELL_V_ERR_MAX || min_volt < CELL_V_ERR_MIN || max_temp > CELL_T_ERR_MAX || min_temp < CELL_T_ERR_MIN)
+     bf4:	9b 85       	ldd	r25, Y+11	; 0x0b
+     bf6:	85 39       	cpi	r24, 0x95	; 149
+     bf8:	91 41       	sbci	r25, 0x11	; 17
+     bfa:	48 f4       	brcc	.+18     	; 0xc0e <main+0x29c>
+     bfc:	8c 85       	ldd	r24, Y+12	; 0x0c
+     bfe:	9d 85       	ldd	r25, Y+13	; 0x0d
+     c00:	84 35       	cpi	r24, 0x54	; 84
+     c02:	9b 40       	sbci	r25, 0x0B	; 11
+     c04:	20 f0       	brcs	.+8      	; 0xc0e <main+0x29c>
+     c06:	8e 85       	ldd	r24, Y+14	; 0x0e
+     c08:	9f 85       	ldd	r25, Y+15	; 0x0f
+     c0a:	c3 97       	sbiw	r24, 0x33	; 51
+				error_state(ERROR_V_T_OOR);
+     c0c:	70 f1       	brcs	.+92     	; 0xc6a <main+0x2f8>
+     c0e:	81 e0       	ldi	r24, 0x01	; 1
+		flash_LED(1,YELLOW_LED,50);
+     c10:	18 c0       	rjmp	.+48     	; 0xc42 <main+0x2d0>
+     c12:	42 e3       	ldi	r20, 0x32	; 50
+     c14:	60 e0       	ldi	r22, 0x00	; 0
+     c16:	81 e0       	ldi	r24, 0x01	; 1
+		MCP2515_TX(MCP2515_findFreeTxBuffer(), 0, &status, ((uint32_t)1<<27)|((uint32_t)DEVICE_ID<<18)|AUDIT_REQUEST );
+     c18:	cc dd       	rcall	.-1128   	; 0x7b2 <flash_LED>
+     c1a:	ef d1       	rcall	.+990    	; 0xffa <MCP2515_findFreeTxBuffer>
+     c1c:	01 e1       	ldi	r16, 0x11	; 17
+     c1e:	10 e0       	ldi	r17, 0x00	; 0
+     c20:	24 e0       	ldi	r18, 0x04	; 4
+     c22:	38 e0       	ldi	r19, 0x08	; 8
+     c24:	ae 01       	movw	r20, r28
+     c26:	4e 5e       	subi	r20, 0xEE	; 238
+     c28:	5f 4f       	sbci	r21, 0xFF	; 255
+     c2a:	60 e0       	ldi	r22, 0x00	; 0
+     c2c:	5f d3       	rcall	.+1726   	; 0x12ec <MCP2515_TX>
+     c2e:	8f e1       	ldi	r24, 0x1F	; 31
+     c30:	9e e4       	ldi	r25, 0x4E	; 78
+     c32:	01 97       	sbiw	r24, 0x01	; 1
+     c34:	f1 f7       	brne	.-4      	; 0xc32 <main+0x2c0>
+     c36:	00 c0       	rjmp	.+0      	; 0xc38 <main+0x2c6>
+		if(CMU_WAKE_TIMER > TIM_1_SEC)error_state(ERROR_CMU_TIMEOUT);
+     c38:	00 00       	nop
+     c3a:	89 b3       	in	r24, 0x19	; 25
+     c3c:	8e 33       	cpi	r24, 0x3E	; 62
+				error_state(ERROR_V_T_OOR);
+     c3e:	10 f0       	brcs	.+4      	; 0xc44 <main+0x2d2>
+     c40:	85 e0       	ldi	r24, 0x05	; 5
+		if(STATUS_REG & MCP2515_DataWaiting)
+     c42:	f4 dd       	rcall	.-1048   	; 0x82c <error_state>
+     c44:	f7 9b       	sbis	0x1e, 7	; 30
+			status = MCP2515_reg_read(MCP2515_CANINTF);
+     c46:	ea ce       	rjmp	.-556    	; 0xa1c <main+0xaa>
+     c48:	8c e2       	ldi	r24, 0x2C	; 44
+     c4a:	cb d1       	rcall	.+918    	; 0xfe2 <MCP2515_reg_read>
+     c4c:	8a 8b       	std	Y+18, r24	; 0x12
+			if(status & 3)
+     c4e:	83 70       	andi	r24, 0x03	; 3
+     c50:	19 f0       	breq	.+6      	; 0xc58 <main+0x2e6>
+				CMU_PollandProcess_RxBuffers(cmuData);
+     c52:	86 ea       	ldi	r24, 0xA6	; 166
+     c54:	92 e0       	ldi	r25, 0x02	; 2
+     c56:	69 de       	rcall	.-814    	; 0x92a <CMU_PollandProcess_RxBuffers>
+     c58:	f7 98       	cbi	0x1e, 7	; 30
+			STATUS_REG &= ~(MCP2515_DataWaiting);
+     c5a:	60 e0       	ldi	r22, 0x00	; 0
+			MCP2515_reg_write(MCP2515_CANINTF, 0b00000000);
+     c5c:	8c e2       	ldi	r24, 0x2C	; 44
+     c5e:	37 d1       	rcall	.+622    	; 0xece <MCP2515_reg_write>
+     c60:	dd ce       	rjmp	.-582    	; 0xa1c <main+0xaa>
+     c62:	5f 9a       	sbi	0x0b, 7	; 11
+     c64:	23 cf       	rjmp	.-442    	; 0xaac <main+0x13a>
+			PORTD |= (1<<PIND7);
+     c66:	c6 da       	rcall	.-2676   	; 0x1f4 <CMU_Wake_reset>
+			break;
+     c68:	33 cf       	rjmp	.-410    	; 0xad0 <main+0x15e>
+			{ CMU_Wake_reset(); }
+     c6a:	e1 2c       	mov	r14, r1
+     c6c:	f1 2c       	mov	r15, r1
+     c6e:	00 e0       	ldi	r16, 0x00	; 0
+		}
+		CAN_RXInit(5,0,CCmsk,CC);
+     c70:	18 e0       	ldi	r17, 0x08	; 8
+     c72:	20 e0       	ldi	r18, 0x00	; 0
+     c74:	30 e0       	ldi	r19, 0x00	; 0
+     c76:	40 e0       	ldi	r20, 0x00	; 0
+     c78:	58 e0       	ldi	r21, 0x08	; 8
+     c7a:	60 e0       	ldi	r22, 0x00	; 0
+     c7c:	85 e0       	ldi	r24, 0x05	; 5
+     c7e:	dd d3       	rcall	.+1978   	; 0x143a <CAN_RXInit>
+     c80:	8f ef       	ldi	r24, 0xFF	; 255
+     c82:	90 e7       	ldi	r25, 0x70	; 112
+     c84:	22 e0       	ldi	r18, 0x02	; 2
+     c86:	81 50       	subi	r24, 0x01	; 1
+     c88:	90 40       	sbci	r25, 0x00	; 0
+     c8a:	20 40       	sbci	r18, 0x00	; 0
+     c8c:	e1 f7       	brne	.-8      	; 0xc86 <main+0x314>
+     c8e:	00 c0       	rjmp	.+0      	; 0xc90 <main+0x31e>
+     c90:	00 00       	nop
+     c92:	f9 ce       	rjmp	.-526    	; 0xa86 <main+0x114>
+
+00000c94 <__vector_22>:
+     c94:	1f 92       	push	r1
+     c96:	0f 92       	push	r0
+     c98:	0f b6       	in	r0, 0x3f	; 63
+     c9a:	0f 92       	push	r0
+//	//upon signal of the RX0 buffer full pin,
+//	PCIFR |= (1<<PCIE3);				//should clear on this execution routine.
+//}
+
+ISR(PCINT0_vect)
+{
+     c9c:	11 24       	eor	r1, r1
+     c9e:	2f 93       	push	r18
+     ca0:	3f 93       	push	r19
+     ca2:	4f 93       	push	r20
+     ca4:	5f 93       	push	r21
+     ca6:	6f 93       	push	r22
+     ca8:	7f 93       	push	r23
+     caa:	8f 93       	push	r24
+     cac:	9f 93       	push	r25
+     cae:	af 93       	push	r26
+     cb0:	bf 93       	push	r27
+     cb2:	ef 93       	push	r30
+     cb4:	ff 93       	push	r31
+	//upon signal of the INT pin.
+	LED_off(RED_LED);
+     cb6:	81 e0       	ldi	r24, 0x01	; 1
+     cb8:	73 dd       	rcall	.-1306   	; 0x7a0 <LED_off>
+	if(PINB & ~(1<<PINB3))		//if the pin is low
+     cba:	83 b1       	in	r24, 0x03	; 3
+     cbc:	87 7f       	andi	r24, 0xF7	; 247
+     cbe:	09 f0       	breq	.+2      	; 0xcc2 <__vector_22+0x2e>
+	{
+		STATUS_REG |= MCP2515_DataWaiting;
+     cc0:	f7 9a       	sbi	0x1e, 7	; 30
+	}
+	PCIFR |= (1<<PCIE0);								//clear the interrupt.
+     cc2:	d8 9a       	sbi	0x1b, 0	; 27
+}
+     cc4:	ff 91       	pop	r31
+     cc6:	ef 91       	pop	r30
+     cc8:	bf 91       	pop	r27
+     cca:	af 91       	pop	r26
+     ccc:	9f 91       	pop	r25
+     cce:	8f 91       	pop	r24
+     cd0:	7f 91       	pop	r23
+     cd2:	6f 91       	pop	r22
+     cd4:	5f 91       	pop	r21
+     cd6:	4f 91       	pop	r20
+     cd8:	3f 91       	pop	r19
+     cda:	2f 91       	pop	r18
+     cdc:	0f 90       	pop	r0
+     cde:	0f be       	out	0x3f, r0	; 63
+     ce0:	0f 90       	pop	r0
+     ce2:	1f 90       	pop	r1
+     ce4:	18 95       	reti
+
+00000ce6 <__vector_18>:
+
+ISR(CAN_INT_vect)
+{
+     ce6:	1f 92       	push	r1
+     ce8:	0f 92       	push	r0
+     cea:	0f b6       	in	r0, 0x3f	; 63
+     cec:	0f 92       	push	r0
+     cee:	11 24       	eor	r1, r1
+     cf0:	ef 92       	push	r14
+     cf2:	ff 92       	push	r15
+     cf4:	0f 93       	push	r16
+     cf6:	1f 93       	push	r17
+     cf8:	2f 93       	push	r18
+     cfa:	3f 93       	push	r19
+     cfc:	4f 93       	push	r20
+     cfe:	5f 93       	push	r21
+     d00:	6f 93       	push	r22
+     d02:	7f 93       	push	r23
+     d04:	8f 93       	push	r24
+     d06:	9f 93       	push	r25
+     d08:	af 93       	push	r26
+     d0a:	bf 93       	push	r27
+     d0c:	ef 93       	push	r30
+     d0e:	ff 93       	push	r31
+	//CANIDT4 is l
+	if(CANSIT2 & (1 << SIT5))	//we received a CAN message on mob 5, which is set up to receive exclusively from the Chassis controller.
+     d10:	80 91 e0 00 	lds	r24, 0x00E0	; 0x8000e0 <__TEXT_REGION_LENGTH__+0x7e00e0>
+     d14:	85 ff       	sbrs	r24, 5
+     d16:	56 c0       	rjmp	.+172    	; 0xdc4 <__vector_18+0xde>
+	{
+		CANPAGE = (5 << 4);			//set the canpage to the receiver MOB
+     d18:	80 e5       	ldi	r24, 0x50	; 80
+     d1a:	80 93 ed 00 	sts	0x00ED, r24	; 0x8000ed <__TEXT_REGION_LENGTH__+0x7e00ed>
+		CANSTMOB &= ~(1 << RXOK);	//unset the RXOK bit to clear the interrupt.
+     d1e:	80 91 ee 00 	lds	r24, 0x00EE	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+     d22:	8f 7d       	andi	r24, 0xDF	; 223
+     d24:	80 93 ee 00 	sts	0x00EE, r24	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+		if((CANIDT1 == ((1<<6)|(1<<4))) && (CANIDT2==deviceID) && ((CANIDT4>>3)==CC_HEARTBEAT) )	//if the received ID has a heartbeat packet
+     d28:	80 91 f3 00 	lds	r24, 0x00F3	; 0x8000f3 <__TEXT_REGION_LENGTH__+0x7e00f3>
+     d2c:	80 35       	cpi	r24, 0x50	; 80
+     d2e:	e9 f4       	brne	.+58     	; 0xd6a <__vector_18+0x84>
+     d30:	20 91 f2 00 	lds	r18, 0x00F2	; 0x8000f2 <__TEXT_REGION_LENGTH__+0x7e00f2>
+     d34:	80 91 0c 03 	lds	r24, 0x030C	; 0x80030c <deviceID>
+     d38:	90 91 0d 03 	lds	r25, 0x030D	; 0x80030d <deviceID+0x1>
+     d3c:	28 17       	cp	r18, r24
+     d3e:	19 06       	cpc	r1, r25
+     d40:	a1 f4       	brne	.+40     	; 0xd6a <__vector_18+0x84>
+     d42:	80 91 f0 00 	lds	r24, 0x00F0	; 0x8000f0 <__TEXT_REGION_LENGTH__+0x7e00f0>
+     d46:	86 95       	lsr	r24
+     d48:	86 95       	lsr	r24
+     d4a:	86 95       	lsr	r24
+     d4c:	81 30       	cpi	r24, 0x01	; 1
+     d4e:	69 f4       	brne	.+26     	; 0xd6a <__vector_18+0x84>
+		{
+			STATUS_REG |= MODE_HEARTBEATRECVD;
+     d50:	f2 9a       	sbi	0x1e, 2	; 30
+			HEARTBEATCOUNTER = 0;
+     d52:	1a ba       	out	0x1a, r1	; 26
+			uint32_t heartbeat =	(uint32_t)CANMSG<<24;	//byte 0
+     d54:	80 91 fa 00 	lds	r24, 0x00FA	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+			heartbeat |= (uint32_t)CANMSG<<16;				//byte 1
+     d58:	80 91 fa 00 	lds	r24, 0x00FA	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+			heartbeat |= (uint32_t)CANMSG<<8;				//byte 2
+     d5c:	80 91 fa 00 	lds	r24, 0x00FA	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+			heartbeat |= (uint32_t)CANMSG;					//byte 3
+     d60:	80 91 fa 00 	lds	r24, 0x00FA	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+
+			if((heartbeat&1) == 1)
+     d64:	80 ff       	sbrs	r24, 0
+     d66:	4b c0       	rjmp	.+150    	; 0xdfe <__vector_18+0x118>
+				STATUS_REG |= MODE_BALANCING;
+     d68:	f1 9a       	sbi	0x1e, 1	; 30
+			else
+				STATUS_REG &= ~MODE_BALANCING;
+			///considering we got a heartbeat, we will send voltages back here. TBA
+
+		}
+		if((CANIDT1 == ((1<<6)|(1<<4))) && (CANIDT2==deviceID) && ((CANIDT4>>3)==CC_MODE_CHANGE) )	//if the received ID has a mode change packet
+     d6a:	80 91 f3 00 	lds	r24, 0x00F3	; 0x8000f3 <__TEXT_REGION_LENGTH__+0x7e00f3>
+     d6e:	80 35       	cpi	r24, 0x50	; 80
+     d70:	f1 f4       	brne	.+60     	; 0xdae <__vector_18+0xc8>
+     d72:	20 91 f2 00 	lds	r18, 0x00F2	; 0x8000f2 <__TEXT_REGION_LENGTH__+0x7e00f2>
+     d76:	80 91 0c 03 	lds	r24, 0x030C	; 0x80030c <deviceID>
+     d7a:	90 91 0d 03 	lds	r25, 0x030D	; 0x80030d <deviceID+0x1>
+     d7e:	28 17       	cp	r18, r24
+     d80:	19 06       	cpc	r1, r25
+     d82:	a9 f4       	brne	.+42     	; 0xdae <__vector_18+0xc8>
+     d84:	80 91 f0 00 	lds	r24, 0x00F0	; 0x8000f0 <__TEXT_REGION_LENGTH__+0x7e00f0>
+     d88:	86 95       	lsr	r24
+     d8a:	86 95       	lsr	r24
+     d8c:	86 95       	lsr	r24
+     d8e:	80 31       	cpi	r24, 0x10	; 16
+     d90:	71 f4       	brne	.+28     	; 0xdae <__vector_18+0xc8>
+		{
+			uint16_t modeAddress =	CANMSG<<8;	//byte 0
+     d92:	30 91 fa 00 	lds	r19, 0x00FA	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+			modeAddress |= CANMSG;				//byte 1
+     d96:	20 91 fa 00 	lds	r18, 0x00FA	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+			uint16_t modeValue	=	CANMSG<<8;	//byte 2
+     d9a:	90 91 fa 00 	lds	r25, 0x00FA	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+			modeValue  |= CANMSG;				//byte 3
+     d9e:	80 91 fa 00 	lds	r24, 0x00FA	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+			switch(modeAddress)
+     da2:	21 30       	cpi	r18, 0x01	; 1
+     da4:	31 05       	cpc	r19, r1
+     da6:	19 f4       	brne	.+6      	; 0xdae <__vector_18+0xc8>
+			{
+				case 1:
+					if(modeValue)
+     da8:	89 2b       	or	r24, r25
+     daa:	59 f1       	breq	.+86     	; 0xe02 <__vector_18+0x11c>
+						STATUS_REG |= MODE_BALANCING;
+     dac:	f1 9a       	sbi	0x1e, 1	; 30
+				default:
+					break;
+			}
+
+		}
+		CAN_RXInit(5,0,CCmsk,CC);
+     dae:	e1 2c       	mov	r14, r1
+     db0:	f1 2c       	mov	r15, r1
+     db2:	00 e0       	ldi	r16, 0x00	; 0
+     db4:	18 e0       	ldi	r17, 0x08	; 8
+     db6:	20 e0       	ldi	r18, 0x00	; 0
+     db8:	30 e0       	ldi	r19, 0x00	; 0
+     dba:	40 e0       	ldi	r20, 0x00	; 0
+     dbc:	58 e0       	ldi	r21, 0x08	; 8
+     dbe:	60 e0       	ldi	r22, 0x00	; 0
+     dc0:	85 e0       	ldi	r24, 0x05	; 5
+     dc2:	3b d3       	rcall	.+1654   	; 0x143a <CAN_RXInit>
+
+	}
+	CANPAGE = (5 << 4);			//set the canpage to the receiver MOB
+     dc4:	80 e5       	ldi	r24, 0x50	; 80
+     dc6:	80 93 ed 00 	sts	0x00ED, r24	; 0x8000ed <__TEXT_REGION_LENGTH__+0x7e00ed>
+	CANSTMOB &= ~(1 << RXOK);	//unset the RXOK bit to clear the interrupt.
+     dca:	80 91 ee 00 	lds	r24, 0x00EE	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+     dce:	8f 7d       	andi	r24, 0xDF	; 223
+     dd0:	80 93 ee 00 	sts	0x00EE, r24	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+}
+     dd4:	ff 91       	pop	r31
+     dd6:	ef 91       	pop	r30
+     dd8:	bf 91       	pop	r27
+     dda:	af 91       	pop	r26
+     ddc:	9f 91       	pop	r25
+     dde:	8f 91       	pop	r24
+     de0:	7f 91       	pop	r23
+     de2:	6f 91       	pop	r22
+     de4:	5f 91       	pop	r21
+     de6:	4f 91       	pop	r20
+     de8:	3f 91       	pop	r19
+     dea:	2f 91       	pop	r18
+     dec:	1f 91       	pop	r17
+     dee:	0f 91       	pop	r16
+     df0:	ff 90       	pop	r15
+     df2:	ef 90       	pop	r14
+     df4:	0f 90       	pop	r0
+     df6:	0f be       	out	0x3f, r0	; 63
+     df8:	0f 90       	pop	r0
+     dfa:	1f 90       	pop	r1
+     dfc:	18 95       	reti
+				STATUS_REG &= ~MODE_BALANCING;
+     dfe:	f1 98       	cbi	0x1e, 1	; 30
+     e00:	b4 cf       	rjmp	.-152    	; 0xd6a <__vector_18+0x84>
+						STATUS_REG &= ~MODE_BALANCING;
+     e02:	f1 98       	cbi	0x1e, 1	; 30
+     e04:	d4 cf       	rjmp	.-88     	; 0xdae <__vector_18+0xc8>
+
+00000e06 <__vector_17>:
+
+ISR(TIMER0_OVF_vect)
+{
+     e06:	1f 92       	push	r1
+     e08:	0f 92       	push	r0
+     e0a:	0f b6       	in	r0, 0x3f	; 63
+     e0c:	0f 92       	push	r0
+     e0e:	11 24       	eor	r1, r1
+     e10:	2f 93       	push	r18
+     e12:	3f 93       	push	r19
+     e14:	4f 93       	push	r20
+     e16:	5f 93       	push	r21
+     e18:	6f 93       	push	r22
+     e1a:	7f 93       	push	r23
+     e1c:	8f 93       	push	r24
+     e1e:	9f 93       	push	r25
+     e20:	af 93       	push	r26
+     e22:	bf 93       	push	r27
+     e24:	ef 93       	push	r30
+     e26:	ff 93       	push	r31
+	timerCounter++;
+     e28:	80 91 a3 02 	lds	r24, 0x02A3	; 0x8002a3 <timerCounter>
+     e2c:	90 91 a4 02 	lds	r25, 0x02A4	; 0x8002a4 <timerCounter+0x1>
+     e30:	01 96       	adiw	r24, 0x01	; 1
+     e32:	90 93 a4 02 	sts	0x02A4, r25	; 0x8002a4 <timerCounter+0x1>
+     e36:	80 93 a3 02 	sts	0x02A3, r24	; 0x8002a3 <timerCounter>
+	HEARTBEATCOUNTER++;
+     e3a:	8a b3       	in	r24, 0x1a	; 26
+     e3c:	8f 5f       	subi	r24, 0xFF	; 255
+     e3e:	8a bb       	out	0x1a, r24	; 26
+	CMU_WAKE_TIMER++;
+     e40:	89 b3       	in	r24, 0x19	; 25
+     e42:	8f 5f       	subi	r24, 0xFF	; 255
+     e44:	89 bb       	out	0x19, r24	; 25
+	if(HEARTBEATCOUNTER > TIM_4_SEC && !(STATUS_REG & MODE_HEARTBEATRECVD))
+     e46:	8a b3       	in	r24, 0x1a	; 26
+     e48:	85 3f       	cpi	r24, 0xF5	; 245
+     e4a:	20 f0       	brcs	.+8      	; 0xe54 <__vector_17+0x4e>
+     e4c:	f2 99       	sbic	0x1e, 2	; 30
+     e4e:	02 c0       	rjmp	.+4      	; 0xe54 <__vector_17+0x4e>
+	{
+		error_state(ERROR_NO_HEARTBEAT);
+     e50:	84 e0       	ldi	r24, 0x04	; 4
+     e52:	ec dc       	rcall	.-1576   	; 0x82c <error_state>
+	}
+	if(!CMUAllRegistered && timerCounter >= CMUAuditTimeout*61)
+     e54:	80 91 a1 02 	lds	r24, 0x02A1	; 0x8002a1 <CMUAllRegistered>
+     e58:	81 11       	cpse	r24, r1
+     e5a:	14 c0       	rjmp	.+40     	; 0xe84 <__vector_17+0x7e>
+     e5c:	80 91 90 02 	lds	r24, 0x0290	; 0x800290 <CMUAuditTimeout>
+     e60:	2d e3       	ldi	r18, 0x3D	; 61
+     e62:	82 9f       	mul	r24, r18
+     e64:	c0 01       	movw	r24, r0
+     e66:	11 24       	eor	r1, r1
+     e68:	20 91 a3 02 	lds	r18, 0x02A3	; 0x8002a3 <timerCounter>
+     e6c:	30 91 a4 02 	lds	r19, 0x02A4	; 0x8002a4 <timerCounter+0x1>
+     e70:	28 17       	cp	r18, r24
+     e72:	39 07       	cpc	r19, r25
+     e74:	38 f0       	brcs	.+14     	; 0xe84 <__vector_17+0x7e>
+	{
+		//using the timer, we will re-wake all the CMU's approximately every CMUAuditTimeout*1 seconds.
+		timerCounter = 0;
+     e76:	10 92 a4 02 	sts	0x02A4, r1	; 0x8002a4 <timerCounter+0x1>
+     e7a:	10 92 a3 02 	sts	0x02A3, r1	; 0x8002a3 <timerCounter>
+		CMUTimeToScan = 1; //this actually only triggers a new scan when in auditing mode.
+     e7e:	81 e0       	ldi	r24, 0x01	; 1
+     e80:	80 93 a2 02 	sts	0x02A2, r24	; 0x8002a2 <CMUTimeToScan>
+	}
+	if (timerCounter >= CMUScanInterval*61) //CMUInterval seconds,
+     e84:	80 91 91 02 	lds	r24, 0x0291	; 0x800291 <CMUScanInterval>
+     e88:	2d e3       	ldi	r18, 0x3D	; 61
+     e8a:	82 9f       	mul	r24, r18
+     e8c:	c0 01       	movw	r24, r0
+     e8e:	11 24       	eor	r1, r1
+     e90:	20 91 a3 02 	lds	r18, 0x02A3	; 0x8002a3 <timerCounter>
+     e94:	30 91 a4 02 	lds	r19, 0x02A4	; 0x8002a4 <timerCounter+0x1>
+     e98:	28 17       	cp	r18, r24
+     e9a:	39 07       	cpc	r19, r25
+     e9c:	38 f0       	brcs	.+14     	; 0xeac <__vector_17+0xa6>
+	{
+		timerCounter = 0; //reset our counter
+     e9e:	10 92 a4 02 	sts	0x02A4, r1	; 0x8002a4 <timerCounter+0x1>
+     ea2:	10 92 a3 02 	sts	0x02A3, r1	; 0x8002a3 <timerCounter>
+		CMUTimeToScan = 1; //set the flag that will trigger a scan routine on next flag.
+     ea6:	81 e0       	ldi	r24, 0x01	; 1
+     ea8:	80 93 a2 02 	sts	0x02A2, r24	; 0x8002a2 <CMUTimeToScan>
+	}
+}
+     eac:	ff 91       	pop	r31
+     eae:	ef 91       	pop	r30
+     eb0:	bf 91       	pop	r27
+     eb2:	af 91       	pop	r26
+     eb4:	9f 91       	pop	r25
+     eb6:	8f 91       	pop	r24
+     eb8:	7f 91       	pop	r23
+     eba:	6f 91       	pop	r22
+     ebc:	5f 91       	pop	r21
+     ebe:	4f 91       	pop	r20
+     ec0:	3f 91       	pop	r19
+     ec2:	2f 91       	pop	r18
+     ec4:	0f 90       	pop	r0
+     ec6:	0f be       	out	0x3f, r0	; 63
+     ec8:	0f 90       	pop	r0
+     eca:	1f 90       	pop	r1
+     ecc:	18 95       	reti
+
+00000ece <MCP2515_reg_write>:
+	MCP2515_bit_modify(MCP2515_CANCTRL, 0x00, 0xE0);		//put the device into it's functional mode currently: normal 0xE0, listen is 0x60
+	
+}
+
+void MCP2515_reg_write(uint8_t reg_address, uint8_t reg_value)
+{
+     ece:	cf 93       	push	r28
+     ed0:	df 93       	push	r29
+     ed2:	d8 2f       	mov	r29, r24
+     ed4:	c6 2f       	mov	r28, r22
+	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+     ed6:	2e 98       	cbi	0x05, 6	; 5
+	SPI_send_byte(MCP2515_WRITE);
+     ed8:	82 e0       	ldi	r24, 0x02	; 2
+     eda:	6e d3       	rcall	.+1756   	; 0x15b8 <SPI_send_byte>
+	SPI_send_byte(reg_address);
+     edc:	8d 2f       	mov	r24, r29
+     ede:	6c d3       	rcall	.+1752   	; 0x15b8 <SPI_send_byte>
+	SPI_send_byte(reg_value);
+     ee0:	8c 2f       	mov	r24, r28
+     ee2:	6a d3       	rcall	.+1748   	; 0x15b8 <SPI_send_byte>
+     ee4:	2e 9a       	sbi	0x05, 6	; 5
+	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+     ee6:	df 91       	pop	r29
+	//if(MCP2515_reg_read(reg_address) == reg_value)flash_LED(1,RED_LED);
+}
+     ee8:	cf 91       	pop	r28
+     eea:	08 95       	ret
+
+00000eec <MCP2515_instruction>:
+     eec:	2e 98       	cbi	0x05, 6	; 5
+
+void MCP2515_instruction(uint8_t instruction)
+{
+	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+	SPI_send_byte(instruction);
+     eee:	64 d3       	rcall	.+1736   	; 0x15b8 <SPI_send_byte>
+	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+     ef0:	2e 9a       	sbi	0x05, 6	; 5
+}
+     ef2:	08 95       	ret
+
+00000ef4 <MCP2515_bit_modify>:
+
+
+void MCP2515_bit_modify(uint8_t reg_address, uint8_t reg_value, uint8_t reg_mask)
+{
+     ef4:	1f 93       	push	r17
+     ef6:	cf 93       	push	r28
+     ef8:	df 93       	push	r29
+     efa:	18 2f       	mov	r17, r24
+     efc:	c6 2f       	mov	r28, r22
+     efe:	d4 2f       	mov	r29, r20
+	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+     f00:	2e 98       	cbi	0x05, 6	; 5
+	SPI_send_byte(MCP2515_BITMODIFY);		//send instruction of bitmodify
+     f02:	85 e0       	ldi	r24, 0x05	; 5
+     f04:	59 d3       	rcall	.+1714   	; 0x15b8 <SPI_send_byte>
+	SPI_send_byte(reg_address);				//send address
+     f06:	81 2f       	mov	r24, r17
+     f08:	57 d3       	rcall	.+1710   	; 0x15b8 <SPI_send_byte>
+	SPI_send_byte(reg_mask);				//send the mask
+     f0a:	8d 2f       	mov	r24, r29
+     f0c:	55 d3       	rcall	.+1706   	; 0x15b8 <SPI_send_byte>
+	SPI_send_byte(reg_value);				//send the data
+     f0e:	8c 2f       	mov	r24, r28
+     f10:	53 d3       	rcall	.+1702   	; 0x15b8 <SPI_send_byte>
+     f12:	2e 9a       	sbi	0x05, 6	; 5
+	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+     f14:	df 91       	pop	r29
+}
+     f16:	cf 91       	pop	r28
+     f18:	1f 91       	pop	r17
+     f1a:	08 95       	ret
+
+00000f1c <MCP2515_init>:
+     f1c:	45 98       	cbi	0x08, 5	; 8
+	__builtin_avr_delay_cycles(__ticks_dc);
+     f1e:	87 ec       	ldi	r24, 0xC7	; 199
+     f20:	90 e0       	ldi	r25, 0x00	; 0
+     f22:	01 97       	sbiw	r24, 0x01	; 1
+     f24:	f1 f7       	brne	.-4      	; 0xf22 <MCP2515_init+0x6>
+     f26:	00 c0       	rjmp	.+0      	; 0xf28 <MCP2515_init+0xc>
+     f28:	00 00       	nop
+	MCP2515_PORT_RESET |= (1<<MCP2515_PIN_RESET);
+     f2a:	45 9a       	sbi	0x08, 5	; 8
+	MCP2515_bit_modify(MCP2515_CANCTRL,128,0xE0);		//put the device into configuration mode.
+     f2c:	40 ee       	ldi	r20, 0xE0	; 224
+     f2e:	60 e8       	ldi	r22, 0x80	; 128
+     f30:	8f e0       	ldi	r24, 0x0F	; 15
+     f32:	e0 df       	rcall	.-64     	; 0xef4 <MCP2515_bit_modify>
+	MCP2515_reg_write(MCP2515_CNF1, 0x04);	//SJW = 0(1),BRP = 4(5)--> number in brackets is actual value, as mcp2515 adds 1.
+     f34:	64 e0       	ldi	r22, 0x04	; 4
+     f36:	8a e2       	ldi	r24, 0x2A	; 42
+     f38:	ca df       	rcall	.-108    	; 0xece <MCP2515_reg_write>
+	MCP2515_reg_write(MCP2515_CNF2, 0xCA);	//BTL = 1, SAM = 1, PHSEG1 = 001(2), PRSEG = 010 (3)
+     f3a:	6a ec       	ldi	r22, 0xCA	; 202
+     f3c:	89 e2       	ldi	r24, 0x29	; 41
+     f3e:	c7 df       	rcall	.-114    	; 0xece <MCP2515_reg_write>
+	MCP2515_reg_write(MCP2515_CNF3, 0x01);	//SOF = 0, WAKFIL = 0, PHSEG2 = 001(2).
+     f40:	61 e0       	ldi	r22, 0x01	; 1
+     f42:	88 e2       	ldi	r24, 0x28	; 40
+     f44:	c4 df       	rcall	.-120    	; 0xece <MCP2515_reg_write>
+	MCP2515_reg_write(MCP2515_CANINTE, 0b00000011);	//enable interrupt in rx0, rx1, tx0, tx1, tx2.
+     f46:	63 e0       	ldi	r22, 0x03	; 3
+     f48:	8b e2       	ldi	r24, 0x2B	; 43
+     f4a:	c1 df       	rcall	.-126    	; 0xece <MCP2515_reg_write>
+	MCP2515_reg_write(MCP2515_RTSCTRL, 0x01); //probably want to move this to a tx init function. eventually. if it aint broke don't fix it...
+     f4c:	61 e0       	ldi	r22, 0x01	; 1
+     f4e:	8d e0       	ldi	r24, 0x0D	; 13
+     f50:	be df       	rcall	.-132    	; 0xece <MCP2515_reg_write>
+	MCP2515_bit_modify(MCP2515_CANCTRL, 0x00, 0xE0);		//put the device into it's functional mode currently: normal 0xE0, listen is 0x60
+     f52:	40 ee       	ldi	r20, 0xE0	; 224
+     f54:	60 e0       	ldi	r22, 0x00	; 0
+     f56:	8f e0       	ldi	r24, 0x0F	; 15
+     f58:	cd cf       	rjmp	.-102    	; 0xef4 <MCP2515_bit_modify>
+
+00000f5a <MCP2515_receive_status>:
+     f5a:	cf 93       	push	r28
+
+uint8_t MCP2515_receive_status()
+{
+	uint8_t mcp2515_status[2];
+	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+     f5c:	2e 98       	cbi	0x05, 6	; 5
+	SPI_send_byte(0xA0);					//send retrieve status instruction
+     f5e:	80 ea       	ldi	r24, 0xA0	; 160
+     f60:	2b d3       	rcall	.+1622   	; 0x15b8 <SPI_send_byte>
+	mcp2515_status[0] = SPI_send_byte(0x00);//send don't care bits while mcp2515 is retrieving data.
+     f62:	80 e0       	ldi	r24, 0x00	; 0
+     f64:	29 d3       	rcall	.+1618   	; 0x15b8 <SPI_send_byte>
+     f66:	c8 2f       	mov	r28, r24
+	mcp2515_status[1] = SPI_send_byte(0x00);//duplicate data is retrieved again. nothing to do with this second lot yet.
+     f68:	80 e0       	ldi	r24, 0x00	; 0
+     f6a:	26 d3       	rcall	.+1612   	; 0x15b8 <SPI_send_byte>
+     f6c:	2e 9a       	sbi	0x05, 6	; 5
+	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+     f6e:	8c 2f       	mov	r24, r28
+	return mcp2515_status[0];					//send it back for analysis.
+}
+     f70:	cf 91       	pop	r28
+     f72:	08 95       	ret
+
+00000f74 <MCP2515_RxBufferRead>:
+     f74:	ef 92       	push	r14
+ * ---------------------------> this example will fill the data[8] array with bytes from RXB0D0-->RXB0D7
+ *
+ * This function also automatically clears the interrupt flag CANINTF.RX0IF(in this case)
+ */
+void MCP2515_RxBufferRead(uint8_t * data, uint8_t startingAddress)
+{
+     f76:	ff 92       	push	r15
+     f78:	0f 93       	push	r16
+     f7a:	1f 93       	push	r17
+     f7c:	cf 93       	push	r28
+     f7e:	df 93       	push	r29
+     f80:	f8 2e       	mov	r15, r24
+     f82:	e9 2e       	mov	r14, r25
+
+	//the following line combines the instruction(0b10010000), with: 0b100 for rxb0 or 0b000 for rxb1, and: 0b10 for data starting at data0, or 0b00 for SIDH
+	uint8_t instruction = 0b10010000|((startingAddress > 0x70)<<2)|((startingAddress == MCP2515_RXB0D0 || startingAddress == MCP2515_RXB1D0)<<1);
+     f84:	61 37       	cpi	r22, 0x71	; 113
+     f86:	38 f5       	brcc	.+78     	; 0xfd6 <MCP2515_RxBufferRead+0x62>
+     f88:	80 e9       	ldi	r24, 0x90	; 144
+     f8a:	c1 e0       	ldi	r28, 0x01	; 1
+     f8c:	d0 e0       	ldi	r29, 0x00	; 0
+     f8e:	66 36       	cpi	r22, 0x66	; 102
+     f90:	39 f0       	breq	.+14     	; 0xfa0 <MCP2515_RxBufferRead+0x2c>
+     f92:	21 e0       	ldi	r18, 0x01	; 1
+     f94:	90 e0       	ldi	r25, 0x00	; 0
+     f96:	66 37       	cpi	r22, 0x76	; 118
+     f98:	09 f0       	breq	.+2      	; 0xf9c <MCP2515_RxBufferRead+0x28>
+     f9a:	20 e0       	ldi	r18, 0x00	; 0
+     f9c:	c2 2f       	mov	r28, r18
+     f9e:	d9 2f       	mov	r29, r25
+     fa0:	cc 0f       	add	r28, r28
+     fa2:	dd 1f       	adc	r29, r29
+     fa4:	c8 2b       	or	r28, r24
+	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//lower CS.
+     fa6:	2e 98       	cbi	0x05, 6	; 5
+	SPI_send_byte(instruction);							//send instruction for stream of data
+     fa8:	8c 2f       	mov	r24, r28
+     faa:	06 d3       	rcall	.+1548   	; 0x15b8 <SPI_send_byte>
+	//loop counts to 8 or 12 depending on whether bit 1 of instruction is set.
+	for(uint8_t counter = 0; counter < (8 + 4*((instruction & 2)==0)); counter++)
+     fac:	0c e0       	ldi	r16, 0x0C	; 12
+     fae:	10 e0       	ldi	r17, 0x00	; 0
+     fb0:	c1 ff       	sbrs	r28, 1
+     fb2:	02 c0       	rjmp	.+4      	; 0xfb8 <MCP2515_RxBufferRead+0x44>
+     fb4:	08 e0       	ldi	r16, 0x08	; 8
+     fb6:	10 e0       	ldi	r17, 0x00	; 0
+     fb8:	cf 2d       	mov	r28, r15
+     fba:	de 2d       	mov	r29, r14
+     fbc:	8c 2f       	mov	r24, r28
+     fbe:	8f 19       	sub	r24, r15
+     fc0:	80 17       	cp	r24, r16
+     fc2:	11 06       	cpc	r1, r17
+     fc4:	54 f0       	brlt	.+20     	; 0xfda <MCP2515_RxBufferRead+0x66>
+	{
+		*data = SPI_send_byte(0x00);
+		data++;
+	}
+	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);				//raise CS.
+     fc6:	2e 9a       	sbi	0x05, 6	; 5
+}
+     fc8:	df 91       	pop	r29
+     fca:	cf 91       	pop	r28
+     fcc:	1f 91       	pop	r17
+     fce:	0f 91       	pop	r16
+     fd0:	ff 90       	pop	r15
+     fd2:	ef 90       	pop	r14
+     fd4:	08 95       	ret
+	uint8_t instruction = 0b10010000|((startingAddress > 0x70)<<2)|((startingAddress == MCP2515_RXB0D0 || startingAddress == MCP2515_RXB1D0)<<1);
+     fd6:	84 e9       	ldi	r24, 0x94	; 148
+     fd8:	dc cf       	rjmp	.-72     	; 0xf92 <MCP2515_RxBufferRead+0x1e>
+		*data = SPI_send_byte(0x00);
+     fda:	80 e0       	ldi	r24, 0x00	; 0
+     fdc:	ed d2       	rcall	.+1498   	; 0x15b8 <SPI_send_byte>
+     fde:	89 93       	st	Y+, r24
+		data++;
+     fe0:	ed cf       	rjmp	.-38     	; 0xfbc <MCP2515_RxBufferRead+0x48>
+
+00000fe2 <MCP2515_reg_read>:
+
+uint8_t MCP2515_reg_read(uint8_t reg_address)
+{
+     fe2:	cf 93       	push	r28
+     fe4:	c8 2f       	mov	r28, r24
+	uint8_t read_result;
+	MCP2515_PORT_CS &= ~(1<<MCP2515_PIN_CS);			//unset CS so MCP2515 knows we are talking
+     fe6:	2e 98       	cbi	0x05, 6	; 5
+	SPI_send_byte(0x03);
+     fe8:	83 e0       	ldi	r24, 0x03	; 3
+     fea:	e6 d2       	rcall	.+1484   	; 0x15b8 <SPI_send_byte>
+	SPI_send_byte(reg_address);
+     fec:	8c 2f       	mov	r24, r28
+     fee:	e4 d2       	rcall	.+1480   	; 0x15b8 <SPI_send_byte>
+	read_result = SPI_send_byte(0x00);
+     ff0:	80 e0       	ldi	r24, 0x00	; 0
+     ff2:	e2 d2       	rcall	.+1476   	; 0x15b8 <SPI_send_byte>
+     ff4:	2e 9a       	sbi	0x05, 6	; 5
+	MCP2515_PORT_CS |= (1<<MCP2515_PIN_CS);			//set the CS.
+     ff6:	cf 91       	pop	r28
+	return read_result;
+}
+     ff8:	08 95       	ret
+
+00000ffa <MCP2515_findFreeTxBuffer>:
+     ffa:	80 e3       	ldi	r24, 0x30	; 48
+uint8_t MCP2515_findFreeTxBuffer()
+{
+	//uint8_t MCP2515_TxBuffer = 0;
+	//flash_LED(1,RED_LED);
+	//MCP2515_TxBuffer = (MCP2515_reg_read(MCP2515_CANINTF)& 0b00011100);			//get interrupt status, only the txbuffer empty ones though
+	if		((MCP2515_reg_read(MCP2515_TX0) & 0b00001000)== 0)						//if tx0 is free,
+     ffc:	f2 df       	rcall	.-28     	; 0xfe2 <MCP2515_reg_read>
+     ffe:	83 ff       	sbrs	r24, 3
+    1000:	0a c0       	rjmp	.+20     	; 0x1016 <MCP2515_findFreeTxBuffer+0x1c>
+	{
+		return MCP2515_TX0;
+	}
+	else if	((MCP2515_reg_read(MCP2515_TX1) & 0b00001000)== 0)						//if tx1 is free,
+    1002:	80 e4       	ldi	r24, 0x40	; 64
+    1004:	ee df       	rcall	.-36     	; 0xfe2 <MCP2515_reg_read>
+    1006:	83 ff       	sbrs	r24, 3
+	{
+		return MCP2515_TX1;
+	}
+	else if	((MCP2515_reg_read(MCP2515_TX2) & 0b00001000)== 0)						//if tx2 is free,
+    1008:	08 c0       	rjmp	.+16     	; 0x101a <MCP2515_findFreeTxBuffer+0x20>
+    100a:	80 e5       	ldi	r24, 0x50	; 80
+    100c:	ea df       	rcall	.-44     	; 0xfe2 <MCP2515_reg_read>
+    100e:	83 ff       	sbrs	r24, 3
+    1010:	06 c0       	rjmp	.+12     	; 0x101e <MCP2515_findFreeTxBuffer+0x24>
+	{
+		return MCP2515_TX2;
+	}
+	else {return 0x00;	}														//otherwise none are free.
+    1012:	80 e0       	ldi	r24, 0x00	; 0
+    1014:	08 95       	ret
+		return MCP2515_TX0;
+    1016:	80 e3       	ldi	r24, 0x30	; 48
+    1018:	08 95       	ret
+		return MCP2515_TX1;
+    101a:	80 e4       	ldi	r24, 0x40	; 64
+    101c:	08 95       	ret
+		return MCP2515_TX2;
+    101e:	80 e5       	ldi	r24, 0x50	; 80
+}
+    1020:	08 95       	ret
+
+00001022 <MCP2515_FilterInit>:
+
+void MCP2515_FilterInit(uint8_t filterNum, uint32_t filterID)
+{
+    1022:	cf 92       	push	r12
+    1024:	df 92       	push	r13
+    1026:	ef 92       	push	r14
+    1028:	ff 92       	push	r15
+    102a:	6a 01       	movw	r12, r20
+    102c:	7b 01       	movw	r14, r22
+	switch(filterNum)
+    102e:	82 30       	cpi	r24, 0x02	; 2
+    1030:	09 f4       	brne	.+2      	; 0x1034 <MCP2515_FilterInit+0x12>
+    1032:	82 c0       	rjmp	.+260    	; 0x1138 <__stack+0x39>
+    1034:	50 f4       	brcc	.+20     	; 0x104a <MCP2515_FilterInit+0x28>
+    1036:	88 23       	and	r24, r24
+    1038:	b9 f1       	breq	.+110    	; 0x10a8 <MCP2515_FilterInit+0x86>
+    103a:	81 30       	cpi	r24, 0x01	; 1
+    103c:	09 f4       	brne	.+2      	; 0x1040 <MCP2515_FilterInit+0x1e>
+    103e:	58 c0       	rjmp	.+176    	; 0x10f0 <MCP2515_FilterInit+0xce>
+			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+			MCP2515_reg_write(MCP2515_RXF5EID0, filterID & 0xFF );
+			
+	}
+		
+}
+    1040:	ff 90       	pop	r15
+    1042:	ef 90       	pop	r14
+    1044:	df 90       	pop	r13
+    1046:	cf 90       	pop	r12
+    1048:	08 95       	ret
+    104a:	84 30       	cpi	r24, 0x04	; 4
+    104c:	09 f4       	brne	.+2      	; 0x1050 <MCP2515_FilterInit+0x2e>
+    104e:	bc c0       	rjmp	.+376    	; 0x11c8 <__stack+0xc9>
+    1050:	08 f4       	brcc	.+2      	; 0x1054 <MCP2515_FilterInit+0x32>
+    1052:	96 c0       	rjmp	.+300    	; 0x1180 <__stack+0x81>
+    1054:	85 30       	cpi	r24, 0x05	; 5
+    1056:	a1 f7       	brne	.-24     	; 0x1040 <MCP2515_FilterInit+0x1e>
+			MCP2515_reg_write(MCP2515_RXF5SIDH, (filterID>>21) & 0xFF);
+    1058:	c7 01       	movw	r24, r14
+    105a:	b6 01       	movw	r22, r12
+    105c:	25 e1       	ldi	r18, 0x15	; 21
+    105e:	96 95       	lsr	r25
+    1060:	87 95       	ror	r24
+    1062:	77 95       	ror	r23
+    1064:	67 95       	ror	r22
+    1066:	2a 95       	dec	r18
+    1068:	d1 f7       	brne	.-12     	; 0x105e <MCP2515_FilterInit+0x3c>
+    106a:	88 e1       	ldi	r24, 0x18	; 24
+    106c:	30 df       	rcall	.-416    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF5SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0xFF)));
+    106e:	d7 01       	movw	r26, r14
+    1070:	c6 01       	movw	r24, r12
+    1072:	3d e0       	ldi	r19, 0x0D	; 13
+    1074:	b6 95       	lsr	r27
+    1076:	a7 95       	ror	r26
+    1078:	97 95       	ror	r25
+    107a:	87 95       	ror	r24
+    107c:	3a 95       	dec	r19
+    107e:	d1 f7       	brne	.-12     	; 0x1074 <MCP2515_FilterInit+0x52>
+    1080:	80 7e       	andi	r24, 0xE0	; 224
+    1082:	6e 2d       	mov	r22, r14
+    1084:	63 70       	andi	r22, 0x03	; 3
+    1086:	68 2b       	or	r22, r24
+    1088:	68 60       	ori	r22, 0x08	; 8
+    108a:	89 e1       	ldi	r24, 0x19	; 25
+    108c:	20 df       	rcall	.-448    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF5EID8, (filterID>>8) & 0xFF );
+    108e:	99 27       	eor	r25, r25
+    1090:	8f 2d       	mov	r24, r15
+    1092:	7e 2d       	mov	r23, r14
+    1094:	6d 2d       	mov	r22, r13
+    1096:	8a e1       	ldi	r24, 0x1A	; 26
+    1098:	1a df       	rcall	.-460    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF5EID0, filterID & 0xFF );
+    109a:	6c 2d       	mov	r22, r12
+    109c:	8b e1       	ldi	r24, 0x1B	; 27
+}
+    109e:	ff 90       	pop	r15
+    10a0:	ef 90       	pop	r14
+    10a2:	df 90       	pop	r13
+			MCP2515_reg_write(MCP2515_RXF5EID0, filterID & 0xFF );
+    10a4:	cf 90       	pop	r12
+    10a6:	13 cf       	rjmp	.-474    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF0SIDH, (filterID>>21) & 0xFF);
+    10a8:	cb 01       	movw	r24, r22
+    10aa:	ba 01       	movw	r22, r20
+    10ac:	e5 e1       	ldi	r30, 0x15	; 21
+    10ae:	96 95       	lsr	r25
+    10b0:	87 95       	ror	r24
+    10b2:	77 95       	ror	r23
+    10b4:	67 95       	ror	r22
+    10b6:	ea 95       	dec	r30
+    10b8:	d1 f7       	brne	.-12     	; 0x10ae <MCP2515_FilterInit+0x8c>
+    10ba:	80 e0       	ldi	r24, 0x00	; 0
+    10bc:	08 df       	rcall	.-496    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF0SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0xFF)));
+    10be:	d7 01       	movw	r26, r14
+    10c0:	c6 01       	movw	r24, r12
+    10c2:	fd e0       	ldi	r31, 0x0D	; 13
+    10c4:	b6 95       	lsr	r27
+    10c6:	a7 95       	ror	r26
+    10c8:	97 95       	ror	r25
+    10ca:	87 95       	ror	r24
+    10cc:	fa 95       	dec	r31
+    10ce:	d1 f7       	brne	.-12     	; 0x10c4 <MCP2515_FilterInit+0xa2>
+    10d0:	80 7e       	andi	r24, 0xE0	; 224
+    10d2:	6e 2d       	mov	r22, r14
+    10d4:	63 70       	andi	r22, 0x03	; 3
+    10d6:	68 2b       	or	r22, r24
+    10d8:	68 60       	ori	r22, 0x08	; 8
+    10da:	81 e0       	ldi	r24, 0x01	; 1
+			MCP2515_reg_write(MCP2515_RXF0EID8, (filterID>>8) & 0xFF );
+    10dc:	f8 de       	rcall	.-528    	; 0xece <MCP2515_reg_write>
+    10de:	99 27       	eor	r25, r25
+    10e0:	8f 2d       	mov	r24, r15
+    10e2:	7e 2d       	mov	r23, r14
+    10e4:	6d 2d       	mov	r22, r13
+    10e6:	82 e0       	ldi	r24, 0x02	; 2
+			MCP2515_reg_write(MCP2515_RXF0EID0, filterID & 0xFF );
+    10e8:	f2 de       	rcall	.-540    	; 0xece <MCP2515_reg_write>
+    10ea:	6c 2d       	mov	r22, r12
+    10ec:	83 e0       	ldi	r24, 0x03	; 3
+    10ee:	ef de       	rcall	.-546    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF1SIDH, (filterID>>21) & 0xFF);
+    10f0:	c7 01       	movw	r24, r14
+    10f2:	b6 01       	movw	r22, r12
+    10f4:	45 e1       	ldi	r20, 0x15	; 21
+    10f6:	96 95       	lsr	r25
+    10f8:	87 95       	ror	r24
+    10fa:	77 95       	ror	r23
+    10fc:	67 95       	ror	r22
+    10fe:	4a 95       	dec	r20
+    1100:	d1 f7       	brne	.-12     	; 0x10f6 <MCP2515_FilterInit+0xd4>
+    1102:	84 e0       	ldi	r24, 0x04	; 4
+    1104:	e4 de       	rcall	.-568    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF1SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0xFF)));
+    1106:	d7 01       	movw	r26, r14
+    1108:	c6 01       	movw	r24, r12
+    110a:	5d e0       	ldi	r21, 0x0D	; 13
+    110c:	b6 95       	lsr	r27
+    110e:	a7 95       	ror	r26
+    1110:	97 95       	ror	r25
+    1112:	87 95       	ror	r24
+    1114:	5a 95       	dec	r21
+    1116:	d1 f7       	brne	.-12     	; 0x110c <__stack+0xd>
+    1118:	80 7e       	andi	r24, 0xE0	; 224
+    111a:	6e 2d       	mov	r22, r14
+    111c:	63 70       	andi	r22, 0x03	; 3
+    111e:	68 2b       	or	r22, r24
+    1120:	68 60       	ori	r22, 0x08	; 8
+			MCP2515_reg_write(MCP2515_RXF1EID8, (filterID>>8) & 0xFF );
+    1122:	85 e0       	ldi	r24, 0x05	; 5
+    1124:	d4 de       	rcall	.-600    	; 0xece <MCP2515_reg_write>
+    1126:	99 27       	eor	r25, r25
+    1128:	8f 2d       	mov	r24, r15
+    112a:	7e 2d       	mov	r23, r14
+    112c:	6d 2d       	mov	r22, r13
+    112e:	86 e0       	ldi	r24, 0x06	; 6
+			MCP2515_reg_write(MCP2515_RXF1EID0, filterID & 0xFF );
+    1130:	ce de       	rcall	.-612    	; 0xece <MCP2515_reg_write>
+    1132:	6c 2d       	mov	r22, r12
+    1134:	87 e0       	ldi	r24, 0x07	; 7
+			MCP2515_reg_write(MCP2515_RXF2SIDH, (filterID>>21) & 0xFF);
+    1136:	cb de       	rcall	.-618    	; 0xece <MCP2515_reg_write>
+    1138:	c7 01       	movw	r24, r14
+    113a:	b6 01       	movw	r22, r12
+    113c:	b5 e1       	ldi	r27, 0x15	; 21
+    113e:	96 95       	lsr	r25
+    1140:	87 95       	ror	r24
+    1142:	77 95       	ror	r23
+    1144:	67 95       	ror	r22
+    1146:	ba 95       	dec	r27
+    1148:	d1 f7       	brne	.-12     	; 0x113e <__stack+0x3f>
+    114a:	88 e0       	ldi	r24, 0x08	; 8
+    114c:	c0 de       	rcall	.-640    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF2SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0xFF)));
+    114e:	d7 01       	movw	r26, r14
+    1150:	c6 01       	movw	r24, r12
+    1152:	2d e0       	ldi	r18, 0x0D	; 13
+    1154:	b6 95       	lsr	r27
+    1156:	a7 95       	ror	r26
+    1158:	97 95       	ror	r25
+    115a:	87 95       	ror	r24
+    115c:	2a 95       	dec	r18
+    115e:	d1 f7       	brne	.-12     	; 0x1154 <__stack+0x55>
+    1160:	80 7e       	andi	r24, 0xE0	; 224
+    1162:	6e 2d       	mov	r22, r14
+    1164:	63 70       	andi	r22, 0x03	; 3
+    1166:	68 2b       	or	r22, r24
+    1168:	68 60       	ori	r22, 0x08	; 8
+    116a:	89 e0       	ldi	r24, 0x09	; 9
+			MCP2515_reg_write(MCP2515_RXF2EID8, (filterID>>8) & 0xFF );
+    116c:	b0 de       	rcall	.-672    	; 0xece <MCP2515_reg_write>
+    116e:	99 27       	eor	r25, r25
+    1170:	8f 2d       	mov	r24, r15
+    1172:	7e 2d       	mov	r23, r14
+    1174:	6d 2d       	mov	r22, r13
+    1176:	8a e0       	ldi	r24, 0x0A	; 10
+			MCP2515_reg_write(MCP2515_RXF2EID0, filterID & 0xFF );
+    1178:	aa de       	rcall	.-684    	; 0xece <MCP2515_reg_write>
+    117a:	6c 2d       	mov	r22, r12
+    117c:	8b e0       	ldi	r24, 0x0B	; 11
+    117e:	a7 de       	rcall	.-690    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF3SIDH, (filterID>>21) & 0xFF);
+    1180:	c7 01       	movw	r24, r14
+    1182:	b6 01       	movw	r22, r12
+    1184:	e5 e1       	ldi	r30, 0x15	; 21
+    1186:	96 95       	lsr	r25
+    1188:	87 95       	ror	r24
+    118a:	77 95       	ror	r23
+    118c:	67 95       	ror	r22
+    118e:	ea 95       	dec	r30
+    1190:	d1 f7       	brne	.-12     	; 0x1186 <__stack+0x87>
+    1192:	80 e1       	ldi	r24, 0x10	; 16
+    1194:	9c de       	rcall	.-712    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF3SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0xFF)));
+    1196:	d7 01       	movw	r26, r14
+    1198:	c6 01       	movw	r24, r12
+    119a:	fd e0       	ldi	r31, 0x0D	; 13
+    119c:	b6 95       	lsr	r27
+    119e:	a7 95       	ror	r26
+    11a0:	97 95       	ror	r25
+    11a2:	87 95       	ror	r24
+    11a4:	fa 95       	dec	r31
+    11a6:	d1 f7       	brne	.-12     	; 0x119c <__stack+0x9d>
+    11a8:	80 7e       	andi	r24, 0xE0	; 224
+    11aa:	6e 2d       	mov	r22, r14
+    11ac:	63 70       	andi	r22, 0x03	; 3
+    11ae:	68 2b       	or	r22, r24
+    11b0:	68 60       	ori	r22, 0x08	; 8
+    11b2:	81 e1       	ldi	r24, 0x11	; 17
+			MCP2515_reg_write(MCP2515_RXF3EID8, (filterID>>8) & 0xFF );
+    11b4:	8c de       	rcall	.-744    	; 0xece <MCP2515_reg_write>
+    11b6:	99 27       	eor	r25, r25
+    11b8:	8f 2d       	mov	r24, r15
+    11ba:	7e 2d       	mov	r23, r14
+    11bc:	6d 2d       	mov	r22, r13
+    11be:	82 e1       	ldi	r24, 0x12	; 18
+			MCP2515_reg_write(MCP2515_RXF3EID0, filterID & 0xFF );
+    11c0:	86 de       	rcall	.-756    	; 0xece <MCP2515_reg_write>
+    11c2:	6c 2d       	mov	r22, r12
+    11c4:	83 e1       	ldi	r24, 0x13	; 19
+    11c6:	83 de       	rcall	.-762    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF4SIDH, (filterID>>21) & 0xFF);
+    11c8:	c7 01       	movw	r24, r14
+    11ca:	b6 01       	movw	r22, r12
+    11cc:	55 e1       	ldi	r21, 0x15	; 21
+    11ce:	96 95       	lsr	r25
+    11d0:	87 95       	ror	r24
+    11d2:	77 95       	ror	r23
+    11d4:	67 95       	ror	r22
+    11d6:	5a 95       	dec	r21
+    11d8:	d1 f7       	brne	.-12     	; 0x11ce <__stack+0xcf>
+    11da:	84 e1       	ldi	r24, 0x14	; 20
+    11dc:	78 de       	rcall	.-784    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF4SIDL, (((filterID>>13) & 224)| ((filterID>>16) & 3) | ((1<<3) & 0xFF)));
+    11de:	d7 01       	movw	r26, r14
+    11e0:	c6 01       	movw	r24, r12
+    11e2:	6d e0       	ldi	r22, 0x0D	; 13
+    11e4:	b6 95       	lsr	r27
+    11e6:	a7 95       	ror	r26
+    11e8:	97 95       	ror	r25
+    11ea:	87 95       	ror	r24
+    11ec:	6a 95       	dec	r22
+    11ee:	d1 f7       	brne	.-12     	; 0x11e4 <__stack+0xe5>
+    11f0:	80 7e       	andi	r24, 0xE0	; 224
+    11f2:	6e 2d       	mov	r22, r14
+    11f4:	63 70       	andi	r22, 0x03	; 3
+    11f6:	68 2b       	or	r22, r24
+    11f8:	68 60       	ori	r22, 0x08	; 8
+    11fa:	85 e1       	ldi	r24, 0x15	; 21
+			MCP2515_reg_write(MCP2515_RXF4EID8, (filterID>>8) & 0xFF );
+    11fc:	68 de       	rcall	.-816    	; 0xece <MCP2515_reg_write>
+    11fe:	99 27       	eor	r25, r25
+    1200:	8f 2d       	mov	r24, r15
+    1202:	7e 2d       	mov	r23, r14
+    1204:	6d 2d       	mov	r22, r13
+    1206:	86 e1       	ldi	r24, 0x16	; 22
+    1208:	62 de       	rcall	.-828    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXF4EID0, filterID & 0xFF );
+    120a:	6c 2d       	mov	r22, r12
+    120c:	87 e1       	ldi	r24, 0x17	; 23
+    120e:	5f de       	rcall	.-834    	; 0xece <MCP2515_reg_write>
+    1210:	23 cf       	rjmp	.-442    	; 0x1058 <MCP2515_FilterInit+0x36>
+
+00001212 <MCP2515_RXInit>:
+    1212:	cf 92       	push	r12
+
+uint8_t MCP2515_RXInit(int8_t mob, uint32_t IDmsk)	//write IDmsk 0 if you do not wish to use a mask, and this MOB will receive all messages
+{
+    1214:	df 92       	push	r13
+    1216:	ef 92       	push	r14
+    1218:	ff 92       	push	r15
+    121a:	6a 01       	movw	r12, r20
+    121c:	7b 01       	movw	r14, r22
+	if (mob > 1)return 0;
+    121e:	82 30       	cpi	r24, 0x02	; 2
+    1220:	0c f0       	brlt	.+2      	; 0x1224 <MCP2515_RXInit+0x12>
+    1222:	62 c0       	rjmp	.+196    	; 0x12e8 <MCP2515_RXInit+0xd6>
+	switch(mob)
+    1224:	88 23       	and	r24, r24
+    1226:	41 f0       	breq	.+16     	; 0x1238 <MCP2515_RXInit+0x26>
+    1228:	81 30       	cpi	r24, 0x01	; 1
+    122a:	91 f1       	breq	.+100    	; 0x1290 <MCP2515_RXInit+0x7e>
+			MCP2515_reg_write(MCP2515_RXM1EID8, (IDmsk>>8) & 0xFF );
+			MCP2515_reg_write(MCP2515_RXM1EID0, IDmsk & 0xFF );
+			if(IDmsk) MCP2515_reg_write(MCP2515_RXB1CTRL, 0b00000000);	//Enable reception using masks and filters. 
+			else MCP2515_reg_write(MCP2515_RXB1CTRL, 0b01100000);		//Enable reception without masks and filters.
+	}	
+	return 1;
+    122c:	81 e0       	ldi	r24, 0x01	; 1
+}
+    122e:	ff 90       	pop	r15
+    1230:	ef 90       	pop	r14
+    1232:	df 90       	pop	r13
+    1234:	cf 90       	pop	r12
+    1236:	08 95       	ret
+			MCP2515_reg_write(MCP2515_RXM0SIDH, (IDmsk>>21) & 0xFF);	//shift the 32 bit mask into the respective registers
+    1238:	cb 01       	movw	r24, r22
+    123a:	ba 01       	movw	r22, r20
+    123c:	55 e1       	ldi	r21, 0x15	; 21
+    123e:	96 95       	lsr	r25
+    1240:	87 95       	ror	r24
+    1242:	77 95       	ror	r23
+    1244:	67 95       	ror	r22
+    1246:	5a 95       	dec	r21
+    1248:	d1 f7       	brne	.-12     	; 0x123e <MCP2515_RXInit+0x2c>
+    124a:	80 e2       	ldi	r24, 0x20	; 32
+    124c:	40 de       	rcall	.-896    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXM0SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+    124e:	d7 01       	movw	r26, r14
+    1250:	c6 01       	movw	r24, r12
+    1252:	6d e0       	ldi	r22, 0x0D	; 13
+    1254:	b6 95       	lsr	r27
+    1256:	a7 95       	ror	r26
+    1258:	97 95       	ror	r25
+    125a:	87 95       	ror	r24
+    125c:	6a 95       	dec	r22
+    125e:	d1 f7       	brne	.-12     	; 0x1254 <MCP2515_RXInit+0x42>
+    1260:	80 7e       	andi	r24, 0xE0	; 224
+    1262:	6e 2d       	mov	r22, r14
+    1264:	63 70       	andi	r22, 0x03	; 3
+    1266:	68 2b       	or	r22, r24
+    1268:	81 e2       	ldi	r24, 0x21	; 33
+    126a:	31 de       	rcall	.-926    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXM0EID8, (IDmsk>>8) & 0xFF );
+    126c:	99 27       	eor	r25, r25
+    126e:	8f 2d       	mov	r24, r15
+    1270:	7e 2d       	mov	r23, r14
+    1272:	6d 2d       	mov	r22, r13
+    1274:	82 e2       	ldi	r24, 0x22	; 34
+			MCP2515_reg_write(MCP2515_RXM0EID0, IDmsk & 0xFF );
+    1276:	2b de       	rcall	.-938    	; 0xece <MCP2515_reg_write>
+    1278:	6c 2d       	mov	r22, r12
+    127a:	83 e2       	ldi	r24, 0x23	; 35
+    127c:	28 de       	rcall	.-944    	; 0xece <MCP2515_reg_write>
+			if(IDmsk) MCP2515_reg_write(MCP2515_RXB0CTRL, 0b00000100);	//Enable reception using masks and filters. Enable BUKT bit, which enables RXB1 to be used if RXB0 is full
+    127e:	64 e0       	ldi	r22, 0x04	; 4
+    1280:	c1 14       	cp	r12, r1
+    1282:	d1 04       	cpc	r13, r1
+    1284:	e1 04       	cpc	r14, r1
+    1286:	f1 04       	cpc	r15, r1
+			else MCP2515_reg_write(MCP2515_RXB0CTRL, 0b01100100);		//Enable reception without masks and filters. 
+    1288:	09 f4       	brne	.+2      	; 0x128c <MCP2515_RXInit+0x7a>
+    128a:	64 e6       	ldi	r22, 0x64	; 100
+    128c:	80 e6       	ldi	r24, 0x60	; 96
+    128e:	1f de       	rcall	.-962    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXM1SIDH, (IDmsk>>21) & 0xFF);	//shift the 32 bit mask into the respective registers
+    1290:	c7 01       	movw	r24, r14
+    1292:	b6 01       	movw	r22, r12
+    1294:	25 e1       	ldi	r18, 0x15	; 21
+    1296:	96 95       	lsr	r25
+    1298:	87 95       	ror	r24
+    129a:	77 95       	ror	r23
+    129c:	67 95       	ror	r22
+    129e:	2a 95       	dec	r18
+    12a0:	d1 f7       	brne	.-12     	; 0x1296 <MCP2515_RXInit+0x84>
+    12a2:	84 e2       	ldi	r24, 0x24	; 36
+    12a4:	14 de       	rcall	.-984    	; 0xece <MCP2515_reg_write>
+			MCP2515_reg_write(MCP2515_RXM1SIDL, (((IDmsk>>13) & 224)| ((IDmsk>>16) & 3)));
+    12a6:	d7 01       	movw	r26, r14
+    12a8:	c6 01       	movw	r24, r12
+    12aa:	3d e0       	ldi	r19, 0x0D	; 13
+    12ac:	b6 95       	lsr	r27
+    12ae:	a7 95       	ror	r26
+    12b0:	97 95       	ror	r25
+    12b2:	87 95       	ror	r24
+    12b4:	3a 95       	dec	r19
+    12b6:	d1 f7       	brne	.-12     	; 0x12ac <MCP2515_RXInit+0x9a>
+    12b8:	80 7e       	andi	r24, 0xE0	; 224
+    12ba:	6e 2d       	mov	r22, r14
+    12bc:	63 70       	andi	r22, 0x03	; 3
+    12be:	68 2b       	or	r22, r24
+    12c0:	85 e2       	ldi	r24, 0x25	; 37
+			MCP2515_reg_write(MCP2515_RXM1EID8, (IDmsk>>8) & 0xFF );
+    12c2:	05 de       	rcall	.-1014   	; 0xece <MCP2515_reg_write>
+    12c4:	99 27       	eor	r25, r25
+    12c6:	8f 2d       	mov	r24, r15
+    12c8:	7e 2d       	mov	r23, r14
+    12ca:	6d 2d       	mov	r22, r13
+    12cc:	86 e2       	ldi	r24, 0x26	; 38
+			MCP2515_reg_write(MCP2515_RXM1EID0, IDmsk & 0xFF );
+    12ce:	ff dd       	rcall	.-1026   	; 0xece <MCP2515_reg_write>
+    12d0:	6c 2d       	mov	r22, r12
+    12d2:	87 e2       	ldi	r24, 0x27	; 39
+			if(IDmsk) MCP2515_reg_write(MCP2515_RXB1CTRL, 0b00000000);	//Enable reception using masks and filters. 
+    12d4:	fc dd       	rcall	.-1032   	; 0xece <MCP2515_reg_write>
+    12d6:	60 e0       	ldi	r22, 0x00	; 0
+    12d8:	cd 28       	or	r12, r13
+    12da:	ce 28       	or	r12, r14
+    12dc:	cf 28       	or	r12, r15
+			else MCP2515_reg_write(MCP2515_RXB1CTRL, 0b01100000);		//Enable reception without masks and filters.
+    12de:	09 f4       	brne	.+2      	; 0x12e2 <MCP2515_RXInit+0xd0>
+    12e0:	60 e6       	ldi	r22, 0x60	; 96
+    12e2:	80 e7       	ldi	r24, 0x70	; 112
+    12e4:	f4 dd       	rcall	.-1048   	; 0xece <MCP2515_reg_write>
+    12e6:	a2 cf       	rjmp	.-188    	; 0x122c <MCP2515_RXInit+0x1a>
+	if (mob > 1)return 0;
+    12e8:	80 e0       	ldi	r24, 0x00	; 0
+    12ea:	a1 cf       	rjmp	.-190    	; 0x122e <MCP2515_RXInit+0x1c>
+
+000012ec <MCP2515_TX>:
+
+void MCP2515_TX(int8_t mob, uint8_t numBytes, uint8_t * data, uint32_t ID)
+{
+    12ec:	af 92       	push	r10
+    12ee:	bf 92       	push	r11
+    12f0:	cf 92       	push	r12
+    12f2:	df 92       	push	r13
+    12f4:	ef 92       	push	r14
+    12f6:	ff 92       	push	r15
+    12f8:	0f 93       	push	r16
+    12fa:	1f 93       	push	r17
+    12fc:	cf 93       	push	r28
+    12fe:	df 93       	push	r29
+    1300:	c8 2f       	mov	r28, r24
+    1302:	d6 2f       	mov	r29, r22
+    1304:	5a 01       	movw	r10, r20
+    1306:	68 01       	movw	r12, r16
+    1308:	79 01       	movw	r14, r18
+	if(mob == 0)return;						//no free mob or invalid mob
+    130a:	88 23       	and	r24, r24
+    130c:	09 f4       	brne	.+2      	; 0x1310 <MCP2515_TX+0x24>
+    130e:	52 c0       	rjmp	.+164    	; 0x13b4 <MCP2515_TX+0xc8>
+	MCP2515_reg_write(mob, 0x03);			//we shall set this to the highest priority so that it sends it immediately.
+    1310:	18 2f       	mov	r17, r24
+    1312:	63 e0       	ldi	r22, 0x03	; 3
+    1314:	dc dd       	rcall	.-1096   	; 0xece <MCP2515_reg_write>
+	MCP2515_reg_write(mob+1, (ID>>21) & 0xFF);	//shift the ID data to fill the respective MCP registers
+    1316:	c7 01       	movw	r24, r14
+    1318:	b6 01       	movw	r22, r12
+    131a:	25 e1       	ldi	r18, 0x15	; 21
+    131c:	96 95       	lsr	r25
+    131e:	87 95       	ror	r24
+    1320:	77 95       	ror	r23
+    1322:	67 95       	ror	r22
+    1324:	2a 95       	dec	r18
+    1326:	d1 f7       	brne	.-12     	; 0x131c <MCP2515_TX+0x30>
+    1328:	81 e0       	ldi	r24, 0x01	; 1
+    132a:	8c 0f       	add	r24, r28
+    132c:	d0 dd       	rcall	.-1120   	; 0xece <MCP2515_reg_write>
+	MCP2515_reg_write(mob+2, (((ID>>13) & 224)| ((ID>>16) & 3) | ((1<<3) & 0xFF)));	//set the EXIDE bit, which makes it extended (CAN 2.0B)
+    132e:	d7 01       	movw	r26, r14
+    1330:	c6 01       	movw	r24, r12
+    1332:	3d e0       	ldi	r19, 0x0D	; 13
+    1334:	b6 95       	lsr	r27
+    1336:	a7 95       	ror	r26
+    1338:	97 95       	ror	r25
+    133a:	87 95       	ror	r24
+    133c:	3a 95       	dec	r19
+    133e:	d1 f7       	brne	.-12     	; 0x1334 <MCP2515_TX+0x48>
+    1340:	80 7e       	andi	r24, 0xE0	; 224
+    1342:	6e 2d       	mov	r22, r14
+    1344:	63 70       	andi	r22, 0x03	; 3
+    1346:	68 2b       	or	r22, r24
+    1348:	68 60       	ori	r22, 0x08	; 8
+    134a:	82 e0       	ldi	r24, 0x02	; 2
+    134c:	8c 0f       	add	r24, r28
+    134e:	bf dd       	rcall	.-1154   	; 0xece <MCP2515_reg_write>
+	MCP2515_reg_write(mob+3, (ID>>8) & 0xFF );
+    1350:	99 27       	eor	r25, r25
+    1352:	8f 2d       	mov	r24, r15
+    1354:	7e 2d       	mov	r23, r14
+    1356:	6d 2d       	mov	r22, r13
+    1358:	83 e0       	ldi	r24, 0x03	; 3
+    135a:	8c 0f       	add	r24, r28
+	MCP2515_reg_write(mob+4, ID & 0xFF );
+    135c:	b8 dd       	rcall	.-1168   	; 0xece <MCP2515_reg_write>
+    135e:	6c 2d       	mov	r22, r12
+    1360:	84 e0       	ldi	r24, 0x04	; 4
+    1362:	8c 0f       	add	r24, r28
+	MCP2515_reg_write(mob+5, numBytes);		//set how many bytes we wish to send
+    1364:	b4 dd       	rcall	.-1176   	; 0xece <MCP2515_reg_write>
+    1366:	6d 2f       	mov	r22, r29
+    1368:	85 e0       	ldi	r24, 0x05	; 5
+    136a:	8c 0f       	add	r24, r28
+    136c:	b0 dd       	rcall	.-1184   	; 0xece <MCP2515_reg_write>
+	//MCP2515_reg_write(mob+2, (1<<3));
+	//MCP2515_reg_write(mob+3, 0);
+	//MCP2515_reg_write(mob+4, 0);
+	//MCP2515_reg_write(mob+5, 0);
+	
+	for (uint8_t byteCount = 0; byteCount < numBytes; byteCount++)
+    136e:	75 01       	movw	r14, r10
+    1370:	dc 0f       	add	r29, r28
+    1372:	1d 13       	cpse	r17, r29
+    1374:	17 c0       	rjmp	.+46     	; 0x13a4 <MCP2515_TX+0xb8>
+	{
+		MCP2515_reg_write(mob+6+byteCount, *(data+byteCount));	//fill the data bytes register.
+	}
+	MCP2515_instruction(128|(1<<((mob>>4) - 3)));		//creates an instruction that matches the mob that is chosen.
+    1376:	c5 95       	asr	r28
+    1378:	c5 95       	asr	r28
+    137a:	c5 95       	asr	r28
+    137c:	c5 95       	asr	r28
+    137e:	c3 50       	subi	r28, 0x03	; 3
+    1380:	81 e0       	ldi	r24, 0x01	; 1
+    1382:	90 e0       	ldi	r25, 0x00	; 0
+    1384:	01 c0       	rjmp	.+2      	; 0x1388 <MCP2515_TX+0x9c>
+    1386:	88 0f       	add	r24, r24
+    1388:	ca 95       	dec	r28
+    138a:	ea f7       	brpl	.-6      	; 0x1386 <MCP2515_TX+0x9a>
+    138c:	80 68       	ori	r24, 0x80	; 128
+	//PORTC &= ~(1<<PINC7);		//Drop the TX
+	//_delay_us(50);
+	//PORTC |= (1<<PINC7);		
+}
+    138e:	df 91       	pop	r29
+    1390:	cf 91       	pop	r28
+    1392:	1f 91       	pop	r17
+    1394:	0f 91       	pop	r16
+    1396:	ff 90       	pop	r15
+    1398:	ef 90       	pop	r14
+    139a:	df 90       	pop	r13
+    139c:	cf 90       	pop	r12
+    139e:	bf 90       	pop	r11
+	MCP2515_instruction(128|(1<<((mob>>4) - 3)));		//creates an instruction that matches the mob that is chosen.
+    13a0:	af 90       	pop	r10
+		MCP2515_reg_write(mob+6+byteCount, *(data+byteCount));	//fill the data bytes register.
+    13a2:	a4 cd       	rjmp	.-1208   	; 0xeec <MCP2515_instruction>
+    13a4:	f7 01       	movw	r30, r14
+    13a6:	61 91       	ld	r22, Z+
+    13a8:	7f 01       	movw	r14, r30
+    13aa:	86 e0       	ldi	r24, 0x06	; 6
+    13ac:	81 0f       	add	r24, r17
+    13ae:	8f dd       	rcall	.-1250   	; 0xece <MCP2515_reg_write>
+    13b0:	1f 5f       	subi	r17, 0xFF	; 255
+    13b2:	df cf       	rjmp	.-66     	; 0x1372 <MCP2515_TX+0x86>
+}
+    13b4:	df 91       	pop	r29
+    13b6:	cf 91       	pop	r28
+    13b8:	1f 91       	pop	r17
+    13ba:	0f 91       	pop	r16
+    13bc:	ff 90       	pop	r15
+    13be:	ef 90       	pop	r14
+    13c0:	df 90       	pop	r13
+    13c2:	cf 90       	pop	r12
+    13c4:	bf 90       	pop	r11
+    13c6:	af 90       	pop	r10
+    13c8:	08 95       	ret
+
+000013ca <CAN_init>:
+}
+
+uint8_t CAN_init()
+{
+	
+	CANGCON = (1 << SWRES);     // Reset the CAN controller hardware and general registers.
+    13ca:	81 e0       	ldi	r24, 0x01	; 1
+    13cc:	80 93 d8 00 	sts	0x00D8, r24	; 0x8000d8 <__TEXT_REGION_LENGTH__+0x7e00d8>
+    13d0:	80 e0       	ldi	r24, 0x00	; 0
+	for(uint8_t mobCount = 0; mobCount <= 5; mobCount++)
+	{
+		CANPAGE = (mobCount << 4);		//select the message object to modify
+    13d2:	80 93 ed 00 	sts	0x00ED, r24	; 0x8000ed <__TEXT_REGION_LENGTH__+0x7e00ed>
+		CANCDMOB = 0;					//make sure we do not do any actions on this mob.
+    13d6:	10 92 ef 00 	sts	0x00EF, r1	; 0x8000ef <__TEXT_REGION_LENGTH__+0x7e00ef>
+		CANSTMOB = 0;					//make sure no interrupts are set.
+    13da:	10 92 ee 00 	sts	0x00EE, r1	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+		CANIDM1 = 0;
+    13de:	10 92 f7 00 	sts	0x00F7, r1	; 0x8000f7 <__TEXT_REGION_LENGTH__+0x7e00f7>
+		CANIDM2 = 0;
+    13e2:	10 92 f6 00 	sts	0x00F6, r1	; 0x8000f6 <__TEXT_REGION_LENGTH__+0x7e00f6>
+		CANIDM3 = 0;
+    13e6:	10 92 f5 00 	sts	0x00F5, r1	; 0x8000f5 <__TEXT_REGION_LENGTH__+0x7e00f5>
+		CANIDM4 = 0;					//these registers are used to control the mask which filters incoming messages
+    13ea:	10 92 f4 00 	sts	0x00F4, r1	; 0x8000f4 <__TEXT_REGION_LENGTH__+0x7e00f4>
+    13ee:	80 5f       	subi	r24, 0xF0	; 240
+	for(uint8_t mobCount = 0; mobCount <= 5; mobCount++)
+    13f0:	80 36       	cpi	r24, 0x60	; 96
+    13f2:	79 f7       	brne	.-34     	; 0x13d2 <CAN_init+0x8>
+	}
+	CANBT1 = 0x0E;		//these registers control speed of communication
+    13f4:	8e e0       	ldi	r24, 0x0E	; 14
+    13f6:	80 93 e2 00 	sts	0x00E2, r24	; 0x8000e2 <__TEXT_REGION_LENGTH__+0x7e00e2>
+	CANBT2 = 0x04;		//currently with these values, it is 250kbps
+    13fa:	84 e0       	ldi	r24, 0x04	; 4
+    13fc:	80 93 e3 00 	sts	0x00E3, r24	; 0x8000e3 <__TEXT_REGION_LENGTH__+0x7e00e3>
+	CANBT3 = 0x13;		//with 8 TQ per bit.
+    1400:	83 e1       	ldi	r24, 0x13	; 19
+    1402:	80 93 e4 00 	sts	0x00E4, r24	; 0x8000e4 <__TEXT_REGION_LENGTH__+0x7e00e4>
+
+	CANIE2 = (1 << IEMOB4)|(1 << IEMOB5);		//enable interrupts on MOB 4 and 5 for receiving
+    1406:	80 e3       	ldi	r24, 0x30	; 48
+    1408:	80 93 de 00 	sts	0x00DE, r24	; 0x8000de <__TEXT_REGION_LENGTH__+0x7e00de>
+	CANGIE = (1 << ENRX)|(1 << ENIT);		//enable receive interrupt; enable global CAN interrupt (all interrupts)
+    140c:	80 ea       	ldi	r24, 0xA0	; 160
+    140e:	80 93 db 00 	sts	0x00DB, r24	; 0x8000db <__TEXT_REGION_LENGTH__+0x7e00db>
+	//put other initialisation functions here.
+
+	CANGCON = (1 << ENASTB);    // Enable the CAN.
+    1412:	82 e0       	ldi	r24, 0x02	; 2
+    1414:	80 93 d8 00 	sts	0x00D8, r24	; 0x8000d8 <__TEXT_REGION_LENGTH__+0x7e00d8>
+	__builtin_avr_delay_cycles(__ticks_dc);
+    1418:	2f ef       	ldi	r18, 0xFF	; 255
+    141a:	80 e7       	ldi	r24, 0x70	; 112
+    141c:	92 e0       	ldi	r25, 0x02	; 2
+    141e:	21 50       	subi	r18, 0x01	; 1
+    1420:	80 40       	sbci	r24, 0x00	; 0
+    1422:	90 40       	sbci	r25, 0x00	; 0
+    1424:	e1 f7       	brne	.-8      	; 0x141e <CAN_init+0x54>
+    1426:	00 c0       	rjmp	.+0      	; 0x1428 <CAN_init+0x5e>
+    1428:	00 00       	nop
+	_delay_ms(50);
+	if(!(CANGSTA & (1<<ENFG)))return 1;
+    142a:	80 91 d9 00 	lds	r24, 0x00D9	; 0x8000d9 <__TEXT_REGION_LENGTH__+0x7e00d9>
+    142e:	82 fb       	bst	r24, 2
+    1430:	88 27       	eor	r24, r24
+    1432:	80 f9       	bld	r24, 0
+	return 0;
+}
+    1434:	91 e0       	ldi	r25, 0x01	; 1
+    1436:	89 27       	eor	r24, r25
+    1438:	08 95       	ret
+
+0000143a <CAN_RXInit>:
+
+void CAN_RXInit(int8_t mob, uint8_t numBytes, uint32_t IDmsk, uint32_t ID)
+{
+    143a:	ef 92       	push	r14
+    143c:	ff 92       	push	r15
+    143e:	0f 93       	push	r16
+    1440:	1f 93       	push	r17
+	CANPAGE = ( mob << 4);		//use the mobth mob for receiving.
+    1442:	82 95       	swap	r24
+    1444:	80 7f       	andi	r24, 0xF0	; 240
+    1446:	80 93 ed 00 	sts	0x00ED, r24	; 0x8000ed <__TEXT_REGION_LENGTH__+0x7e00ed>
+	//IDEMSK is sent with the CAN packet, we choose to not require that it be set, and instead focus on ID match
+	CANIDM4 = (IDmsk<<03) & 0xF8;	//shifts the value sets RTRMSK to zero and IDEMSK to 0
+    144a:	82 2f       	mov	r24, r18
+    144c:	88 0f       	add	r24, r24
+    144e:	88 0f       	add	r24, r24
+    1450:	88 0f       	add	r24, r24
+    1452:	80 93 f4 00 	sts	0x00F4, r24	; 0x8000f4 <__TEXT_REGION_LENGTH__+0x7e00f4>
+	CANIDM3 = (IDmsk>>05) & 0xFF;
+    1456:	da 01       	movw	r26, r20
+    1458:	c9 01       	movw	r24, r18
+    145a:	75 e0       	ldi	r23, 0x05	; 5
+    145c:	b6 95       	lsr	r27
+    145e:	a7 95       	ror	r26
+    1460:	97 95       	ror	r25
+    1462:	87 95       	ror	r24
+    1464:	7a 95       	dec	r23
+    1466:	d1 f7       	brne	.-12     	; 0x145c <CAN_RXInit+0x22>
+    1468:	80 93 f5 00 	sts	0x00F5, r24	; 0x8000f5 <__TEXT_REGION_LENGTH__+0x7e00f5>
+	CANIDM2 = (IDmsk>>13) & 0xFF;	
+    146c:	da 01       	movw	r26, r20
+    146e:	c9 01       	movw	r24, r18
+    1470:	ed e0       	ldi	r30, 0x0D	; 13
+    1472:	b6 95       	lsr	r27
+    1474:	a7 95       	ror	r26
+    1476:	97 95       	ror	r25
+    1478:	87 95       	ror	r24
+    147a:	ea 95       	dec	r30
+    147c:	d1 f7       	brne	.-12     	; 0x1472 <CAN_RXInit+0x38>
+    147e:	80 93 f6 00 	sts	0x00F6, r24	; 0x8000f6 <__TEXT_REGION_LENGTH__+0x7e00f6>
+	CANIDM1 = (IDmsk>>21) & 0xFF;
+    1482:	f5 e1       	ldi	r31, 0x15	; 21
+    1484:	56 95       	lsr	r21
+    1486:	47 95       	ror	r20
+    1488:	37 95       	ror	r19
+    148a:	27 95       	ror	r18
+    148c:	fa 95       	dec	r31
+    148e:	d1 f7       	brne	.-12     	; 0x1484 <CAN_RXInit+0x4a>
+    1490:	20 93 f7 00 	sts	0x00F7, r18	; 0x8000f7 <__TEXT_REGION_LENGTH__+0x7e00f7>
+	
+	CANIDT4 = (ID<<03) & 0xF8;	//shifts the value sets RTRTAG, RB1TAG and RB0TAG to 0
+    1494:	8e 2d       	mov	r24, r14
+    1496:	88 0f       	add	r24, r24
+    1498:	88 0f       	add	r24, r24
+    149a:	88 0f       	add	r24, r24
+    149c:	80 93 f0 00 	sts	0x00F0, r24	; 0x8000f0 <__TEXT_REGION_LENGTH__+0x7e00f0>
+	CANIDT3 = (ID>>05) & 0xFF;
+    14a0:	d8 01       	movw	r26, r16
+    14a2:	c7 01       	movw	r24, r14
+    14a4:	25 e0       	ldi	r18, 0x05	; 5
+    14a6:	b6 95       	lsr	r27
+    14a8:	a7 95       	ror	r26
+    14aa:	97 95       	ror	r25
+    14ac:	87 95       	ror	r24
+    14ae:	2a 95       	dec	r18
+    14b0:	d1 f7       	brne	.-12     	; 0x14a6 <CAN_RXInit+0x6c>
+    14b2:	80 93 f1 00 	sts	0x00F1, r24	; 0x8000f1 <__TEXT_REGION_LENGTH__+0x7e00f1>
+	CANIDT2 = (ID>>13) & 0xFF;
+    14b6:	d8 01       	movw	r26, r16
+    14b8:	c7 01       	movw	r24, r14
+    14ba:	3d e0       	ldi	r19, 0x0D	; 13
+    14bc:	b6 95       	lsr	r27
+    14be:	a7 95       	ror	r26
+    14c0:	97 95       	ror	r25
+    14c2:	87 95       	ror	r24
+    14c4:	3a 95       	dec	r19
+    14c6:	d1 f7       	brne	.-12     	; 0x14bc <CAN_RXInit+0x82>
+    14c8:	80 93 f2 00 	sts	0x00F2, r24	; 0x8000f2 <__TEXT_REGION_LENGTH__+0x7e00f2>
+	CANIDT1 = (ID>>21) & 0xFF;
+    14cc:	45 e1       	ldi	r20, 0x15	; 21
+    14ce:	16 95       	lsr	r17
+    14d0:	07 95       	ror	r16
+    14d2:	f7 94       	ror	r15
+    14d4:	e7 94       	ror	r14
+    14d6:	4a 95       	dec	r20
+    14d8:	d1 f7       	brne	.-12     	; 0x14ce <CAN_RXInit+0x94>
+    14da:	e0 92 f3 00 	sts	0x00F3, r14	; 0x8000f3 <__TEXT_REGION_LENGTH__+0x7e00f3>
+	
+	CANCDMOB = (numBytes << DLC0)|(2<<CONMOB0)|(1 << IDE);		//we are expecting only numBytes bytes; also set the mob to receive mode.
+    14de:	60 69       	ori	r22, 0x90	; 144
+    14e0:	60 93 ef 00 	sts	0x00EF, r22	; 0x8000ef <__TEXT_REGION_LENGTH__+0x7e00ef>
+}
+    14e4:	1f 91       	pop	r17
+    14e6:	0f 91       	pop	r16
+    14e8:	ff 90       	pop	r15
+    14ea:	ef 90       	pop	r14
+    14ec:	08 95       	ret
+
+000014ee <CAN_TXMOB>:
+
+void CAN_TXMOB(int8_t mob, uint8_t numBytes, uint8_t * data, uint32_t ID, uint8_t ms_loop_until_TXOK)
+{
+    14ee:	ef 92       	push	r14
+    14f0:	0f 93       	push	r16
+    14f2:	1f 93       	push	r17
+	CANPAGE = ( mob << 4);		//use the mobth mob
+    14f4:	82 95       	swap	r24
+    14f6:	80 7f       	andi	r24, 0xF0	; 240
+    14f8:	80 93 ed 00 	sts	0x00ED, r24	; 0x8000ed <__TEXT_REGION_LENGTH__+0x7e00ed>
+	//IDEMSK is sent with the CAN packet, we choose to not set it, and instead the receiver will focus on ID match
+	CANSTMOB &= ~(1<<TXOK);
+    14fc:	80 91 ee 00 	lds	r24, 0x00EE	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+    1500:	8f 7b       	andi	r24, 0xBF	; 191
+    1502:	80 93 ee 00 	sts	0x00EE, r24	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+	CANIDM4 = 0;
+    1506:	10 92 f4 00 	sts	0x00F4, r1	; 0x8000f4 <__TEXT_REGION_LENGTH__+0x7e00f4>
+	
+	CANIDT4 = (ID<<03) & 0xF8;	//shifts the value sets RTRTAG, RB1TAG and RB0TAG
+    150a:	80 2f       	mov	r24, r16
+    150c:	88 0f       	add	r24, r24
+    150e:	88 0f       	add	r24, r24
+    1510:	88 0f       	add	r24, r24
+    1512:	80 93 f0 00 	sts	0x00F0, r24	; 0x8000f0 <__TEXT_REGION_LENGTH__+0x7e00f0>
+	CANIDT3 = (ID>>05) & 0xFF;
+    1516:	d9 01       	movw	r26, r18
+    1518:	c8 01       	movw	r24, r16
+    151a:	75 e0       	ldi	r23, 0x05	; 5
+    151c:	b6 95       	lsr	r27
+    151e:	a7 95       	ror	r26
+    1520:	97 95       	ror	r25
+    1522:	87 95       	ror	r24
+    1524:	7a 95       	dec	r23
+    1526:	d1 f7       	brne	.-12     	; 0x151c <CAN_TXMOB+0x2e>
+    1528:	80 93 f1 00 	sts	0x00F1, r24	; 0x8000f1 <__TEXT_REGION_LENGTH__+0x7e00f1>
+	CANIDT2 = (ID>>13) & 0xFF;
+    152c:	d9 01       	movw	r26, r18
+    152e:	c8 01       	movw	r24, r16
+    1530:	ed e0       	ldi	r30, 0x0D	; 13
+    1532:	b6 95       	lsr	r27
+    1534:	a7 95       	ror	r26
+    1536:	97 95       	ror	r25
+    1538:	87 95       	ror	r24
+    153a:	ea 95       	dec	r30
+    153c:	d1 f7       	brne	.-12     	; 0x1532 <CAN_TXMOB+0x44>
+    153e:	80 93 f2 00 	sts	0x00F2, r24	; 0x8000f2 <__TEXT_REGION_LENGTH__+0x7e00f2>
+	CANIDT1 = (ID>>21) & 0xFF;
+    1542:	f5 e1       	ldi	r31, 0x15	; 21
+    1544:	36 95       	lsr	r19
+    1546:	27 95       	ror	r18
+    1548:	17 95       	ror	r17
+    154a:	07 95       	ror	r16
+    154c:	fa 95       	dec	r31
+    154e:	d1 f7       	brne	.-12     	; 0x1544 <CAN_TXMOB+0x56>
+    1550:	00 93 f3 00 	sts	0x00F3, r16	; 0x8000f3 <__TEXT_REGION_LENGTH__+0x7e00f3>
+	for(uint8_t i = 0; i < numBytes; i++)
+    1554:	94 2f       	mov	r25, r20
+	CANIDT1 = (ID>>21) & 0xFF;
+    1556:	fa 01       	movw	r30, r20
+	for(uint8_t i = 0; i < numBytes; i++)
+    1558:	8e 2f       	mov	r24, r30
+    155a:	89 1b       	sub	r24, r25
+    155c:	86 17       	cp	r24, r22
+    155e:	50 f0       	brcs	.+20     	; 0x1574 <CAN_TXMOB+0x86>
+	{
+		CANMSG = data[i];
+	}
+	CANCDMOB = (numBytes << DLC0)|(1<<CONMOB0)|(1 << IDE);		//we are expecting only numBytes bytes; also set the mob to receive mode.
+    1560:	60 65       	ori	r22, 0x50	; 80
+    1562:	60 93 ef 00 	sts	0x00EF, r22	; 0x8000ef <__TEXT_REGION_LENGTH__+0x7e00ef>
+
+	for(uint8_t i = 0; i < ms_loop_until_TXOK; i++)	//loop until specified wait time is up
+    1566:	80 e0       	ldi	r24, 0x00	; 0
+    1568:	e8 12       	cpse	r14, r24
+    156a:	08 c0       	rjmp	.+16     	; 0x157c <CAN_TXMOB+0x8e>
+	{
+		if((CANSTMOB & (1 << TXOK)))break;		//check for transmission complete
+		_delay_ms(1);								//do nothing for 1 ms
+	}
+}
+    156c:	1f 91       	pop	r17
+    156e:	0f 91       	pop	r16
+    1570:	ef 90       	pop	r14
+    1572:	08 95       	ret
+		CANMSG = data[i];
+    1574:	81 91       	ld	r24, Z+
+    1576:	80 93 fa 00 	sts	0x00FA, r24	; 0x8000fa <__TEXT_REGION_LENGTH__+0x7e00fa>
+    157a:	ee cf       	rjmp	.-36     	; 0x1558 <CAN_TXMOB+0x6a>
+		if((CANSTMOB & (1 << TXOK)))break;		//check for transmission complete
+    157c:	90 91 ee 00 	lds	r25, 0x00EE	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+    1580:	96 fd       	sbrc	r25, 6
+    1582:	f4 cf       	rjmp	.-24     	; 0x156c <CAN_TXMOB+0x7e>
+    1584:	ef e9       	ldi	r30, 0x9F	; 159
+    1586:	ff e0       	ldi	r31, 0x0F	; 15
+    1588:	31 97       	sbiw	r30, 0x01	; 1
+    158a:	f1 f7       	brne	.-4      	; 0x1588 <CAN_TXMOB+0x9a>
+    158c:	00 c0       	rjmp	.+0      	; 0x158e <CAN_TXMOB+0xa0>
+    158e:	00 00       	nop
+	for(uint8_t i = 0; i < ms_loop_until_TXOK; i++)	//loop until specified wait time is up
+    1590:	8f 5f       	subi	r24, 0xFF	; 255
+    1592:	ea cf       	rjmp	.-44     	; 0x1568 <CAN_TXMOB+0x7a>
+
+00001594 <CAN_findFreeTXMOB>:
+
+int8_t CAN_findFreeTXMOB()
+{
+    1594:	90 e0       	ldi	r25, 0x00	; 0
+	for(uint8_t i = 0; i < 4; i++) //tx mobs are 0 to 3 (<4)
+    1596:	80 e0       	ldi	r24, 0x00	; 0
+	{
+		CANPAGE = ( i << 4);		//use the mobth mob
+    1598:	90 93 ed 00 	sts	0x00ED, r25	; 0x8000ed <__TEXT_REGION_LENGTH__+0x7e00ed>
+		if((CANSTMOB & ((1<<TXOK)|(1<<BERR)|(1<<SERR)|(1<<FERR)|(1<<CERR))) || !(CANCDMOB & (1<<CONMOB0))) //if the transmission is complete or the mob has not been setup yet
+    159c:	20 91 ee 00 	lds	r18, 0x00EE	; 0x8000ee <__TEXT_REGION_LENGTH__+0x7e00ee>
+    15a0:	2e 75       	andi	r18, 0x5E	; 94
+    15a2:	49 f4       	brne	.+18     	; 0x15b6 <CAN_findFreeTXMOB+0x22>
+    15a4:	20 91 ef 00 	lds	r18, 0x00EF	; 0x8000ef <__TEXT_REGION_LENGTH__+0x7e00ef>
+    15a8:	26 ff       	sbrs	r18, 6
+    15aa:	05 c0       	rjmp	.+10     	; 0x15b6 <CAN_findFreeTXMOB+0x22>
+	for(uint8_t i = 0; i < 4; i++) //tx mobs are 0 to 3 (<4)
+    15ac:	8f 5f       	subi	r24, 0xFF	; 255
+    15ae:	90 5f       	subi	r25, 0xF0	; 240
+    15b0:	84 30       	cpi	r24, 0x04	; 4
+    15b2:	91 f7       	brne	.-28     	; 0x1598 <CAN_findFreeTXMOB+0x4>
+		{
+			return i;			//send back the free mob
+		}
+	}
+	return -1;		//otherwise, none are free
+    15b4:	8f ef       	ldi	r24, 0xFF	; 255
+    15b6:	08 95       	ret
+
+000015b8 <SPI_send_byte>:
+#include "SPI.h"
+
+uint8_t SPI_send_byte(uint8_t c)
+{
+	SPDR = c;					//write data to the transmission register. Writing to this initiates transmission.
+    15b8:	8e bd       	out	0x2e, r24	; 46
+	while(!(SPSR & (1<<SPIF)));
+    15ba:	0d b4       	in	r0, 0x2d	; 45
+    15bc:	07 fe       	sbrs	r0, 7
+    15be:	fd cf       	rjmp	.-6      	; 0x15ba <SPI_send_byte+0x2>
+	return SPDR;				//return any data that was shifted into this register upon transmission.
+    15c0:	8e b5       	in	r24, 0x2e	; 46
+}
+    15c2:	08 95       	ret
+
+000015c4 <SPI_init>:
+
+void SPI_init()
+{
+	MCUCR &= ~(1<<SPIPS);		//make sure we are getting spi not on the _A spi pins.
+    15c4:	85 b7       	in	r24, 0x35	; 53
+    15c6:	8f 77       	andi	r24, 0x7F	; 127
+    15c8:	85 bf       	out	0x35, r24	; 53
+	SPCR = (0<<SPIE)|(1<<SPE)|(0<<DORD)|(1<<MSTR)|(0<<CPOL)|(0<<CPHA)|(1<<SPR0)|(0<<SPR1);  //set interrupt, enable SPI, MSB mode, set as master, low is idle, read on leading edge, Set to speed(fosc/64) SPR0=1, SPR1=0
+    15ca:	81 e5       	ldi	r24, 0x51	; 81
+    15cc:	8c bd       	out	0x2c, r24	; 44
+	SPSR = (1<<SPI2X);	//set whether we want 2x speed or not (1=2x speed).
+    15ce:	81 e0       	ldi	r24, 0x01	; 1
+    15d0:	8d bd       	out	0x2d, r24	; 45
+	SPDR = 0x00;		//ensure data register has nothing in it
+    15d2:	1e bc       	out	0x2e, r1	; 46
+    15d4:	08 95       	ret
+
+000015d6 <__udivmodsi4>:
+    15d6:	a1 e2       	ldi	r26, 0x21	; 33
+    15d8:	1a 2e       	mov	r1, r26
+    15da:	aa 1b       	sub	r26, r26
+    15dc:	bb 1b       	sub	r27, r27
+    15de:	fd 01       	movw	r30, r26
+    15e0:	0d c0       	rjmp	.+26     	; 0x15fc <__udivmodsi4_ep>
+
+000015e2 <__udivmodsi4_loop>:
+    15e2:	aa 1f       	adc	r26, r26
+    15e4:	bb 1f       	adc	r27, r27
+    15e6:	ee 1f       	adc	r30, r30
+    15e8:	ff 1f       	adc	r31, r31
+    15ea:	a2 17       	cp	r26, r18
+    15ec:	b3 07       	cpc	r27, r19
+    15ee:	e4 07       	cpc	r30, r20
+    15f0:	f5 07       	cpc	r31, r21
+    15f2:	20 f0       	brcs	.+8      	; 0x15fc <__udivmodsi4_ep>
+    15f4:	a2 1b       	sub	r26, r18
+    15f6:	b3 0b       	sbc	r27, r19
+    15f8:	e4 0b       	sbc	r30, r20
+    15fa:	f5 0b       	sbc	r31, r21
+
+000015fc <__udivmodsi4_ep>:
+    15fc:	66 1f       	adc	r22, r22
+    15fe:	77 1f       	adc	r23, r23
+    1600:	88 1f       	adc	r24, r24
+    1602:	99 1f       	adc	r25, r25
+    1604:	1a 94       	dec	r1
+    1606:	69 f7       	brne	.-38     	; 0x15e2 <__udivmodsi4_loop>
+    1608:	60 95       	com	r22
+    160a:	70 95       	com	r23
+    160c:	80 95       	com	r24
+    160e:	90 95       	com	r25
+    1610:	9b 01       	movw	r18, r22
+    1612:	ac 01       	movw	r20, r24
+    1614:	bd 01       	movw	r22, r26
+    1616:	cf 01       	movw	r24, r30
+    1618:	08 95       	ret
+
+0000161a <eeprom_read_word>:
+    161a:	a8 e1       	ldi	r26, 0x18	; 24
+    161c:	b0 e0       	ldi	r27, 0x00	; 0
+    161e:	42 e0       	ldi	r20, 0x02	; 2
+    1620:	50 e0       	ldi	r21, 0x00	; 0
+    1622:	05 c0       	rjmp	.+10     	; 0x162e <eeprom_read_blraw>
+
+00001624 <eeprom_write_word>:
+    1624:	12 d0       	rcall	.+36     	; 0x164a <eeprom_write_byte>
+    1626:	27 2f       	mov	r18, r23
+    1628:	11 c0       	rjmp	.+34     	; 0x164c <eeprom_write_r18>
+
+0000162a <eeprom_read_block>:
+    162a:	dc 01       	movw	r26, r24
+    162c:	cb 01       	movw	r24, r22
+
+0000162e <eeprom_read_blraw>:
+    162e:	fc 01       	movw	r30, r24
+    1630:	f9 99       	sbic	0x1f, 1	; 31
+    1632:	fe cf       	rjmp	.-4      	; 0x1630 <eeprom_read_blraw+0x2>
+    1634:	06 c0       	rjmp	.+12     	; 0x1642 <eeprom_read_blraw+0x14>
+    1636:	f2 bd       	out	0x22, r31	; 34
+    1638:	e1 bd       	out	0x21, r30	; 33
+    163a:	f8 9a       	sbi	0x1f, 0	; 31
+    163c:	31 96       	adiw	r30, 0x01	; 1
+    163e:	00 b4       	in	r0, 0x20	; 32
+    1640:	0d 92       	st	X+, r0
+    1642:	41 50       	subi	r20, 0x01	; 1
+    1644:	50 40       	sbci	r21, 0x00	; 0
+    1646:	b8 f7       	brcc	.-18     	; 0x1636 <eeprom_read_blraw+0x8>
+    1648:	08 95       	ret
+
+0000164a <eeprom_write_byte>:
+    164a:	26 2f       	mov	r18, r22
+
+0000164c <eeprom_write_r18>:
+    164c:	f9 99       	sbic	0x1f, 1	; 31
+    164e:	fe cf       	rjmp	.-4      	; 0x164c <eeprom_write_r18>
+    1650:	1f ba       	out	0x1f, r1	; 31
+    1652:	92 bd       	out	0x22, r25	; 34
+    1654:	81 bd       	out	0x21, r24	; 33
+    1656:	20 bd       	out	0x20, r18	; 32
+    1658:	0f b6       	in	r0, 0x3f	; 63
+    165a:	f8 94       	cli
+    165c:	fa 9a       	sbi	0x1f, 2	; 31
+    165e:	f9 9a       	sbi	0x1f, 1	; 31
+    1660:	0f be       	out	0x3f, r0	; 63
+    1662:	01 96       	adiw	r24, 0x01	; 1
+    1664:	08 95       	ret
+
+00001666 <_exit>:
+    1666:	f8 94       	cli
+
+00001668 <__stop_program>:
+    1668:	ff cf       	rjmp	.-2      	; 0x1668 <__stop_program>
